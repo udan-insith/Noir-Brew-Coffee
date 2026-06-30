@@ -3,9 +3,75 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact — Noir Brew Co.</title>
-    <link rel="stylesheet" href="./css/contact.css" />
+    <meta
+      name="description"
+      content="Find Noir Brew Co. — Three café locations in Singapore. Contact us, visit us, or send a message."
+    />
+    <title>Contact & Locations — Noir Brew Co.</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>☕</text></svg>"
+    />
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/contact.css" />
   </head>
-  <body></body>
+  <body>
+    <!-- LOADER -->
+    <div id="pageLoader">
+      <div class="loader__cup">
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M20 18 Q22 10 20 4"
+            stroke="#d4a853"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"
+            style="animation: steamRise 1.4s ease-in-out infinite"
+          />
+          <path
+            d="M32 16 Q34 8 32 2"
+            stroke="#d4a853"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"
+            style="animation: steamRise 1.4s ease-in-out 0.25s infinite"
+          />
+          <path
+            d="M44 18 Q46 10 44 4"
+            stroke="#d4a853"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"
+            style="animation: steamRise 1.4s ease-in-out 0.5s infinite"
+          />
+          <path
+            d="M12 24 L16 58 Q16 60 18 60 L46 60 Q48 60 48 58 L52 24 Z"
+            fill="#1a1511"
+            stroke="#d4a853"
+            stroke-width="1.5"
+          />
+          <path
+            d="M52 34 Q62 34 62 44 Q62 54 52 54"
+            stroke="#d4a853"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"
+          />
+          <ellipse
+            cx="32"
+            cy="26"
+            rx="20"
+            ry="4"
+            fill="#d4a853"
+            opacity="0.85"
+          />
+        </svg>
+      </div>
+      <div class="loader__logo">Find Us</div>
+      <div class="loader__track">
+        <div class="loader__bar" id="loaderBar"></div>
+      </div>
+    </div>
+    <div id="themeCurtain"></div>
+  </body>
 </html>
