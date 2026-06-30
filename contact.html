@@ -73,5 +73,65 @@
       </div>
     </div>
     <div id="themeCurtain"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+      <div class="container navbar__inner">
+        <a href="index.html" class="logo">
+          <div class="logo__cup">☕</div>
+          <div class="logo__text">Noir <em>Brew</em></div>
+        </a>
+        <ul class="navbar__links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li class="has-dropdown">
+            <a class="nav-link dropdown-toggle" tabindex="0"
+              >Menu
+              <svg class="chevron" viewBox="0 0 12 8">
+                <path d="M1 1l5 5 5-5" />
+              </svg>
+            </a>
+            <div class="dropdown-menu">
+              <a href="menu.html" class="dropdown-item"
+                ><span class="dropdown-icon">☕</span>
+                <div>
+                  <div class="dropdown-label">Hot Drinks</div>
+                  <div class="dropdown-sub">Espresso, lattes & more</div>
+                </div></a
+              >
+              <a href="menu.html#cold" class="dropdown-item"
+                ><span class="dropdown-icon">🧊</span>
+                <div>
+                  <div class="dropdown-label">Cold Brews</div>
+                  <div class="dropdown-sub">Nitro, iced & sparkling</div>
+                </div></a
+              >
+              <a href="menu.html#beans" class="dropdown-item"
+                ><span class="dropdown-icon">🫘</span>
+                <div>
+                  <div class="dropdown-label">Whole Beans</div>
+                  <div class="dropdown-sub">Single-origin bags</div>
+                </div></a
+              >
+            </div>
+          </li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link active">Contact</a></li>
+        </ul>
+        <div class="navbar__actions">
+          <button class="theme-btn" id="themeBtn" title="Toggle theme">
+            🌙
+          </button>
+          <a href="menu.html" class="btn btn-primary">Order Now</a>
+          <button
+            class="hamburger"
+            id="hamburger"
+            aria-label="Open menu"
+            aria-expanded="false"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
   </body>
 </html>
