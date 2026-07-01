@@ -325,5 +325,74 @@
         </div>
       </div>
     </section>
+
+    <!-- LOCATION TABS -->
+     <div class="location-tabs-wrap">
+  <div class="container">
+
+    <!-- Tab switcher -->
+    <div class="location-tabs" role="tablist">
+      <button class="loc-tab active" data-loc="loc-tiong" role="tab" aria-selected="true">
+        <span class="loc-tab__dot"></span> Tiong Bahru
+        <span style="font-size:.68rem;color:inherit;opacity:.65;margin-left:4px;">Flagship</span>
+      </button>
+      <button class="loc-tab" data-loc="loc-dempsey" role="tab" aria-selected="false">
+        <span class="loc-tab__dot"></span> Dempsey Hill
+      </button>
+      <button class="loc-tab" data-loc="loc-changi" role="tab" aria-selected="false">
+        <span class="loc-tab__dot"></span> Jewel Changi
+        <span style="font-size:.68rem;color:inherit;opacity:.65;margin-left:4px;">Airport</span>
+      </button>
+    </div>
+
+    <!-- ─── TIONG BAHRU ─── -->
+    <div class="loc-panel active" id="loc-tiong" role="tabpanel">
+      <div class="loc-grid">
+        <!-- Map -->
+        <div class="map-box reveal-l">
+          <div class="map-placeholder">
+            <span class="map-placeholder__pin">📍</span>
+            <span class="map-placeholder__label">Tiong Bahru, Singapore</span>
+            <p style="font-size:.78rem;color:var(--c-muted);text-align:center;position:relative;z-index:1;max-width:22ch;">
+              Replace this placeholder with a Google Maps embed for 15 Eng Hoon Street
+            </p>
+            <span class="map-placeholder__hint">Embed map here</span>
+          </div>
+          <!-- Uncomment and paste your Google Maps embed:
+          <iframe
+            src="https://www.google.com/maps/embed?pb=…"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe> -->
+        </div>
+
+        <!-- Details -->
+        <div class="loc-details reveal-r">
+          <div>
+            <div class="loc-name">Tiong Bahru<br><em style="color:var(--c-gold);font-style:italic;">Flagship</em></div>
+            <p class="loc-tagline">Where it all began — our original home.</p>
+          </div>
+
+          <div class="loc-info-row">
+            <div class="loc-info-icon">📍</div>
+            <div>
+              <div class="loc-info-label">Address</div>
+              <div class="loc-info-val">15 Eng Hoon Street, #01-02<br>Singapore 169175</div>
+            </div>
+          </div>
+          <div class="loc-info-row">
+            <div class="loc-info-icon">📞</div>
+            <div>
+              <div class="loc-info-label">Phone</div>
+              <div class="loc-info-val"><a href="tel:+6562345678">+65 6234 5678</a></div>
+            </div>
+          </div>
+          <div class="loc-info-row">
+            <div class="loc-info-icon">🚇</div>
+            <div>
+              <div class="loc-info-label">Getting Here</div>
+              <div class="loc-info-val">5 min walk from Tiong Bahru MRT (EW17) · Parking at Tiong Bahru Plaza</div>
+            </div>
+          </div>
   </body>
 </html>
