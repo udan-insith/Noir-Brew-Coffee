@@ -1345,5 +1345,34 @@
         </div>
       </div>
     </footer>
+
+    <!-- CHATBOT -->
+    <button class="chatbot-fab" id="chatbotFab" aria-label="Open chat">
+      <div class="fab-pulse"></div>
+      <span class="fab-icon">☕</span>
+      <div class="fab-badge" id="fabBadge">1</div>
+    </button>
+    <div class="chat-panel" id="chatPanel" aria-hidden="true">
+      <div class="chat-header">
+        <div class="chat-avatar">🤖</div>
+        <div class="chat-info">
+          <div class="chat-info__name">Noir AI Barista</div>
+          <div class="chat-info__status">I can help you find us</div>
+        </div>
+      </div>
+      <div class="chat-msgs" id="chatMsgs"></div>
+      <div class="chat-input-row">
+        <input
+          class="chat-input"
+          id="chatInput"
+          placeholder="Ask about our locations…"
+          autocomplete="off"
+          maxlength="200"
+        />
+        <button class="chat-send" id="chatSend" aria-label="Send">➤</button>
+      </div>
+    </div>
+
+    <div class="toast-wrap" id="toastWrap"></div>
   </body>
 </html>
