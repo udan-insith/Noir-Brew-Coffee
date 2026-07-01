@@ -852,6 +852,213 @@
               </div>
             </div>
           </div>
+
+          <!-- ─── Right: Form ─── -->
+          <div class="reveal-r">
+            <div class="cf-form">
+              <div class="cf-form__title">Send Us a Message</div>
+              <p class="cf-form__sub">
+                We'll reply within one business day. Pinky promise. ☕
+              </p>
+
+              <!-- Topic chips -->
+              <div class="topic-chips" role="group" aria-label="Message topic">
+                <button type="button" class="topic-chip selected">
+                  General Enquiry
+                </button>
+                <button type="button" class="topic-chip">Wholesale</button>
+                <button type="button" class="topic-chip">
+                  Bean Subscription
+                </button>
+                <button type="button" class="topic-chip">
+                  Events & Catering
+                </button>
+                <button type="button" class="topic-chip">Feedback</button>
+                <button type="button" class="topic-chip">Careers</button>
+              </div>
+              <input
+                type="hidden"
+                id="topicInput"
+                name="topic"
+                value="General Enquiry"
+              />
+
+              <form id="contactForm" novalidate>
+                <!-- Row: name + email -->
+                <div class="cf-row-2">
+                  <div class="fl-group">
+                    <input
+                      class="fl-input"
+                      type="text"
+                      id="nameInput"
+                      name="name"
+                      placeholder=" "
+                      autocomplete="name"
+                      data-validate="name"
+                      required
+                    />
+                    <label class="fl-label" for="nameInput">Full Name *</label>
+                    <span class="fl-icon" aria-hidden="true"></span>
+                    <span class="fl-error" role="alert"></span>
+                  </div>
+                  <div class="fl-group">
+                    <input
+                      class="fl-input"
+                      type="email"
+                      id="emailInput"
+                      name="email"
+                      placeholder=" "
+                      autocomplete="email"
+                      data-validate="email"
+                      required
+                    />
+                    <label class="fl-label" for="emailInput"
+                      >Email Address *</label
+                    >
+                    <span class="fl-icon" aria-hidden="true"></span>
+                    <span class="fl-error" role="alert"></span>
+                  </div>
+                </div>
+
+                <!-- Row: phone + location -->
+                <div class="cf-row-2">
+                  <div class="fl-group">
+                    <input
+                      class="fl-input"
+                      type="tel"
+                      id="phoneInput"
+                      name="phone"
+                      placeholder=" "
+                      autocomplete="tel"
+                      data-validate="phone"
+                      data-optional="true"
+                    />
+                    <label class="fl-label" for="phoneInput"
+                      >Phone (optional)</label
+                    >
+                    <span class="fl-icon" aria-hidden="true"></span>
+                    <span class="fl-error" role="alert"></span>
+                  </div>
+                  <div class="fl-group">
+                    <select
+                      class="fl-select"
+                      id="locationSelect"
+                      name="location"
+                      aria-label="Preferred location"
+                    >
+                      <option value="" disabled selected></option>
+                      <option>Tiong Bahru (Flagship)</option>
+                      <option>Dempsey Hill</option>
+                      <option>Jewel Changi Airport</option>
+                      <option>Online / General</option>
+                    </select>
+                    <label class="fl-label" for="locationSelect"
+                      >Preferred Location</label
+                    >
+                  </div>
+                </div>
+
+                <!-- Subject -->
+                <div class="fl-group">
+                  <input
+                    class="fl-input"
+                    type="text"
+                    id="subjectInput"
+                    name="subject"
+                    placeholder=" "
+                    data-validate="subject"
+                    required
+                  />
+                  <label class="fl-label" for="subjectInput">Subject *</label>
+                  <span class="fl-icon" aria-hidden="true"></span>
+                  <span class="fl-error" role="alert"></span>
+                </div>
+
+                <!-- Message -->
+                <div class="fl-group">
+                  <textarea
+                    class="fl-textarea"
+                    id="msgArea"
+                    name="message"
+                    placeholder=" "
+                    rows="5"
+                    maxlength="1000"
+                    data-validate="message"
+                    required
+                  ></textarea>
+                  <label class="fl-label" for="msgArea">Your Message *</label>
+                  <span
+                    class="fl-icon"
+                    style="top: 18px; transform: none"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="fl-error" role="alert"></span>
+                  <div class="cf-char">
+                    <span id="charCount">0 / 1000</span>
+                  </div>
+                </div>
+
+                <!-- Consent checkbox -->
+                <div style="margin-bottom: 20px">
+                  <label class="form-check">
+                    <input
+                      type="checkbox"
+                      id="consentCheck"
+                      name="consent"
+                      required
+                    />
+                    <span class="check-box"></span>
+                    <span
+                      >I agree to Noir Brew Co. using my data to respond to this
+                      enquiry. &nbsp;
+                      <a
+                        href="#"
+                        style="color: var(--c-gold); font-size: 0.85em"
+                        >Privacy Policy</a
+                      >
+                    </span>
+                  </label>
+                </div>
+
+                <!-- Wrap for form body vs success -->
+                <div id="formWrap">
+                  <button class="cf-submit" type="submit" id="submitBtn">
+                    <span>Send Message</span>
+                    <span>→</span>
+                  </button>
+                  <p
+                    style="
+                      text-align: center;
+                      font-size: 0.75rem;
+                      color: var(--c-muted);
+                      margin-top: 12px;
+                    "
+                  >
+                    We never share your info with third parties.
+                  </p>
+                </div>
+              </form>
+
+              <!-- Success overlay -->
+              <div class="cf-success" id="successMsg">
+                <span class="cf-success__icon">✅</span>
+                <div class="cf-success__title">Message Received!</div>
+                <p class="cf-success__text">
+                  Thanks for reaching out! A member of our team will reply to
+                  <strong
+                    id="successEmail"
+                    style="color: var(--c-gold)"
+                  ></strong>
+                  within one business day.
+                  <br /><br />
+                  In the meantime, why not
+                  <a href="menu.html" style="color: var(--c-gold)"
+                    >explore our menu?</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
