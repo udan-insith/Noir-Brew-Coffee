@@ -16,6 +16,16 @@ function addToast(msg, type = "info") {
 }
 window.addToast = addToast;
 
+// NAVBAR
+const navbar = document.getElementById("navbar");
+window.addEventListener(
+  "scroll",
+  () => {
+    if (navbar) navbar.classList.toggle("scrolled", window.scrollY > 60);
+  },
+  { passive: true },
+);
+
 // PAGE LOADER
 window.addEventListener("load", () => {
   const bar = document.getElementById("loaderBar");
