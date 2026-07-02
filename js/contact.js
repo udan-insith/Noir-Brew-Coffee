@@ -172,3 +172,15 @@ document.querySelectorAll(".faq-item").forEach((item) => {
     }
   });
 });
+
+// TOPIC CHIP SELECTOR
+const topicChips = document.querySelectorAll(".topic-chip");
+const topicInput = document.getElementById("topicInput");
+
+topicChips.forEach((chip) => {
+  chip.addEventListener("click", () => {
+    topicChips.forEach((c) => c.classList.remove("selected"));
+    chip.classList.add("selected");
+    if (topicInput) topicInput.value = chip.textContent.trim();
+  });
+});
