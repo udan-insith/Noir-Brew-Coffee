@@ -251,3 +251,17 @@ document.querySelectorAll("[data-validate]").forEach((field) => {
       validateField(field);
   });
 });
+
+// CHARACTER COUNTER
+const msgArea = document.getElementById("msgArea");
+const charSpan = document.getElementById("charCount");
+const MAX_CHARS = 1000;
+
+if (msgArea && charSpan) {
+  msgArea.addEventListener("input", () => {
+    const len = msgArea.value.length;
+    charSpan.textContent = `${len} / ${MAX_CHARS}`;
+    charSpan.parentElement.classList.toggle("warn", len > MAX_CHARS * 0.8);
+    charSpan.parentElement.classList.toggle("over", len > MAX_CHARS);
+  });
+}
