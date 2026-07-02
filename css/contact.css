@@ -302,3 +302,111 @@
   gap: 10px;
   flex-wrap: wrap;
 }
+
+/* CONTACT FORM SECTION */
+.contact-section {
+  padding: 108px 0;
+  background: var(--c-bg-alt);
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1.5fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* Left info column */
+.contact-info {
+  position: sticky;
+  top: 120px;
+}
+.contact-info__title {
+  margin-bottom: 16px;
+}
+.contact-info__text {
+  font-size: 0.93rem;
+  line-height: 1.8;
+  color: var(--c-cream-dim);
+  margin-bottom: 36px;
+}
+
+.c-info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px;
+  background: var(--c-bg-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  margin-bottom: 14px;
+  transition: all var(--t-mid) var(--ease-out);
+  cursor: default;
+}
+.c-info-card:hover {
+  border-color: var(--c-border-strong);
+  transform: translateX(5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.16);
+}
+.c-info-icon {
+  width: 46px;
+  height: 46px;
+  background: var(--c-gold-glow);
+  border: 1px solid var(--c-border-strong);
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  transition: transform var(--t-mid) var(--ease-bounce);
+}
+.c-info-card:hover .c-info-icon {
+  transform: scale(1.12) rotate(-6deg);
+}
+.c-info-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  margin-bottom: 3px;
+}
+.c-info-val {
+  font-size: 0.9rem;
+  color: var(--c-cream-dim);
+  line-height: 1.5;
+}
+.c-info-val a {
+  color: var(--c-cream);
+  transition: color var(--t-fast);
+}
+.c-info-val a:hover {
+  color: var(--c-gold);
+}
+
+/* Social row */
+.contact-social {
+  display: flex;
+  gap: 10px;
+  margin-top: 26px;
+}
+.cs-link {
+  width: 40px;
+  height: 40px;
+  background: var(--c-bg-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  transition: all var(--t-fast);
+  color: var(--c-muted);
+}
+.cs-link:hover {
+  background: var(--c-gold);
+  border-color: var(--c-gold);
+  color: #0a0806;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px var(--c-shadow-gold);
+}
