@@ -55,6 +55,23 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+// DROPDOWN MENU
+document.querySelectorAll(".has-dropdown").forEach((dd) => {
+  dd.addEventListener("click", () => {
+    const wasOpen = dd.classList.contains("open");
+    document
+      .querySelectorAll(".has-dropdown.open")
+      .forEach((o) => o.classList.remove("open"));
+    if (!wasOpen) dd.classList.add("open");
+  });
+});
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".has-dropdown"))
+    document
+      .querySelectorAll(".has-dropdown.open")
+      .forEach((o) => o.classList.remove("open"));
+});
+
 // PAGE LOADER
 window.addEventListener("load", () => {
   const bar = document.getElementById("loaderBar");
