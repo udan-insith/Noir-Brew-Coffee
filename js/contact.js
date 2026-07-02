@@ -126,3 +126,29 @@ const revealObs = new IntersectionObserver(
 document
   .querySelectorAll(".reveal, .reveal-l, .reveal-r, .reveal-s")
   .forEach((el) => revealObs.observe(el));
+
+// LOCATION TABS
+const locTabs = document.querySelectorAll(".loc-tab");
+const locPanels = document.querySelectorAll(".loc-panel");
+
+function switchTab(targetId) {
+  locTabs.forEach((t) =>
+    t.classList.toggle("active", t.dataset.loc === targetId),
+  );
+  locPanels.forEach((p) => p.classList.toggle("active", p.id === targetId));
+}
+
+locTabs.forEach((tab) => {
+  tab.addEventListener("click", () => switchTab(tab.dataset.loc));
+});
+
+// Highlight today's hours
+(function highlightToday() {
+  const dayIndex = new Date().getDay(); // 0=Sun…6=Sat
+  document.querySelectorAll(".hours-row").forEach((row) => {
+    const days = row.dataset.days
+      ? row.dataset.days.split(",").map(Number)
+      : [];
+    if (days.includes(dayIndex)) row.classList.add("today");
+  });
+})();
