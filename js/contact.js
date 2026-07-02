@@ -1,5 +1,21 @@
 "use strict";
 
+// UTILITY
+function addToast(msg, type = "info") {
+  const wrap = document.getElementById("toastWrap");
+  if (!wrap) return;
+  const t = document.createElement("div");
+  t.className = `toast ${type}`;
+  t.textContent = msg;
+  wrap.appendChild(t);
+  setTimeout(() => {
+    t.style.cssText =
+      "opacity:0;transform:translateY(14px);transition:all .4s ease;";
+    setTimeout(() => t.remove(), 420);
+  }, 3400);
+}
+window.addToast = addToast;
+
 // PAGE LOADER
 window.addEventListener("load", () => {
   const bar = document.getElementById("loaderBar");
