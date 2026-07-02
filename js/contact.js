@@ -152,3 +152,23 @@ locTabs.forEach((tab) => {
     if (days.includes(dayIndex)) row.classList.add("today");
   });
 })();
+
+// FAQ ACCORDION
+document.querySelectorAll(".faq-item").forEach((item) => {
+  const q = item.querySelector(".faq-q");
+  q?.addEventListener("click", () => {
+    const wasOpen = item.classList.contains("open");
+    // Close all others
+    document
+      .querySelectorAll(".faq-item.open")
+      .forEach((o) => o.classList.remove("open"));
+    if (!wasOpen) item.classList.add("open");
+  });
+  // Keyboard
+  q?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      q.click();
+    }
+  });
+});
