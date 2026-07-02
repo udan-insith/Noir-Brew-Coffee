@@ -184,3 +184,10 @@ topicChips.forEach((chip) => {
     if (topicInput) topicInput.value = chip.textContent.trim();
   });
 });
+
+// FLOATING LABEL
+document.querySelectorAll(".fl-select").forEach((sel) => {
+  sel.addEventListener("change", () => {
+    sel.classList.toggle("has-val", sel.value !== "");
+  });
+});
