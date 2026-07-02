@@ -265,3 +265,70 @@ if (msgArea && charSpan) {
     charSpan.parentElement.classList.toggle("over", len > MAX_CHARS);
   });
 }
+
+// CONTACT FORM SUBMIT
+const contactForm = document.getElementById("contactForm");
+const submitBtn = document.getElementById("submitBtn");
+const formWrap = document.getElementById("formWrap");
+const successMsg = document.getElementById("successMsg");
+
+contactForm?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // Validate all required fields
+  const fields = contactForm.querySelectorAll("[data-validate]");
+  let allValid = true;
+  fields.forEach((f) => {
+    if (!validateField(f)) allValid = false;
+  });
+  if (!allValid) {
+    // Shake the submit button
+    submitBtn.style.animation = "none";
+    submitBtn.offsetHeight;
+    submitBtn.style.animation = "shake .5s ease";
+    addToast("⚠️ Please fix the errors before submitting.", "err");
+    // Scroll to first error
+    const firstErr = contactForm.querySelector(".fl-group.invalid");
+    firstErr?.scrollIntoView({ behavior: "smooth", block: "center" });
+    return;
+  }
+
+  // Loading state
+  submitBtn.classList.add("loading");
+  submitBtn.innerHTML = '<div class="spinner"></div> Sending…';
+
+  // Simulate async send (replace with real fetch in production)
+  await new Promise((r) => setTimeout(r, 1800));
+
+  // Collect data
+  const data = Object.fromEntries(new FormData(contactForm));
+  console.log("Form data:", data); // Remove in production
+
+  // Success state
+  submitBtn.classList.remove("loading");
+  submitBtn.classList.add("success");
+  submitBtn.innerHTML = "✓ Message Sent!";
+
+  // Show success panel
+  setTimeout(() => {
+    formWrap.style.display = "none";
+    successMsg.classList.add("show");
+  }, 600);
+
+  addToast("✅ Message sent! We'll reply within 24 hours.", "ok");
+
+  // Reset after delay
+  setTimeout(() => {
+    contactForm.reset();
+    document
+      .querySelectorAll(".fl-group")
+      .forEach((g) => g.classList.remove("valid", "invalid"));
+    topicChips.forEach((c) => c.classList.remove("selected"));
+    if (topicInput) topicInput.value = "";
+    submitBtn.classList.remove("success");
+    submitBtn.innerHTML = "<span>Send Message</span><span>→</span>";
+    formWrap.style.display = "";
+    successMsg.classList.remove("show");
+    if (charSpan) charSpan.textContent = `0 / ${MAX_CHARS}`;
+  }, 6000);
+});
