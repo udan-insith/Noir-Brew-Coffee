@@ -26,6 +26,35 @@ window.addEventListener(
   { passive: true },
 );
 
+// HAMBURGER
+const hbBtn = document.getElementById("hamburger");
+const mobMenu = document.getElementById("mobMenu");
+const mobOverlay = document.getElementById("mobOverlay");
+
+function openMob() {
+  hbBtn.classList.add("open");
+  mobMenu.classList.add("open");
+  mobOverlay.classList.add("show");
+  document.body.style.overflow = "hidden";
+  hbBtn.setAttribute("aria-expanded", "true");
+}
+function closeMob() {
+  hbBtn.classList.remove("open");
+  mobMenu.classList.remove("open");
+  mobOverlay.classList.remove("show");
+  document.body.style.overflow = "";
+  hbBtn.setAttribute("aria-expanded", "false");
+}
+hbBtn?.addEventListener("click", () =>
+  mobMenu.classList.contains("open") ? closeMob() : openMob(),
+);
+mobOverlay?.addEventListener("click", closeMob);
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closeMob();
+  }
+});
+
 // PAGE LOADER
 window.addEventListener("load", () => {
   const bar = document.getElementById("loaderBar");
