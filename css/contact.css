@@ -802,3 +802,124 @@
 .faq-a a:hover {
   opacity: 0.8;
 }
+
+/* NEWSLETTER */
+.contact-newsletter {
+  background: var(--c-gold);
+  padding: 60px 0;
+}
+.cn-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.cn-text {
+  flex: 1;
+  min-width: 240px;
+}
+.cn-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0a0806;
+  margin-bottom: 6px;
+}
+.cn-sub {
+  font-size: 0.875rem;
+  color: rgba(10, 8, 6, 0.62);
+}
+.cn-form {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+  min-width: 300px;
+  max-width: 440px;
+}
+.cn-input {
+  flex: 1;
+  padding: 13px 18px;
+  background: rgba(10, 8, 6, 0.12);
+  border: 1.5px solid rgba(10, 8, 6, 0.2);
+  border-radius: var(--r-full);
+  color: #0a0806;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color var(--t-fast);
+}
+.cn-input::placeholder {
+  color: rgba(10, 8, 6, 0.45);
+}
+.cn-input:focus {
+  border-color: rgba(10, 8, 6, 0.5);
+}
+.cn-btn {
+  padding: 13px 24px;
+  background: #0a0806;
+  color: var(--c-gold);
+  border: none;
+  border-radius: var(--r-full);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--t-fast);
+}
+.cn-btn:hover {
+  background: #1a1511;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(10, 8, 6, 0.3);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  .contact-info {
+    position: static;
+  }
+  .loc-grid {
+    grid-template-columns: 1fr;
+  }
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+  .cf-form {
+    padding: 36px 28px;
+  }
+}
+@media (max-width: 768px) {
+  .cf-row-2 {
+    grid-template-columns: 1fr;
+  }
+  .cn-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cn-form {
+    width: 100%;
+    max-width: 100%;
+  }
+  .loc-actions {
+    flex-direction: column;
+  }
+  .topic-chips {
+    gap: 6px;
+  }
+}
+@media (max-width: 480px) {
+  .location-tabs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .loc-tab {
+    justify-content: center;
+  }
+  .cf-form {
+    padding: 26px 18px;
+  }
+}
