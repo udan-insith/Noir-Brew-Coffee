@@ -191,3 +191,63 @@ document.querySelectorAll(".fl-select").forEach((sel) => {
     sel.classList.toggle("has-val", sel.value !== "");
   });
 });
+
+// FORM VALIDATION
+const rules = {
+  name: {
+    validate: (v) => v.trim().length >= 2 && /^[a-zA-Z\s\-']+$/.test(v.trim()),
+    msg: "Please enter a valid name (at least 2 characters).",
+  },
+  email: {
+    validate: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()),
+    msg: "Please enter a valid email address.",
+  },
+  phone: {
+    validate: (v) => v.trim() === "" || /^[\+\d\s\-\(\)]{7,18}$/.test(v.trim()),
+    msg: "Please enter a valid phone number.",
+  },
+  message: {
+    validate: (v) => v.trim().length >= 15,
+    msg: "Message must be at least 15 characters.",
+  },
+  subject: {
+    validate: (v) => v.trim().length >= 3,
+    msg: "Please enter a subject (at least 3 characters).",
+  },
+};
+
+function validateField(fieldEl) {
+  const group = fieldEl.closest(".fl-group");
+  const name = fieldEl.dataset.validate;
+  const icon = group?.querySelector(".fl-icon");
+  const errEl = group?.querySelector(".fl-error");
+
+  if (!name || !rules[name] || !group) return true;
+
+  const rule = rules[name];
+  const valid = rule.validate(fieldEl.value);
+  const empty = fieldEl.value.trim() === "";
+
+  // Skip optional fields if empty
+  const optional = fieldEl.dataset.optional === "true";
+  if (optional && empty) {
+    group.classList.remove("valid", "invalid");
+    if (icon) icon.textContent = "";
+    return true;
+  }
+
+  group.classList.toggle("valid", valid);
+  group.classList.toggle("invalid", !valid);
+  if (icon) icon.textContent = valid ? "✓" : "✕";
+  if (errEl) errEl.textContent = valid ? "" : rule.msg;
+  return valid;
+}
+
+// Live validation on blur/input
+document.querySelectorAll("[data-validate]").forEach((field) => {
+  field.addEventListener("blur", () => validateField(field));
+  field.addEventListener("input", () => {
+    if (field.closest(".fl-group")?.classList.contains("invalid"))
+      validateField(field);
+  });
+});
