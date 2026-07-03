@@ -605,3 +605,34 @@
     transform: scaleX(0);
   }
 }
+
+/* TEXT ANIMATIONS */
+/* — Shimmer text — */
+.text-shimmer {
+  background: linear-gradient(
+    100deg,
+    var(--c-cream) 30%,
+    var(--c-gold) 50%,
+    var(--c-cream) 70%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 2.8s linear infinite;
+}
+
+/* — Gold shimmer — */
+.text-shimmer-gold {
+  background: linear-gradient(
+    100deg,
+    var(--c-gold) 25%,
+    #f5d186 50%,
+    var(--c-gold) 75%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 2.2s linear infinite;
+}
