@@ -348,3 +348,23 @@ document.getElementById("cnForm")?.addEventListener("submit", (e) => {
   addToast(`✅ ${email} added to the list!`, "ok");
   e.target.reset();
 });
+
+// MAP BUTTONS
+function openMaps(query) {
+  const url = `https://maps.google.com/?q=${encodeURIComponent(query)}`;
+  window.open(url, "_blank", "noopener");
+  addToast("📍 Opening in Google Maps…", "info");
+}
+window.openMaps = openMaps;
+
+function copyAddress(addr) {
+  navigator.clipboard
+    .writeText(addr)
+    .then(() => {
+      addToast("📋 Address copied to clipboard!", "ok");
+    })
+    .catch(() => {
+      addToast("⚠️ Could not copy — please copy manually.", "err");
+    });
+}
+window.copyAddress = copyAddress;
