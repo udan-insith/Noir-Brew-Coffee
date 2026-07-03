@@ -524,3 +524,50 @@
     opacity: 0;
   }
 }
+
+/* Liquid fill */
+@keyframes liquidFill {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* Orbit */
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(60px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(60px) rotate(-360deg);
+  }
+}
+
+/* Text cursor */
+@keyframes cursorBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Progress bar indeterminate */
+@keyframes progress {
+  0% {
+    left: -40%;
+    width: 40%;
+  }
+  50% {
+    left: 30%;
+    width: 50%;
+  }
+  100% {
+    left: 100%;
+    width: 40%;
+  }
+}
