@@ -665,3 +665,31 @@
 .text-glitch:hover::after {
   animation-duration: 0.5s;
 }
+
+/* — Word split reveal — */
+.split-word {
+  overflow: hidden;
+  display: inline-block;
+}
+.split-word__inner {
+  display: inline-block;
+  transform: translateY(105%);
+  transition: transform var(--anim-slow) var(--ease-out);
+}
+.split-word.in .split-word__inner {
+  transform: translateY(0);
+}
+
+/* — Char stagger (set via JS --i) — */
+.char-stagger {
+  display: inline-block;
+  animation: fadeUp 0.6s var(--ease-out) calc(var(--i, 0) * 40ms) both;
+}
+
+/* — Typewriter cursor — */
+.typer::after {
+  content: "|";
+  color: var(--c-gold);
+  animation: cursorBlink 0.8s step-end infinite;
+  margin-left: 2px;
+}
