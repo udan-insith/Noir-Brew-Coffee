@@ -368,3 +368,144 @@ function copyAddress(addr) {
     });
 }
 window.copyAddress = copyAddress;
+
+// CHATBOT
+const kb = {
+  hours: {
+    r: "Mon–Fri 7:00–20:00 · Sat–Sun 8:00–21:00 at all three locations. 🕐",
+    qr: ["Tiong Bahru address?", "Dempsey Hill address?", "Jewel Changi?"],
+  },
+  tiong: {
+    r: "📍 Tiong Bahru (Flagship)\n15 Eng Hoon Street, #01-02, Singapore 169175\nTel: +65 6234 5678",
+    qr: ["Get directions", "Opening hours?"],
+  },
+  dempsey: {
+    r: "📍 Dempsey Hill\n12 Dempsey Road, #01-15, Singapore 249677\nTel: +65 6234 9012",
+    qr: ["Get directions", "Opening hours?"],
+  },
+  changi: {
+    r: "📍 Jewel Changi Airport\n78 Airport Blvd, #B1-01, Singapore 819666\nTel: +65 6234 3456",
+    qr: ["Get directions", "Opening hours?"],
+  },
+  contact: {
+    r: "You can reach us via:\n✉️ hello@noirbrew.com\n📞 +65 6234 5678\nOr use the contact form on this page!",
+    qr: ["Opening hours?", "Locations?"],
+  },
+  wholesale: {
+    r: "For wholesale or supplier enquiries, visit our Supplier Portal — or drop us a line at suppliers@noirbrew.com. 🤝",
+    qr: ["Supplier portal →", "Contact form?"],
+  },
+  catering: {
+    r: "We offer catering and event coffee service! Contact us at events@noirbrew.com and we'll put together a package. ☕",
+    qr: ["Contact details", "Opening hours?"],
+  },
+  default: {
+    r: "I can help with locations, opening hours, or contact details. What do you need? ☕",
+    qr: ["Locations", "Opening hours", "Email us", "Wholesale"],
+  },
+};
+
+function matchKb(text) {
+  const t = text.toLowerCase();
+  if (/hour|open|close|when|time/.test(t)) return kb.hours;
+  if (/tiong|bahru|eng hoon/.test(t)) return kb.tiong;
+  if (/dempsey/.test(t)) return kb.dempsey;
+  if (/changi|jewel|airport/.test(t)) return kb.changi;
+  if (/email|phone|call|contact|reach/.test(t)) return kb.contact;
+  if (/wholesale|bulk|supplier|partner|trade/.test(t)) return kb.wholesale;
+  if (/cater|event|private|function/.test(t)) return kb.catering;
+  return kb.default;
+}
+
+const chatFab = document.getElementById("chatbotFab");
+const chatPanel = document.getElementById("chatPanel");
+const chatMsgs = document.getElementById("chatMsgs");
+const chatInput = document.getElementById("chatInput");
+const chatSend = document.getElementById("chatSend");
+
+function appendMsg(text, type = "bot", qr = null) {
+  const row = document.createElement("div");
+  row.className = `msg-row ${type}`;
+  const avt = document.createElement("div");
+  avt.className = `msg-avt ${type}`;
+  avt.textContent = type === "bot" ? "🤖" : "👤";
+  const wrap = document.createElement("div");
+  wrap.style.maxWidth = "78%";
+  const bub = document.createElement("div");
+  bub.className = "msg-bubble";
+  bub.innerHTML = text.replace(/\n/g, "<br>");
+  wrap.appendChild(bub);
+  if (qr) {
+    const qWrap = document.createElement("div");
+    qWrap.className = "qr-wrap";
+    qr.forEach((q) => {
+      const b = document.createElement("button");
+      b.className = "qr-btn";
+      b.textContent = q;
+      b.addEventListener("click", () => sendMsg(q));
+      qWrap.appendChild(b);
+    });
+    wrap.appendChild(qWrap);
+  }
+  type === "bot"
+    ? (row.appendChild(avt), row.appendChild(wrap))
+    : (row.appendChild(wrap), row.appendChild(avt));
+  chatMsgs.appendChild(row);
+  chatMsgs.scrollTop = chatMsgs.scrollHeight;
+}
+
+function showTyping() {
+  const tr = document.createElement("div");
+  tr.className = "typing-row";
+  tr.id = "typingRow";
+  const a = document.createElement("div");
+  a.className = "msg-avt bot";
+  a.textContent = "🤖";
+  const d = document.createElement("div");
+  d.className = "typing-dots";
+  for (let i = 0; i < 3; i++) {
+    const dt = document.createElement("div");
+    dt.className = "dot";
+    d.appendChild(dt);
+  }
+  tr.appendChild(a);
+  tr.appendChild(d);
+  chatMsgs.appendChild(tr);
+  chatMsgs.scrollTop = chatMsgs.scrollHeight;
+}
+
+function sendMsg(text) {
+  if (!text.trim()) return;
+  appendMsg(text, "user");
+  chatInput.value = "";
+  showTyping();
+  setTimeout(
+    () => {
+      document.getElementById("typingRow")?.remove();
+      const m = matchKb(text);
+      appendMsg(m.r, "bot", m.qr);
+    },
+    700 + Math.random() * 500,
+  );
+}
+
+chatSend?.addEventListener("click", () => sendMsg(chatInput.value));
+chatInput?.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") sendMsg(chatInput.value);
+});
+
+chatFab?.addEventListener("click", () => {
+  const isOpen = chatPanel.classList.toggle("open");
+  chatFab.classList.toggle("open", isOpen);
+  chatFab.querySelector(".fab-icon").textContent = isOpen ? "✕" : "☕";
+  document.getElementById("fabBadge")?.remove();
+  if (isOpen && chatMsgs.children.length === 0) {
+    setTimeout(() => {
+      appendMsg(
+        "Hi! 📍 I can help you find our cafés, check opening hours, or get in touch. What do you need?",
+        "bot",
+        ["Opening hours", "Tiong Bahru", "Dempsey Hill", "Jewel Changi"],
+      );
+    }, 320);
+  }
+});
