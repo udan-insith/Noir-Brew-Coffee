@@ -636,3 +636,32 @@
   -webkit-text-fill-color: transparent;
   animation: shimmer 2.2s linear infinite;
 }
+
+/* — Glitch text — */
+.text-glitch {
+  position: relative;
+  display: inline-block;
+}
+.text-glitch::before,
+.text-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.text-glitch::before {
+  color: #ff006e;
+  animation: glitch1 4s step-end infinite;
+  opacity: 0.7;
+}
+.text-glitch::after {
+  color: #00d9ff;
+  animation: glitch2 4s step-end 0.3s infinite;
+  opacity: 0.7;
+}
+.text-glitch:hover::before {
+  animation-duration: 0.5s;
+}
+.text-glitch:hover::after {
+  animation-duration: 0.5s;
+}
