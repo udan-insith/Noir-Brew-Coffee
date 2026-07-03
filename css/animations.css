@@ -468,3 +468,59 @@
     transform: translateX(2px);
   }
 }
+
+/* Counter roll */
+@keyframes rollIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes rollOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+/* Steam */
+@keyframes steamRise {
+  0% {
+    transform: translateY(0) scaleX(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-18px) scaleX(1.3);
+    opacity: 0.45;
+  }
+  100% {
+    transform: translateY(-34px) scaleX(0.7);
+    opacity: 0;
+  }
+}
+@keyframes steamWavy {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.7;
+  }
+  33% {
+    transform: translateY(-10px) rotate(6deg);
+    opacity: 0.5;
+  }
+  66% {
+    transform: translateY(-22px) rotate(-6deg);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-36px) rotate(2deg);
+    opacity: 0;
+  }
+}
