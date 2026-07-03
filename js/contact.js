@@ -332,3 +332,19 @@ contactForm?.addEventListener("submit", async (e) => {
     if (charSpan) charSpan.textContent = `0 / ${MAX_CHARS}`;
   }, 6000);
 });
+
+// NEWSLETTER
+document.getElementById("cnForm")?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const emailEl = document.getElementById("cnEmail");
+  const email = emailEl?.value.trim();
+  const valid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+  if (!valid) {
+    emailEl?.classList.add("shake");
+    setTimeout(() => emailEl?.classList.remove("shake"), 600);
+    addToast("⚠️ Please enter a valid email.", "err");
+    return;
+  }
+  addToast(`✅ ${email} added to the list!`, "ok");
+  e.target.reset();
+});
