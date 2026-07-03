@@ -424,3 +424,47 @@
     background-position: 200% center;
   }
 }
+
+/* Glitch core */
+@keyframes glitch1 {
+  0%,
+  100% {
+    clip-path: inset(0 0 100% 0);
+    transform: none;
+  }
+  10% {
+    clip-path: inset(15% 0 60% 0);
+    transform: translateX(-3px);
+  }
+  20% {
+    clip-path: inset(50% 0 30% 0);
+    transform: translateX(3px);
+  }
+  30% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translateX(-2px);
+  }
+  40% {
+    clip-path: inset(5% 0 80% 0);
+    transform: translateX(2px);
+  }
+}
+@keyframes glitch2 {
+  0%,
+  100% {
+    clip-path: inset(0 0 100% 0);
+    transform: none;
+  }
+  10% {
+    clip-path: inset(70% 0 10% 0);
+    transform: translateX(3px) skewX(2deg);
+  }
+  25% {
+    clip-path: inset(30% 0 55% 0);
+    transform: translateX(-3px) skewX(-2deg);
+  }
+  40% {
+    clip-path: inset(5% 0 85% 0);
+    transform: translateX(2px);
+  }
+}
