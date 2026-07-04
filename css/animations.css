@@ -885,3 +885,27 @@
     box-shadow: 0 0 28px 6px rgba(212, 168, 83, 0.2);
   }
 }
+
+/* Gold ring expansion */
+.ring-expand {
+  position: relative;
+}
+.ring-expand::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--c-gold);
+  border-radius: inherit;
+  opacity: 0;
+  transition: all 0.4s var(--ease-out);
+}
+.ring-expand:hover::before {
+  inset: -10px;
+  opacity: 0.4;
+}
+
+/* Magnetic aura (JS adds transform) */
+.magnetic {
+  transition: transform 0.25s var(--ease-out);
+  display: inline-block;
+}
