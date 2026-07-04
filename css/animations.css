@@ -780,3 +780,47 @@
 .anim-bounce-in {
   animation: bounceIn 0.7s var(--ease-out) both;
 }
+
+/* Stagger delay helpers — works with any .anim-* class */
+.s0 {
+  animation-delay: 0s;
+}
+.s1 {
+  animation-delay: 0.08s;
+}
+.s2 {
+  animation-delay: 0.16s;
+}
+.s3 {
+  animation-delay: 0.24s;
+}
+.s4 {
+  animation-delay: 0.32s;
+}
+.s5 {
+  animation-delay: 0.4s;
+}
+.s6 {
+  animation-delay: 0.48s;
+}
+.s7 {
+  animation-delay: 0.56s;
+}
+.s8 {
+  animation-delay: 0.64s;
+}
+.s9 {
+  animation-delay: 0.72s;
+}
+.s10 {
+  animation-delay: 0.8s;
+}
+.s12 {
+  animation-delay: 0.96s;
+}
+.s14 {
+  animation-delay: 1.12s;
+}
+.s16 {
+  animation-delay: 1.28s;
+}
