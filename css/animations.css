@@ -750,3 +750,33 @@
   display: inline-block;
   animation: rollIn 0.4s var(--ease-spring);
 }
+
+/* ENTRANCE ANIMATION UTILITIES */
+/* Base class — apply via JS when element enters viewport */
+.anim-fade-up {
+  animation: fadeUp var(--anim-slow) var(--ease-out) both;
+}
+.anim-fade-down {
+  animation: fadeDown var(--anim-slow) var(--ease-out) both;
+}
+.anim-fade-left {
+  animation: fadeLeft var(--anim-slow) var(--ease-out) both;
+}
+.anim-fade-right {
+  animation: fadeRight var(--anim-slow) var(--ease-out) both;
+}
+.anim-fade-scale {
+  animation: fadeScale var(--anim-slow) var(--ease-out) both;
+}
+.anim-pop-in {
+  animation: popIn 0.55s var(--ease-spring) both;
+}
+.anim-flip-x {
+  animation: flipX var(--anim-mid) var(--ease-out) both;
+}
+.anim-flip-y {
+  animation: flipY var(--anim-mid) var(--ease-out) both;
+}
+.anim-bounce-in {
+  animation: bounceIn 0.7s var(--ease-out) both;
+}
