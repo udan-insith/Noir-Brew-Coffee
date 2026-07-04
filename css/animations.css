@@ -909,3 +909,27 @@
   transition: transform 0.25s var(--ease-out);
   display: inline-block;
 }
+
+/* SCROLL PROGRESS BAR */
+#scrollProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--c-gold);
+  z-index: 9999;
+  width: 0%;
+  transition: width 0.08s linear;
+  box-shadow: 0 0 10px rgba(212, 168, 83, 0.6);
+  pointer-events: none;
+}
+#scrollProgress::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  background: linear-gradient(90deg, transparent, var(--c-gold-hover));
+  animation: shimmer 1.4s linear infinite;
+}
