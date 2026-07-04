@@ -824,3 +824,34 @@
 .s16 {
   animation-delay: 1.28s;
 }
+
+/* HOVER MICRO INTERACTIONS */
+/* Lift on hover */
+.hover-lift {
+  transition:
+    transform var(--anim-mid) var(--ease-out),
+    box-shadow var(--anim-mid);
+}
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+}
+
+/* Grow on hover */
+.hover-grow {
+  transition: transform var(--anim-fast) var(--ease-spring);
+}
+.hover-grow:hover {
+  transform: scale(1.05);
+}
+
+/* Float animation (persistent) */
+.is-floating {
+  animation: float 4s ease-in-out infinite;
+}
+.is-floating-sm {
+  animation: floatSm 3.5s ease-in-out infinite;
+}
+.is-bobbing {
+  animation: bob 5s ease-in-out infinite;
+}
