@@ -693,3 +693,48 @@
   animation: cursorBlink 0.8s step-end infinite;
   margin-left: 2px;
 }
+
+/* — Underline draw — */
+.underline-draw {
+  position: relative;
+  display: inline-block;
+}
+.underline-draw::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--c-gold);
+  border-radius: var(--r-full);
+  transition: width var(--anim-slow) var(--ease-out);
+}
+.underline-draw:hover::after,
+.underline-draw.active::after {
+  width: 100%;
+}
+
+/* — Highlight sweep — */
+.highlight-sweep {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+}
+.highlight-sweep::before {
+  content: "";
+  position: absolute;
+  inset: -2px -5px;
+  background: var(--c-gold);
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  border-radius: 3px;
+  transition: transform 0.5s var(--ease-out);
+}
+.highlight-sweep:hover::before {
+  transform: scaleX(1);
+}
+.highlight-sweep:hover {
+  color: #0a0806;
+}
