@@ -738,3 +738,15 @@
 .highlight-sweep:hover {
   color: #0a0806;
 }
+
+/* — Number counter with slot roll — */
+.counter-slot {
+  display: inline-block;
+  overflow: hidden;
+  height: 1em;
+  vertical-align: bottom;
+}
+.counter-digit {
+  display: inline-block;
+  animation: rollIn 0.4s var(--ease-spring);
+}
