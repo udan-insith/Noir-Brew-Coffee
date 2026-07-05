@@ -1590,6 +1590,45 @@
             }, 2000);
           }
         });
+
+      /* ── Supplier REGISTER ── */
+      document
+        .getElementById("sRegForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const fields = e.target.querySelectorAll("[data-rule]");
+          let allOk = true;
+          fields.forEach((f) => {
+            if (!validate(f)) allOk = false;
+          });
+          if (!document.getElementById("sr-terms").checked) {
+            addToast("⚠️ Please accept Supplier Terms.", "err");
+            allOk = false;
+          }
+          if (!allOk) {
+            NB.shake(document.getElementById("srSubmit"));
+            addToast("⚠️ Please fix all errors.", "err");
+            return;
+          }
+          const btn = document.getElementById("srSubmit");
+          btn.innerHTML = '<div class="spinner"></div> Submitting application…';
+          btn.classList.add("loading");
+          await new Promise((r) => setTimeout(r, 2000));
+          btn.innerHTML = "✓ Application received!";
+          btn.classList.remove("loading");
+          btn.classList.add("success");
+          NB.confetti(btn);
+          addToast(
+            '🎉 Application submitted! You"ll hear from us within 3 business days.",ok',
+          );
+          setTimeout(() => {
+            const name = document.getElementById("sr-fn").value;
+            addToast(
+              `☕ Thank you, ${name}! We look forward to working with you.`,
+              "info",
+            );
+          }, 1200);
+        });
     </script>
   </body>
 </html>
