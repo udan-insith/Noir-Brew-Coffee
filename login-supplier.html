@@ -1549,6 +1549,47 @@
         );
       }
       window.resendOTP = resendOTP;
+
+      /* ── Supplier LOGIN ── */
+      document
+        .getElementById("sLoginForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const email = document.getElementById("sl-email"),
+            pass = document.getElementById("sl-pass");
+          let ok = validate(email) & validate(pass);
+          if (!ok) {
+            NB.shake(document.getElementById("slSubmit"));
+            addToast("⚠️ Please fix errors above.", "err");
+            return;
+          }
+          const btn = document.getElementById("slSubmit");
+          btn.innerHTML = '<div class="spinner"></div> Checking…';
+          btn.classList.add("loading");
+          await new Promise((r) => setTimeout(r, 1400));
+          const DEMO = "supplier@demo.com",
+            DPASS = "Supplier123!";
+          if (email.value.trim() === DEMO && pass.value === DPASS) {
+            btn.innerHTML = "✓ Opening verification…";
+            btn.classList.remove("loading");
+            btn.classList.add("success");
+            addToast("✅ Credentials accepted — verify your session.", "ok");
+            setTimeout(() => openVerify(email.value.trim()), 700);
+          } else {
+            btn.innerHTML = "✕ Invalid credentials";
+            btn.classList.remove("loading");
+            btn.style.background = "var(--c-error)";
+            NB.shake(btn);
+            addToast(
+              "❌ Incorrect credentials. Use the demo credentials.",
+              "err",
+            );
+            setTimeout(() => {
+              btn.style.background = "";
+              btn.innerHTML = "<span>Access Portal</span><span>→</span>";
+            }, 2000);
+          }
+        });
     </script>
   </body>
 </html>
