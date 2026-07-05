@@ -86,6 +86,9 @@
         z-index: 2;
       }
 
+      .sup-right__mid {
+      }
+
       /* Logo */
       .sup-brand {
         display: flex;
@@ -116,6 +119,7 @@
       }
 
       /* Badge */
+
       .sup-badge {
         display: inline-flex;
         align-items: center;
@@ -133,8 +137,7 @@
       }
 
       /* Central content */
-      .sup-right__mid {
-      }
+
       .sup-right__title {
         font-family: var(--font-display);
         font-size: clamp(1.6rem, 2.8vw, 2.4rem);
@@ -722,376 +725,384 @@
     <!-- LAYOUT -->
     <div class="sup-page">
       <!-- FORM SIDE -->
-      div class="sup-left">
-      <div class="sup-box">
-        <a href="index.html" class="sup-back" data-no-transition>
-          ← Back to site
-        </a>
+      <div class="sup-left">
+        <div class="sup-box">
+          <a href="index.html" class="sup-back" data-no-transition>
+            ← Back to site
+          </a>
 
-        <!-- Role badge -->
-        <div class="sup-role-badge">📦 Supplier & Wholesale Portal</div>
+          <!-- Role badge -->
+          <div class="sup-role-badge">📦 Supplier & Wholesale Portal</div>
 
-        <!-- Tab switcher -->
-        <div class="sup-tabs" role="tablist">
-          <div class="sup-tab-pill" id="sTabPill"></div>
-          <div
-            class="sup-tab active"
-            id="sTabLogin"
-            role="tab"
-            onclick="switchSupTab('login')"
-          >
-            Sign In
-          </div>
-          <div
-            class="sup-tab"
-            id="sTabReg"
-            role="tab"
-            onclick="switchSupTab('register')"
-          >
-            Apply Now
-          </div>
-        </div>
-
-        <!-- ───── LOGIN ───── -->
-        <div class="sup-form active" id="sFormLogin">
-          <h1 class="sup-form__title">Supplier Sign In 📦</h1>
-          <p class="sup-form__sub">
-            New supplier?
-            <a
-              href="#"
-              onclick="
-                switchSupTab('register');
-                return false;
-              "
-              >Apply for access →</a
-            >
-          </p>
-          <form id="sLoginForm" novalidate>
-            <div class="fl-group" id="sl-email-g">
-              <input
-                class="fl-input"
-                type="email"
-                id="sl-email"
-                name="email"
-                placeholder=" "
-                autocomplete="email"
-                data-rule="email"
-                required
-              />
-              <label class="fl-label" for="sl-email">Business Email</label>
-              <span class="fl-msg" id="sl-email-m"></span>
-            </div>
-
-            <div class="fl-group" id="sl-pass-g">
-              <div class="pass-wrap">
-                <input
-                  class="fl-input"
-                  type="password"
-                  id="sl-pass"
-                  name="password"
-                  placeholder=" "
-                  autocomplete="current-password"
-                  data-rule="passMin"
-                  required
-                />
-                <label class="fl-label" for="sl-pass">Portal Password</label>
-                <span class="pass-eye" onclick="togglePass('sl-pass', this)"
-                  >👁</span
-                >
-              </div>
-              <span class="fl-msg" id="sl-pass-m"></span>
-            </div>
-
-            <label class="cb-row">
-              <input type="checkbox" name="remember" />
-              <span class="cb-box"></span>
-              <span>Keep me signed in on this device</span>
-            </label>
-
-            <button type="submit" class="sup-submit ripple-host" id="slSubmit">
-              <span>Access Portal</span><span>→</span>
-            </button>
-          </form>
-
-          <div class="twostep-box">
-            🔐 <strong>Two-step verification</strong> is required for all
-            supplier accounts. After sign-in you'll receive a 6-digit OTP via
-            email to verify your session.
-          </div>
-
-          <div class="demo-box">
-            <strong>🔑 Demo credentials</strong><br />
-            Email: <code>supplier@demo.com</code><br />
-            Password: <code>Supplier123!</code><br />
-            OTP (demo): <code>4 2 7 1 9 3</code>
-          </div>
-        </div>
-
-        <!-- ───── REGISTER ───── -->
-        <div class="sup-form" id="sFormReg">
-          <h1 class="sup-form__title">Partner With Us 🤝</h1>
-          <p class="sup-form__sub">
-            Already registered?
-            <a
-              href="#"
-              onclick="
-                switchSupTab('login');
-                return false;
-              "
-              >Sign in →</a
-            >
-          </p>
-          <form id="sRegForm" novalidate>
-            <!-- Company details -->
+          <!-- Tab switcher -->
+          <div class="sup-tabs" role="tablist">
+            <div class="sup-tab-pill" id="sTabPill"></div>
             <div
-              style="
-                font-size: 0.7rem;
-                font-weight: 700;
-                letter-spacing: 0.1em;
-                text-transform: uppercase;
-                color: var(--c-gold);
-                margin-bottom: 12px;
-                margin-top: 4px;
-              "
+              class="sup-tab active"
+              id="sTabLogin"
+              role="tab"
+              onclick="switchSupTab('login')"
             >
-              Company Information
+              Sign In
             </div>
-
-            <div class="fl-group" id="sr-company-g">
-              <input
-                class="fl-input"
-                type="text"
-                id="sr-company"
-                name="company"
-                placeholder=" "
-                data-rule="company"
-                required
-              />
-              <label class="fl-label" for="sr-company"
-                >Company / Farm Name</label
-              >
-              <span class="fl-msg" id="sr-company-m"></span>
-            </div>
-
-            <div class="row-2">
-              <div class="fl-group" id="sr-uen-g">
-                <input
-                  class="fl-input"
-                  type="text"
-                  id="sr-uen"
-                  name="uen"
-                  placeholder=" "
-                  data-rule="uen"
-                  required
-                />
-                <label class="fl-label" for="sr-uen"
-                  >UEN / Business Reg. No.</label
-                >
-                <span class="fl-msg" id="sr-uen-m"></span>
-              </div>
-              <div class="fl-group" id="sr-type-g">
-                <select
-                  class="fl-select-s"
-                  id="sr-type"
-                  name="type"
-                  onchange="this.classList.add('sel-val')"
-                >
-                  <option value="" disabled selected></option>
-                  <option>Coffee Farm / Cooperative</option>
-                  <option>Importer / Distributor</option>
-                  <option>Equipment Supplier</option>
-                  <option>Packaging Supplier</option>
-                  <option>Other</option>
-                </select>
-                <label class="fl-label" for="sr-type">Supplier Type</label>
-              </div>
-            </div>
-
-            <div class="row-2">
-              <div class="fl-group" id="sr-country-g">
-                <select
-                  class="fl-select-s"
-                  id="sr-country"
-                  name="country"
-                  onchange="this.classList.add('sel-val')"
-                >
-                  <option value="" disabled selected></option>
-                  <option>Singapore</option>
-                  <option>Ethiopia</option>
-                  <option>Colombia</option>
-                  <option>Guatemala</option>
-                  <option>Indonesia</option>
-                  <option>Kenya</option>
-                  <option>Brazil</option>
-                  <option>Vietnam</option>
-                  <option>Other</option>
-                </select>
-                <label class="fl-label" for="sr-country"
-                  >Country of Operation</label
-                >
-              </div>
-              <div class="fl-group" id="sr-vol-g">
-                <select
-                  class="fl-select-s"
-                  id="sr-vol"
-                  name="volume"
-                  onchange="this.classList.add('sel-val')"
-                >
-                  <option value="" disabled selected></option>
-                  <option>Under 50kg / month</option>
-                  <option>50–200kg / month</option>
-                  <option>200kg–1 tonne / month</option>
-                  <option>1 tonne+ / month</option>
-                </select>
-                <label class="fl-label" for="sr-vol">Supply Volume</label>
-              </div>
-            </div>
-
-            <!-- Contact details -->
             <div
-              style="
-                font-size: 0.7rem;
-                font-weight: 700;
-                letter-spacing: 0.1em;
-                text-transform: uppercase;
-                color: var(--c-gold);
-                margin: 18px 0 12px;
-              "
+              class="sup-tab"
+              id="sTabReg"
+              role="tab"
+              onclick="switchSupTab('register')"
             >
-              Your Contact Details
+              Apply Now
             </div>
+          </div>
 
-            <div class="row-2">
-              <div class="fl-group" id="sr-fn-g">
-                <input
-                  class="fl-input"
-                  type="text"
-                  id="sr-fn"
-                  name="firstName"
-                  placeholder=" "
-                  data-rule="name"
-                  required
-                  autocomplete="given-name"
-                />
-                <label class="fl-label" for="sr-fn">First Name</label>
-                <span class="fl-msg" id="sr-fn-m"></span>
-              </div>
-              <div class="fl-group" id="sr-ln-g">
-                <input
-                  class="fl-input"
-                  type="text"
-                  id="sr-ln"
-                  name="lastName"
-                  placeholder=" "
-                  data-rule="name"
-                  required
-                  autocomplete="family-name"
-                />
-                <label class="fl-label" for="sr-ln">Last Name</label>
-                <span class="fl-msg" id="sr-ln-m"></span>
-              </div>
-            </div>
-
-            <div class="fl-group" id="sr-email-g">
-              <input
-                class="fl-input"
-                type="email"
-                id="sr-email"
-                name="email"
-                placeholder=" "
-                data-rule="email"
-                required
-                autocomplete="email"
-              />
-              <label class="fl-label" for="sr-email">Business Email</label>
-              <span class="fl-msg" id="sr-email-m"></span>
-            </div>
-
-            <div class="fl-group" id="sr-phone-g">
-              <input
-                class="fl-input"
-                type="tel"
-                id="sr-phone"
-                name="phone"
-                placeholder=" "
-                data-rule="phone"
-                autocomplete="tel"
-              />
-              <label class="fl-label" for="sr-phone"
-                >Phone (incl. country code)</label
+          <!-- ───── LOGIN ───── -->
+          <div class="sup-form active" id="sFormLogin">
+            <h1 class="sup-form__title">Supplier Sign In 📦</h1>
+            <p class="sup-form__sub">
+              New supplier?
+              <a
+                href="#"
+                onclick="
+                  switchSupTab('register');
+                  return false;
+                "
+                >Apply for access →</a
               >
-              <span class="fl-msg" id="sr-phone-m"></span>
-            </div>
-
-            <!-- Password -->
-            <div class="fl-group" id="sr-pass-g">
-              <div class="pass-wrap">
+            </p>
+            <form id="sLoginForm" novalidate>
+              <div class="fl-group" id="sl-email-g">
                 <input
                   class="fl-input"
-                  type="password"
-                  id="sr-pass"
-                  name="password"
+                  type="email"
+                  id="sl-email"
+                  name="email"
                   placeholder=" "
-                  data-rule="passStrong"
+                  autocomplete="email"
+                  data-rule="email"
                   required
-                  autocomplete="new-password"
-                  oninput="checkStrengthS(this)"
                 />
-                <label class="fl-label" for="sr-pass">Create Password</label>
-                <span class="pass-eye" onclick="togglePass('sr-pass', this)"
-                  >👁</span
+                <label class="fl-label" for="sl-email">Business Email</label>
+                <span class="fl-msg" id="sl-email-m"></span>
+              </div>
+
+              <div class="fl-group" id="sl-pass-g">
+                <div class="pass-wrap">
+                  <input
+                    class="fl-input"
+                    type="password"
+                    id="sl-pass"
+                    name="password"
+                    placeholder=" "
+                    autocomplete="current-password"
+                    data-rule="passMin"
+                    required
+                  />
+                  <label class="fl-label" for="sl-pass">Portal Password</label>
+                  <span class="pass-eye" onclick="togglePass('sl-pass', this)"
+                    >👁</span
+                  >
+                </div>
+                <span class="fl-msg" id="sl-pass-m"></span>
+              </div>
+
+              <label class="cb-row">
+                <input type="checkbox" name="remember" />
+                <span class="cb-box"></span>
+                <span>Keep me signed in on this device</span>
+              </label>
+
+              <button
+                type="submit"
+                class="sup-submit ripple-host"
+                id="slSubmit"
+              >
+                <span>Access Portal</span><span>→</span>
+              </button>
+            </form>
+
+            <div class="twostep-box">
+              🔐 <strong>Two-step verification</strong> is required for all
+              supplier accounts. After sign-in you'll receive a 6-digit OTP via
+              email to verify your session.
+            </div>
+
+            <div class="demo-box">
+              <strong>🔑 Demo credentials</strong><br />
+              Email: <code>supplier@demo.com</code><br />
+              Password: <code>Supplier123!</code><br />
+              OTP (demo): <code>4 2 7 1 9 3</code>
+            </div>
+          </div>
+
+          <!-- ───── REGISTER ───── -->
+          <div class="sup-form" id="sFormReg">
+            <h1 class="sup-form__title">Partner With Us 🤝</h1>
+            <p class="sup-form__sub">
+              Already registered?
+              <a
+                href="#"
+                onclick="
+                  switchSupTab('login');
+                  return false;
+                "
+                >Sign in →</a
+              >
+            </p>
+            <form id="sRegForm" novalidate>
+              <!-- Company details -->
+              <div
+                style="
+                  font-size: 0.7rem;
+                  font-weight: 700;
+                  letter-spacing: 0.1em;
+                  text-transform: uppercase;
+                  color: var(--c-gold);
+                  margin-bottom: 12px;
+                  margin-top: 4px;
+                "
+              >
+                Company Information
+              </div>
+
+              <div class="fl-group" id="sr-company-g">
+                <input
+                  class="fl-input"
+                  type="text"
+                  id="sr-company"
+                  name="company"
+                  placeholder=" "
+                  data-rule="company"
+                  required
+                />
+                <label class="fl-label" for="sr-company"
+                  >Company / Farm Name</label
+                >
+                <span class="fl-msg" id="sr-company-m"></span>
+              </div>
+
+              <div class="row-2">
+                <div class="fl-group" id="sr-uen-g">
+                  <input
+                    class="fl-input"
+                    type="text"
+                    id="sr-uen"
+                    name="uen"
+                    placeholder=" "
+                    data-rule="uen"
+                    required
+                  />
+                  <label class="fl-label" for="sr-uen"
+                    >UEN / Business Reg. No.</label
+                  >
+                  <span class="fl-msg" id="sr-uen-m"></span>
+                </div>
+                <div class="fl-group" id="sr-type-g">
+                  <select
+                    class="fl-select-s"
+                    id="sr-type"
+                    name="type"
+                    onchange="this.classList.add('sel-val')"
+                  >
+                    <option value="" disabled selected></option>
+                    <option>Coffee Farm / Cooperative</option>
+                    <option>Importer / Distributor</option>
+                    <option>Equipment Supplier</option>
+                    <option>Packaging Supplier</option>
+                    <option>Other</option>
+                  </select>
+                  <label class="fl-label" for="sr-type">Supplier Type</label>
+                </div>
+              </div>
+
+              <div class="row-2">
+                <div class="fl-group" id="sr-country-g">
+                  <select
+                    class="fl-select-s"
+                    id="sr-country"
+                    name="country"
+                    onchange="this.classList.add('sel-val')"
+                  >
+                    <option value="" disabled selected></option>
+                    <option>Singapore</option>
+                    <option>Ethiopia</option>
+                    <option>Colombia</option>
+                    <option>Guatemala</option>
+                    <option>Indonesia</option>
+                    <option>Kenya</option>
+                    <option>Brazil</option>
+                    <option>Vietnam</option>
+                    <option>Other</option>
+                  </select>
+                  <label class="fl-label" for="sr-country"
+                    >Country of Operation</label
+                  >
+                </div>
+                <div class="fl-group" id="sr-vol-g">
+                  <select
+                    class="fl-select-s"
+                    id="sr-vol"
+                    name="volume"
+                    onchange="this.classList.add('sel-val')"
+                  >
+                    <option value="" disabled selected></option>
+                    <option>Under 50kg / month</option>
+                    <option>50–200kg / month</option>
+                    <option>200kg–1 tonne / month</option>
+                    <option>1 tonne+ / month</option>
+                  </select>
+                  <label class="fl-label" for="sr-vol">Supply Volume</label>
+                </div>
+              </div>
+
+              <!-- Contact details -->
+              <div
+                style="
+                  font-size: 0.7rem;
+                  font-weight: 700;
+                  letter-spacing: 0.1em;
+                  text-transform: uppercase;
+                  color: var(--c-gold);
+                  margin: 18px 0 12px;
+                "
+              >
+                Your Contact Details
+              </div>
+
+              <div class="row-2">
+                <div class="fl-group" id="sr-fn-g">
+                  <input
+                    class="fl-input"
+                    type="text"
+                    id="sr-fn"
+                    name="firstName"
+                    placeholder=" "
+                    data-rule="name"
+                    required
+                    autocomplete="given-name"
+                  />
+                  <label class="fl-label" for="sr-fn">First Name</label>
+                  <span class="fl-msg" id="sr-fn-m"></span>
+                </div>
+                <div class="fl-group" id="sr-ln-g">
+                  <input
+                    class="fl-input"
+                    type="text"
+                    id="sr-ln"
+                    name="lastName"
+                    placeholder=" "
+                    data-rule="name"
+                    required
+                    autocomplete="family-name"
+                  />
+                  <label class="fl-label" for="sr-ln">Last Name</label>
+                  <span class="fl-msg" id="sr-ln-m"></span>
+                </div>
+              </div>
+
+              <div class="fl-group" id="sr-email-g">
+                <input
+                  class="fl-input"
+                  type="email"
+                  id="sr-email"
+                  name="email"
+                  placeholder=" "
+                  data-rule="email"
+                  required
+                  autocomplete="email"
+                />
+                <label class="fl-label" for="sr-email">Business Email</label>
+                <span class="fl-msg" id="sr-email-m"></span>
+              </div>
+
+              <div class="fl-group" id="sr-phone-g">
+                <input
+                  class="fl-input"
+                  type="tel"
+                  id="sr-phone"
+                  name="phone"
+                  placeholder=" "
+                  data-rule="phone"
+                  autocomplete="tel"
+                />
+                <label class="fl-label" for="sr-phone"
+                  >Phone (incl. country code)</label
+                >
+                <span class="fl-msg" id="sr-phone-m"></span>
+              </div>
+
+              <!-- Password -->
+              <div class="fl-group" id="sr-pass-g">
+                <div class="pass-wrap">
+                  <input
+                    class="fl-input"
+                    type="password"
+                    id="sr-pass"
+                    name="password"
+                    placeholder=" "
+                    data-rule="passStrong"
+                    required
+                    autocomplete="new-password"
+                    oninput="checkStrengthS(this)"
+                  />
+                  <label class="fl-label" for="sr-pass">Create Password</label>
+                  <span class="pass-eye" onclick="togglePass('sr-pass', this)"
+                    >👁</span
+                  >
+                </div>
+                <div class="strength-bar">
+                  <div class="strength-fill" id="sStrengthFill"></div>
+                </div>
+                <div class="strength-label" id="sStrengthLabel"></div>
+                <span class="fl-msg" id="sr-pass-m"></span>
+              </div>
+
+              <!-- Message / notes -->
+              <div class="fl-group">
+                <textarea
+                  class="fl-input"
+                  id="sr-note"
+                  name="note"
+                  placeholder=" "
+                  rows="3"
+                  style="padding-top: 24px; resize: vertical; min-height: 90px"
+                ></textarea>
+                <label class="fl-label" for="sr-note"
+                  >Tell us about your product (optional)</label
                 >
               </div>
-              <div class="strength-bar">
-                <div class="strength-fill" id="sStrengthFill"></div>
-              </div>
-              <div class="strength-label" id="sStrengthLabel"></div>
-              <span class="fl-msg" id="sr-pass-m"></span>
-            </div>
 
-            <!-- Message / notes -->
-            <div class="fl-group">
-              <textarea
-                class="fl-input"
-                id="sr-note"
-                name="note"
-                placeholder=" "
-                rows="3"
-                style="padding-top: 24px; resize: vertical; min-height: 90px"
-              ></textarea>
-              <label class="fl-label" for="sr-note"
-                >Tell us about your product (optional)</label
+              <!-- Checkboxes -->
+              <label class="cb-row">
+                <input type="checkbox" id="sr-terms" name="terms" required />
+                <span class="cb-box"></span>
+                <span
+                  >I agree to Noir Brew Co.'s <a href="#">Supplier Terms</a> and
+                  <a href="#">Privacy Policy</a></span
+                >
+              </label>
+              <label class="cb-row" style="margin-top: 6px">
+                <input type="checkbox" id="sr-contact" name="contact" />
+                <span class="cb-box"></span>
+                <span>Our sourcing team may contact me via email</span>
+              </label>
+
+              <button
+                type="submit"
+                class="sup-submit ripple-host"
+                id="srSubmit"
               >
+                <span>Submit Application</span><span>🤝</span>
+              </button>
+            </form>
+
+            <div class="twostep-box">
+              ⏳ <strong>Review process:</strong> Applications are reviewed
+              within 3 business days. Approved partners receive portal
+              credentials and an onboarding call with our sourcing team.
             </div>
-
-            <!-- Checkboxes -->
-            <label class="cb-row">
-              <input type="checkbox" id="sr-terms" name="terms" required />
-              <span class="cb-box"></span>
-              <span
-                >I agree to Noir Brew Co.'s <a href="#">Supplier Terms</a> and
-                <a href="#">Privacy Policy</a></span
-              >
-            </label>
-            <label class="cb-row" style="margin-top: 6px">
-              <input type="checkbox" id="sr-contact" name="contact" />
-              <span class="cb-box"></span>
-              <span>Our sourcing team may contact me via email</span>
-            </label>
-
-            <button type="submit" class="sup-submit ripple-host" id="srSubmit">
-              <span>Submit Application</span><span>🤝</span>
-            </button>
-          </form>
-
-          <div class="twostep-box">
-            ⏳ <strong>Review process:</strong> Applications are reviewed within
-            3 business days. Approved partners receive portal credentials and an
-            onboarding call with our sourcing team.
           </div>
         </div>
       </div>
-
       <!-- BRANDING SIDE -->
       <div class="sup-right">
         <div class="sup-right__bg"></div>
