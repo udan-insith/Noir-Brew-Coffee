@@ -1446,6 +1446,24 @@
         label.textContent = v.length ? lvl.t : "";
       }
       window.checkStrengthS = checkStrengthS;
+
+      /* ── OTP modal ── */
+      let pendingEmail = "";
+      function openVerify(email) {
+        pendingEmail = email;
+        document.getElementById("otpEmailDisplay").textContent = email;
+        document.getElementById("verifyOverlay").classList.add("open");
+        document.body.style.overflow = "hidden";
+        setTimeout(
+          () => document.querySelectorAll(".otp-input")[0].focus(),
+          400,
+        );
+      }
+      function closeVerify() {
+        document.getElementById("verifyOverlay").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      window.closeVerify = closeVerify;
     </script>
   </body>
 </html>
