@@ -1420,6 +1420,32 @@
         btn.style.color = s ? "var(--c-gold)" : "";
       }
       window.togglePass = togglePass;
+
+      /* ── Strength meter ── */
+      function checkStrengthS(input) {
+        const v = input.value,
+          fill = document.getElementById("sStrengthFill"),
+          label = document.getElementById("sStrengthLabel");
+        if (!fill || !label) return;
+        let score = 0;
+        if (v.length >= 8) score++;
+        if (/[A-Z]/.test(v)) score++;
+        if (/[0-9]/.test(v)) score++;
+        if (/[^A-Za-z0-9]/.test(v)) score++;
+        const levels = [
+          { w: "10%", bg: "#e05252", t: "Too short" },
+          { w: "30%", bg: "#e07852", t: "Weak" },
+          { w: "55%", bg: "var(--c-gold)", t: "Fair" },
+          { w: "80%", bg: "#52b77a", t: "Good" },
+          { w: "100%", bg: "#2ecc71", t: "Strong ✓" },
+        ];
+        const lvl = levels[Math.min(score, 4)];
+        fill.style.width = lvl.w;
+        fill.style.background = lvl.bg;
+        label.style.color = lvl.bg;
+        label.textContent = v.length ? lvl.t : "";
+      }
+      window.checkStrengthS = checkStrengthS;
     </script>
   </body>
 </html>
