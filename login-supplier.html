@@ -1629,6 +1629,25 @@
             );
           }, 1200);
         });
+
+      /* ── Toast ── */
+      function addToast(msg, type = "info") {
+        const w = document.getElementById("toastWrap"),
+          t = document.createElement("div");
+        t.className = `toast ${type}`;
+        t.textContent = msg;
+        w.appendChild(t);
+        setTimeout(() => {
+          t.style.cssText =
+            "opacity:0;transform:translateY(14px);transition:all .4s;";
+          setTimeout(() => t.remove(), 420);
+        }, 3500);
+      }
+      window.addToast = addToast;
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeVerify();
+      });
     </script>
   </body>
 </html>
