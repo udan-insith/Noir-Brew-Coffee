@@ -1305,5 +1305,38 @@
 
     <!-- Toast -->
     <div class="toast-wrap" id="toastWrap"></div>
+
+    <!-- ============================================================ JS -->
+    <script src="js/animations.js"></script>
+
+    <script>
+      "use strict";
+
+      /* ── Theme ── */
+      const root = document.documentElement,
+        themeBtn = document.getElementById("themeBtn"),
+        curtain = document.getElementById("themeCurtain");
+      let isDark = true;
+      (() => {
+        const s = localStorage.getItem("nbTheme");
+        if (s) {
+          isDark = s === "dark";
+          root.setAttribute("data-theme", s);
+          themeBtn.textContent = isDark ? "🌙" : "☀️";
+        }
+      })();
+      themeBtn.addEventListener("click", () => {
+        curtain.classList.remove("dropping");
+        curtain.offsetHeight;
+        curtain.classList.add("dropping");
+        setTimeout(() => {
+          isDark = !isDark;
+          const n = isDark ? "dark" : "light";
+          root.setAttribute("data-theme", n);
+          themeBtn.textContent = isDark ? "🌙" : "☀️";
+          localStorage.setItem("nbTheme", n);
+        }, 420);
+      });
+    </script>
   </body>
 </html>
