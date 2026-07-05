@@ -1360,6 +1360,56 @@
         }
       }
       window.switchSupTab = switchSupTab;
+
+      /* ── Validation rules ── */
+      const vRules = {
+        email: {
+          fn: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()),
+          msg: "Please enter a valid business email.",
+        },
+        name: {
+          fn: (v) => v.trim().length >= 2 && /^[a-zA-Z\s\-']+$/.test(v.trim()),
+          msg: "Please enter a valid name.",
+        },
+        company: {
+          fn: (v) => v.trim().length >= 2,
+          msg: "Company name must be at least 2 characters.",
+        },
+        uen: {
+          fn: (v) => /^[A-Za-z0-9\-]{5,20}$/.test(v.trim()),
+          msg: "Please enter a valid business registration number.",
+        },
+        passMin: {
+          fn: (v) => v.length >= 8,
+          msg: "Password must be at least 8 characters.",
+        },
+        passStrong: {
+          fn: (v) => v.length >= 8,
+          msg: "Password must be at least 8 characters.",
+        },
+        phone: {
+          fn: (v) => v.trim() === "" || /^[\+\d\s\-\(\)]{7,18}$/.test(v),
+          msg: "Please enter a valid phone number.",
+        },
+      };
+      function validate(input) {
+        const rule = input.dataset.rule;
+        if (!rule || !vRules[rule]) return true;
+        const grp = input.closest(".fl-group"),
+          msg = grp?.querySelector(".fl-msg");
+        const ok = vRules[rule].fn(input.value);
+        grp?.classList.toggle("valid", ok);
+        grp?.classList.toggle("invalid", !ok);
+        if (msg) msg.textContent = ok ? "" : vRules[rule].msg;
+        return ok;
+      }
+      document.querySelectorAll("[data-rule]").forEach((f) => {
+        f.addEventListener("blur", () => validate(f));
+        f.addEventListener("input", () => {
+          if (f.closest(".fl-group")?.classList.contains("invalid"))
+            validate(f);
+        });
+      });
     </script>
   </body>
 </html>
