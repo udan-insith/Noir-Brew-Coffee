@@ -1206,5 +1206,101 @@
         </div>
       </div>
     </div>
+
+    <!-- OTP MODAL -->
+    <div class="verify-overlay" id="verifyOverlay">
+      <div class="verify-modal">
+        <button class="verify-modal__close" onclick="closeVerify()">✕</button>
+        <span
+          style="
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 16px;
+            animation: float 3s ease-in-out infinite;
+          "
+          >🔐</span
+        >
+        <h2
+          style="
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--c-cream);
+            margin-bottom: 8px;
+          "
+        >
+          Two-Step Verification
+        </h2>
+        <p style="font-size: 0.84rem; color: var(--c-muted); line-height: 1.65">
+          We've sent a 6-digit code to
+          <strong id="otpEmailDisplay" style="color: var(--c-gold)"></strong>.
+          Enter it below to access your supplier portal.
+        </p>
+        <!-- OTP inputs -->
+        <div class="otp-row" id="otpRow">
+          <input
+            class="otp-input"
+            type="text"
+            maxlength="1"
+            inputmode="numeric"
+            pattern="[0-9]"
+          />
+          <input
+            class="otp-input"
+            type="text"
+            maxlength="1"
+            inputmode="numeric"
+            pattern="[0-9]"
+          />
+          <input
+            class="otp-input"
+            type="text"
+            maxlength="1"
+            inputmode="numeric"
+            pattern="[0-9]"
+          />
+          <input
+            class="otp-input"
+            type="text"
+            maxlength="1"
+            inputmode="numeric"
+            pattern="[0-9]"
+          />
+          <input
+            class="otp-input"
+            type="text"
+            maxlength="1"
+            inputmode="numeric"
+            pattern="[0-9]"
+          />
+          <input
+            class="otp-input"
+            type="text"
+            maxlength="1"
+            inputmode="numeric"
+            pattern="[0-9]"
+          />
+        </div>
+        <button
+          class="sup-submit"
+          id="otpSubmit"
+          style="margin: 0 auto 14px; max-width: 220px"
+          onclick="submitOTP()"
+        >
+          <span>Verify & Enter</span><span>→</span>
+        </button>
+        <p
+          style="font-size: 0.76rem; color: var(--c-muted); text-align: center"
+        >
+          Didn't receive it?
+          <span
+            style="color: var(--c-gold); cursor: pointer"
+            onclick="resendOTP()"
+            >Resend code</span
+          >
+          &nbsp;·&nbsp; Demo OTP:
+          <strong style="color: var(--c-gold)">427193</strong>
+        </p>
+      </div>
+    </div>
   </body>
 </html>
