@@ -1337,6 +1337,29 @@
           localStorage.setItem("nbTheme", n);
         }, 420);
       });
+
+      /* ── Tab switch ── */
+      function switchSupTab(tab) {
+        const pill = document.getElementById("sTabPill");
+        const lt = document.getElementById("sTabLogin"),
+          rt = document.getElementById("sTabReg");
+        const lf = document.getElementById("sFormLogin"),
+          rf = document.getElementById("sFormReg");
+        if (tab === "login") {
+          pill.classList.remove("right");
+          lt.classList.add("active");
+          rt.classList.remove("active");
+          lf.classList.add("active");
+          rf.classList.remove("active");
+        } else {
+          pill.classList.add("right");
+          rt.classList.add("active");
+          lt.classList.remove("active");
+          rf.classList.add("active");
+          lf.classList.remove("active");
+        }
+      }
+      window.switchSupTab = switchSupTab;
     </script>
   </body>
 </html>
