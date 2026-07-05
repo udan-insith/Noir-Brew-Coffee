@@ -1464,6 +1464,91 @@
         document.body.style.overflow = "";
       }
       window.closeVerify = closeVerify;
+
+      /* OTP auto-advance + filled style */
+      document.querySelectorAll(".otp-input").forEach((inp, idx, arr) => {
+        inp.addEventListener("input", (e) => {
+          if (inp.value.length && idx < arr.length - 1) arr[idx + 1].focus();
+          inp.classList.toggle("filled", !!inp.value);
+        });
+        inp.addEventListener("keydown", (e) => {
+          if (e.key === "Backspace" && !inp.value && idx > 0) {
+            arr[idx - 1].focus();
+            arr[idx - 1].value = "";
+            arr[idx - 1].classList.remove("filled");
+          }
+          if (e.key === "ArrowLeft" && idx > 0) arr[idx - 1].focus();
+          if (e.key === "ArrowRight" && idx < arr.length - 1)
+            arr[idx + 1].focus();
+        });
+        inp.addEventListener("paste", (e) => {
+          e.preventDefault();
+          const digits = (e.clipboardData.getData("text") || "")
+            .replace(/\D/g, "")
+            .slice(0, 6)
+            .split("");
+          digits.forEach((d, i) => {
+            if (arr[i]) {
+              arr[i].value = d;
+              arr[i].classList.add("filled");
+            }
+          });
+          arr[Math.min(digits.length, arr.length - 1)].focus();
+        });
+      });
+
+      function submitOTP() {
+        const code = Array.from(document.querySelectorAll(".otp-input"))
+          .map((i) => i.value)
+          .join("");
+        if (code.length < 6) {
+          addToast("⚠️ Please enter the 6-digit code.", "err");
+          return;
+        }
+        const btn = document.getElementById("otpSubmit");
+        btn.innerHTML = '<div class="spinner"></div> Verifying…';
+        btn.classList.add("loading");
+        setTimeout(() => {
+          if (code === "427193") {
+            btn.innerHTML = "✓ Verified!";
+            btn.classList.remove("loading");
+            btn.classList.add("success");
+            NB.confetti(btn);
+            addToast("✅ Portal access granted! Redirecting…", "ok");
+            localStorage.setItem(
+              "nbSupplier",
+              JSON.stringify({ email: pendingEmail, role: "supplier" }),
+            );
+            setTimeout(() => {
+              window.location.href = "index.html";
+            }, 1300);
+          } else {
+            btn.innerHTML = "✕ Invalid code";
+            btn.style.background = "var(--c-error)";
+            btn.classList.remove("loading");
+            NB.shake(document.getElementById("otpRow"));
+            addToast("❌ Incorrect code. Demo OTP is 427193.", "err");
+            setTimeout(() => {
+              btn.style.background = "";
+              btn.innerHTML = "<span>Verify & Enter</span><span>→</span>";
+            }, 2000);
+            document.querySelectorAll(".otp-input").forEach((i) => {
+              i.value = "";
+              i.classList.remove("filled");
+            });
+            document.querySelectorAll(".otp-input")[0].focus();
+          }
+        }, 1400);
+      }
+      window.submitOTP = submitOTP;
+
+      function resendOTP() {
+        addToast(
+          "📧 OTP resent to " + pendingEmail + ". Check your inbox.",
+          "info",
+        );
+      }
+      window.resendOTP = resendOTP;
     </script>
   </body>
 </html>
