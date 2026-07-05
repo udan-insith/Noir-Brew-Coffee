@@ -683,6 +683,33 @@
         color: #0a0806;
         transform: rotate(22deg);
       }
+
+      /* Responsive */
+      @media (max-width: 960px) {
+        .sup-page {
+          grid-template-columns: 1fr;
+        }
+        .sup-right {
+          display: none;
+        }
+        .sup-left {
+          padding: 50px 28px;
+          min-height: 100vh;
+        }
+      }
+      @media (max-width: 480px) {
+        .sup-left {
+          padding: 40px 18px;
+        }
+        .row-2 {
+          grid-template-columns: 1fr;
+        }
+        .otp-input {
+          width: 44px;
+          height: 52px;
+          font-size: 1.3rem;
+        }
+      }
     </style>
   </head>
   <body></body>
