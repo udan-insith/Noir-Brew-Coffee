@@ -1410,6 +1410,16 @@
             validate(f);
         });
       });
+
+      /* ── Password toggle ── */
+      function togglePass(id, btn) {
+        const i = document.getElementById(id);
+        const s = i.type === "password";
+        i.type = s ? "text" : "password";
+        btn.textContent = s ? "🙈" : "👁";
+        btn.style.color = s ? "var(--c-gold)" : "";
+      }
+      window.togglePass = togglePass;
     </script>
   </body>
 </html>
