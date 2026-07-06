@@ -53,6 +53,84 @@
             transparent 40%
           );
       }
+
+      /* ── LEFT → branding panel ── */
+      .sup-right {
+        position: relative;
+        order: 2;
+        background: var(--c-bg-alt);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 50px 52px;
+        overflow: hidden;
+      }
+      .sup-right__bg {
+        position: absolute;
+        inset: 0;
+        background: url("https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?w=1200&q=80")
+          center/cover no-repeat;
+      }
+      .sup-right__over {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          160deg,
+          rgba(10, 8, 6, 0.95) 0%,
+          rgba(10, 8, 6, 0.75) 50%,
+          rgba(212, 168, 83, 0.08) 100%
+        );
+      }
+      .sup-right > * {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Logo */
+      .sup-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .sup-brand__cup {
+        width: 44px;
+        height: 44px;
+        background: var(--c-gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 21px;
+        animation: float 4s ease-in-out infinite;
+      }
+      .sup-brand__name {
+        font-family: var(--font-display);
+        font-style: italic;
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--c-cream);
+      }
+      .sup-brand__name em {
+        color: var(--c-gold);
+        font-style: normal;
+      }
+
+      /* Badge */
+      .sup-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        background: rgba(212, 168, 83, 0.15);
+        border: 1px solid rgba(212, 168, 83, 0.35);
+        border-radius: var(--r-full);
+        padding: 6px 16px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--c-gold);
+        margin-top: 6px;
+      }
     </style>
   </head>
   <body></body>
