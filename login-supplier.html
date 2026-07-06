@@ -14,6 +14,46 @@
     />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/animations.css" />
+    <style>
+      body {
+        overflow-x: hidden;
+      }
+
+      /* ── SPLIT LAYOUT ── */
+      .sup-page {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        min-height: 100vh;
+      }
+
+      /* ── RIGHT → form panel (reversed from customer) ── */
+      .sup-left {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 52px;
+        background: var(--c-bg);
+        order: 1;
+        position: relative;
+        overflow: hidden;
+      }
+      .sup-left::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(212, 168, 83, 0.05) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 10% 80%,
+            rgba(212, 168, 83, 0.03) 0%,
+            transparent 40%
+          );
+      }
+    </style>
   </head>
   <body></body>
 </html>
