@@ -1144,3 +1144,17 @@
 .tilt-card:hover .tilt-card__shine {
   opacity: 1;
 }
+
+/* RIPPLE EFFECT */
+.ripple-host {
+  position: relative;
+  overflow: hidden;
+}
+.ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(0);
+  animation: ripple 0.55s var(--ease-out) forwards;
+  pointer-events: none;
+}
