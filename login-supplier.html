@@ -546,6 +546,96 @@
       .twostep-box strong {
         color: var(--c-gold);
       }
+
+      /* Verification step overlay */
+      .verify-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 8, 6, 0.8);
+        backdrop-filter: blur(12px);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.35s;
+      }
+      .verify-overlay.open {
+        opacity: 1;
+        visibility: visible;
+      }
+      .verify-modal {
+        background: var(--c-bg-card);
+        border: 1px solid var(--c-border-strong);
+        border-radius: var(--r-xl);
+        padding: 48px 40px;
+        width: 100%;
+        max-width: 400px;
+        transform: scale(0.93) translateY(18px);
+        transition: transform 0.4s var(--ease-out);
+        text-align: center;
+        position: relative;
+      }
+      .verify-overlay.open .verify-modal {
+        transform: scale(1) translateY(0);
+      }
+      .verify-modal__close {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--c-bg-raised);
+        border: 1px solid var(--c-border);
+        color: var(--c-muted);
+        cursor: pointer;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+      .verify-modal__close:hover {
+        background: var(--c-error);
+        color: #fff;
+        border-color: var(--c-error);
+      }
+
+      /* OTP input row */
+      .otp-row {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin: 26px 0;
+      }
+      .otp-input {
+        width: 52px;
+        height: 60px;
+        background: var(--c-bg-raised);
+        border: 2px solid var(--c-border);
+        border-radius: var(--r-md);
+        text-align: center;
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--c-cream);
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        caret-color: var(--c-gold);
+      }
+      .otp-input:focus {
+        border-color: var(--c-gold);
+        box-shadow: 0 0 0 3px rgba(212, 168, 83, 0.15);
+      }
+      .otp-input.filled {
+        border-color: #52b77a;
+        background: rgba(82, 183, 122, 0.07);
+      }
     </style>
   </head>
   <body></body>
