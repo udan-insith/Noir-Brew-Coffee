@@ -281,6 +281,73 @@
         color: var(--c-gold);
         margin-bottom: 14px;
       }
+      /* ── TAB SWITCHER ── */
+      .sup-tabs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background: var(--c-bg-card);
+        border: 1px solid var(--c-border);
+        border-radius: var(--r-full);
+        padding: 5px;
+        margin-bottom: 30px;
+        position: relative;
+      }
+      .sup-tab {
+        padding: 11px;
+        text-align: center;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--c-muted);
+        border-radius: var(--r-full);
+        cursor: pointer;
+        transition: color 0.3s;
+        position: relative;
+        z-index: 2;
+        user-select: none;
+      }
+      .sup-tab.active {
+        color: #0a0806;
+      }
+      .sup-tab-pill {
+        position: absolute;
+        top: 5px;
+        bottom: 5px;
+        width: calc(50% - 5px);
+        background: var(--c-gold);
+        border-radius: var(--r-full);
+        transition: transform 0.38s var(--ease-spring);
+        box-shadow: 0 4px 14px rgba(212, 168, 83, 0.35);
+        z-index: 1;
+        left: 5px;
+      }
+      .sup-tab-pill.right {
+        transform: translateX(100%);
+      }
+
+      /* ── FORM PANELS ── */
+      .sup-form {
+        display: none;
+        animation: fadeScale 0.4s var(--ease-out) both;
+      }
+      .sup-form.active {
+        display: block;
+      }
+
+      .sup-form__title {
+        font-size: 1.55rem;
+        font-weight: 600;
+        color: var(--c-cream);
+        margin-bottom: 6px;
+      }
+      .sup-form__sub {
+        font-size: 0.85rem;
+        color: var(--c-muted);
+        margin-bottom: 26px;
+        line-height: 1.6;
+      }
+      .sup-form__sub a {
+        color: var(--c-gold);
+      }
     </style>
   </head>
   <body></body>
