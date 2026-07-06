@@ -1232,3 +1232,27 @@
     border-radius: 40% 60% 70% 30% / 60% 30% 50% 60%;
   }
 }
+
+/* REDUCE MOTION OVERRIDES */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+  #scrollProgress {
+    transition: none;
+  }
+  .text-shimmer,
+  .text-shimmer-gold {
+    animation: none;
+    -webkit-text-fill-color: var(--c-gold);
+  }
+}
