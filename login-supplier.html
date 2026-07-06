@@ -348,6 +348,74 @@
       .sup-form__sub a {
         color: var(--c-gold);
       }
+
+      /* ── FLOATING LABEL ── */
+      .fl-group {
+        position: relative;
+        margin-bottom: 16px;
+      }
+      .fl-input,
+      .fl-select-s {
+        width: 100%;
+        padding: 20px 16px 8px;
+        background: var(--c-bg-card);
+        border: 1.5px solid var(--c-border);
+        border-radius: var(--r-md);
+        color: var(--c-cream);
+        font-family: var(--font-body);
+        font-size: 0.9rem;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        appearance: none;
+      }
+      .fl-input:focus {
+        border-color: var(--c-gold);
+        box-shadow: 0 0 0 3px rgba(212, 168, 83, 0.1);
+      }
+      .fl-input::placeholder {
+        color: transparent;
+      }
+      .fl-select-s {
+        padding-right: 36px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23d4a853' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 13px center;
+        cursor: pointer;
+      }
+      .fl-label {
+        position: absolute;
+        left: 16px;
+        top: 14px;
+        font-size: 0.88rem;
+        color: var(--c-muted);
+        pointer-events: none;
+        transition: all 0.22s var(--ease-out);
+      }
+      .fl-input:focus ~ .fl-label,
+      .fl-input:not(:placeholder-shown) ~ .fl-label,
+      .fl-select-s:focus ~ .fl-label,
+      .fl-select-s.sel-val ~ .fl-label {
+        transform: translateY(-8px) scale(0.75);
+        color: var(--c-gold);
+      }
+      .fl-group.valid .fl-input {
+        border-color: #52b77a;
+      }
+      .fl-group.invalid .fl-input,
+      .fl-group.invalid .fl-select-s {
+        border-color: var(--c-error);
+      }
+      .fl-msg {
+        font-size: 0.73rem;
+        padding: 3px 0 0 2px;
+        display: none;
+      }
+      .fl-group.invalid .fl-msg {
+        display: block;
+        color: var(--c-error);
+      }
     </style>
   </head>
   <body></body>
