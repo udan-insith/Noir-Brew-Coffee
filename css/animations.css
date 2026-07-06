@@ -1110,3 +1110,11 @@
   width: 140px;
   border-radius: var(--r-full);
 }
+
+/* PARTICAL LAYER */
+.particle-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
