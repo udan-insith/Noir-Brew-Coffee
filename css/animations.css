@@ -1118,3 +1118,29 @@
   pointer-events: none;
   z-index: 0;
 }
+
+/* TITLE CARD */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.08s linear;
+  will-change: transform;
+}
+.tilt-card__inner {
+  transform: translateZ(20px);
+}
+.tilt-card__shine {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.12) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.tilt-card:hover .tilt-card__shine {
+  opacity: 1;
+}
