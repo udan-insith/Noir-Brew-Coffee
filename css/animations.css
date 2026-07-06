@@ -933,3 +933,51 @@
   background: linear-gradient(90deg, transparent, var(--c-gold-hover));
   animation: shimmer 1.4s linear infinite;
 }
+
+/* CUSTOM TRAIL */
+.cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--c-gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99997;
+  transform: translate(-50%, -50%);
+  transition:
+    opacity 0.3s,
+    transform 0.15s var(--ease-out);
+  mix-blend-mode: screen;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid rgba(212, 168, 83, 0.55);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99996;
+  transform: translate(-50%, -50%);
+  transition:
+    transform 0.12s var(--ease-out),
+    width 0.22s,
+    height 0.22s,
+    border-color 0.22s;
+}
+.cursor-ring.hovered {
+  width: 56px;
+  height: 56px;
+  border-color: rgba(212, 168, 83, 0.8);
+  background: rgba(212, 168, 83, 0.06);
+}
+.cursor-ring.clicking {
+  width: 24px;
+  height: 24px;
+  border-color: var(--c-gold);
+}
+/* Hide native cursor when custom is active */
+.has-custom-cursor,
+.has-custom-cursor * {
+  cursor: none !important;
+}
