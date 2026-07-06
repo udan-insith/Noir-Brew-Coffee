@@ -236,6 +236,51 @@
         color: rgba(212, 168, 83, 0.55);
         margin-top: 3px;
       }
+
+      /* Decorative rings */
+      .sup-ring {
+        position: absolute;
+        border: 1px solid rgba(212, 168, 83, 0.08);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      /* ── FORM BOX ── */
+      .sup-box {
+        width: 100%;
+        max-width: 440px;
+        position: relative;
+        z-index: 1;
+      }
+      .sup-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.83rem;
+        color: var(--c-muted);
+        margin-bottom: 34px;
+        transition: color 0.2s;
+      }
+      .sup-back:hover {
+        color: var(--c-gold);
+      }
+
+      /* Supplier badge above title */
+      .sup-role-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(212, 168, 83, 0.1);
+        border: 1px solid rgba(212, 168, 83, 0.25);
+        border-radius: var(--r-full);
+        padding: 5px 14px;
+        font-size: 0.73rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--c-gold);
+        margin-bottom: 14px;
+      }
     </style>
   </head>
   <body></body>
