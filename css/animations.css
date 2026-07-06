@@ -1039,3 +1039,26 @@
 .page-entering .pt-strip:nth-child(5) {
   animation-delay: 0.2s;
 }
+
+/* MAGNETIC BUTTON AURA */
+.btn-magnetic {
+  position: relative;
+  overflow: visible !important;
+}
+.btn-magnetic::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle,
+    rgba(212, 168, 83, 0.18) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.btn-magnetic:hover::before {
+  opacity: 1;
+}
