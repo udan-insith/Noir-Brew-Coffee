@@ -131,6 +131,111 @@
         color: var(--c-gold);
         margin-top: 6px;
       }
+
+      /* Central content */
+      .sup-right__mid {
+      }
+      .sup-right__title {
+        font-family: var(--font-display);
+        font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+        font-weight: 600;
+        color: var(--c-cream);
+        line-height: 1.2;
+        margin-bottom: 14px;
+      }
+      .sup-right__title em {
+        color: var(--c-gold);
+        font-style: italic;
+      }
+      .sup-right__desc {
+        font-size: 0.9rem;
+        color: var(--c-muted);
+        line-height: 1.75;
+        max-width: 38ch;
+      }
+
+      /* Portal features */
+      .portal-features {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 34px;
+      }
+      .pfeat {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        padding: 12px 14px;
+        background: rgba(26, 21, 17, 0.72);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(212, 168, 83, 0.12);
+        border-radius: var(--r-md);
+        transition: all 0.3s;
+        animation: fadeRight 0.6s var(--ease-out) both;
+      }
+      .pfeat:hover {
+        border-color: rgba(212, 168, 83, 0.32);
+        transform: translateX(5px);
+      }
+      .pfeat:nth-child(1) {
+        animation-delay: 0.08s;
+      }
+      .pfeat:nth-child(2) {
+        animation-delay: 0.16s;
+      }
+      .pfeat:nth-child(3) {
+        animation-delay: 0.24s;
+      }
+      .pfeat:nth-child(4) {
+        animation-delay: 0.32s;
+      }
+      .pfeat:nth-child(5) {
+        animation-delay: 0.4s;
+      }
+      .pfeat__icon {
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
+        background: rgba(212, 168, 83, 0.15);
+        border-radius: var(--r-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+      }
+      .pfeat__title {
+        font-size: 0.86rem;
+        font-weight: 600;
+        color: var(--c-cream);
+      }
+      .pfeat__sub {
+        font-size: 0.73rem;
+        color: var(--c-muted);
+        margin-top: 1px;
+      }
+
+      /* Stats row */
+      .sup-stats {
+        display: flex;
+        gap: 28px;
+        flex-wrap: wrap;
+      }
+      .sup-stat__num {
+        font-family: var(--font-display);
+        font-size: 1.7rem;
+        font-weight: 700;
+        color: var(--c-gold);
+        line-height: 1;
+      }
+      .sup-stat__lbl {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(212, 168, 83, 0.55);
+        margin-top: 3px;
+      }
     </style>
   </head>
   <body></body>
