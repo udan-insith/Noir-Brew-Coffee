@@ -170,6 +170,56 @@
         border-radius: 50%;
         pointer-events: none;
       }
+
+      /* ── RIGHT PANEL ── */
+      .auth-right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 52px;
+        background: var(--c-bg);
+        position: relative;
+        overflow: hidden;
+      }
+      /* Subtle background pattern */
+      .auth-right::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at 20% 80%,
+            rgba(212, 168, 83, 0.04) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(212, 168, 83, 0.03) 0%,
+            transparent 40%
+          );
+        pointer-events: none;
+      }
+
+      .auth-box {
+        width: 100%;
+        max-width: 420px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Back link */
+      .auth-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.83rem;
+        color: var(--c-muted);
+        margin-bottom: 36px;
+        transition: color 0.2s;
+      }
+      .auth-back:hover {
+        color: var(--c-gold);
+      }
     </style>
   </head>
   <body></body>
