@@ -220,6 +220,78 @@
       .auth-back:hover {
         color: var(--c-gold);
       }
+
+      /* ── TAB SWITCHER ── */
+      .auth-tabs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background: var(--c-bg-card);
+        border: 1px solid var(--c-border);
+        border-radius: var(--r-full);
+        padding: 5px;
+        margin-bottom: 34px;
+        position: relative;
+      }
+      .auth-tab {
+        padding: 11px;
+        text-align: center;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--c-muted);
+        border-radius: var(--r-full);
+        cursor: pointer;
+        transition: color 0.3s;
+        position: relative;
+        z-index: 2;
+        user-select: none;
+      }
+      .auth-tab.active {
+        color: #0a0806;
+      }
+      /* Sliding pill */
+      .auth-tab-pill {
+        position: absolute;
+        top: 5px;
+        bottom: 5px;
+        width: calc(50% - 5px);
+        background: var(--c-gold);
+        border-radius: var(--r-full);
+        transition:
+          transform 0.38s var(--ease-spring),
+          background 0.3s;
+        box-shadow: 0 4px 14px rgba(212, 168, 83, 0.35);
+        z-index: 1;
+        left: 5px;
+      }
+      .auth-tab-pill.right {
+        transform: translateX(calc(100% + 0px));
+      }
+
+      /* ── FORM PANELS ── */
+      .auth-form {
+        display: none;
+        animation: fadeScale 0.4s var(--ease-out) both;
+      }
+      .auth-form.active {
+        display: block;
+      }
+
+      /* ── FORM TITLE ── */
+      .auth-form__title {
+        font-size: 1.65rem;
+        font-weight: 600;
+        color: var(--c-cream);
+        margin-bottom: 6px;
+      }
+      .auth-form__sub {
+        font-size: 0.86rem;
+        color: var(--c-muted);
+        margin-bottom: 28px;
+        line-height: 1.6;
+      }
+      .auth-form__sub a {
+        color: var(--c-gold);
+      }
     </style>
   </head>
   <body></body>
