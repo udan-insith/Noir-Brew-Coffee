@@ -86,6 +86,90 @@
         color: var(--c-gold);
         font-style: normal;
       }
+
+      /* Central quote */
+      .auth-left__mid {
+        text-align: center;
+        padding: 0 20px;
+      }
+      .auth-quote {
+        font-family: var(--font-display);
+        font-style: italic;
+        font-size: clamp(1.4rem, 2.8vw, 2rem);
+        font-weight: 400;
+        line-height: 1.5;
+        color: var(--c-cream);
+        margin-bottom: 22px;
+      }
+      .auth-quote em {
+        color: var(--c-gold);
+        font-style: normal;
+      }
+
+      /* Perks list */
+      .auth-perks {
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
+      }
+      .auth-perk {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 16px;
+        background: rgba(26, 21, 17, 0.72);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(212, 168, 83, 0.14);
+        border-radius: var(--r-md);
+        transition: all 0.3s var(--ease-out);
+        animation: fadeRight 0.6s var(--ease-out) both;
+      }
+      .auth-perk:hover {
+        border-color: rgba(212, 168, 83, 0.35);
+        transform: translateX(5px);
+      }
+      .auth-perk:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .auth-perk:nth-child(2) {
+        animation-delay: 0.18s;
+      }
+      .auth-perk:nth-child(3) {
+        animation-delay: 0.26s;
+      }
+      .auth-perk:nth-child(4) {
+        animation-delay: 0.34s;
+      }
+      .auth-perk__icon {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+        background: rgba(212, 168, 83, 0.15);
+        border-radius: var(--r-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 17px;
+      }
+      .auth-perk__title {
+        font-size: 0.87rem;
+        font-weight: 600;
+        color: var(--c-cream);
+      }
+      .auth-perk__sub {
+        font-size: 0.74rem;
+        color: var(--c-muted);
+        margin-top: 2px;
+      }
+
+      /* Decorative ring */
+      .auth-ring {
+        position: absolute;
+        border: 1px solid rgba(212, 168, 83, 0.1);
+        border-radius: 50%;
+        pointer-events: none;
+      }
     </style>
   </head>
   <body></body>
