@@ -356,6 +356,90 @@
         display: block;
         color: #52b77a;
       }
+      /* Password wrapper */
+      .pass-wrap {
+        position: relative;
+      }
+      .pass-wrap .fl-input {
+        padding-right: 46px;
+      }
+      .pass-eye {
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 16px;
+        color: var(--c-muted);
+        transition: color 0.2s;
+        line-height: 1;
+      }
+      .pass-eye:hover {
+        color: var(--c-gold);
+      }
+
+      /* ── STRENGTH METER ── */
+      .strength-bar {
+        height: 4px;
+        border-radius: var(--r-full);
+        background: var(--c-bg-raised);
+        overflow: hidden;
+        margin-top: 7px;
+      }
+      .strength-fill {
+        height: 100%;
+        border-radius: var(--r-full);
+        transition:
+          width 0.4s,
+          background 0.4s;
+      }
+      .strength-label {
+        font-size: 0.7rem;
+        color: var(--c-muted);
+        margin-top: 4px;
+        text-align: right;
+      }
+
+      /* ── CHECKBOX ── */
+      .cb-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        cursor: pointer;
+        font-size: 0.84rem;
+        color: var(--c-muted);
+        user-select: none;
+        margin-bottom: 6px;
+      }
+      .cb-row input {
+        display: none;
+      }
+      .cb-box {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+        border: 1.5px solid var(--c-border-strong);
+        border-radius: 4px;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        margin-top: 1px;
+      }
+      .cb-row input:checked ~ .cb-box {
+        background: var(--c-gold);
+        border-color: var(--c-gold);
+      }
+      .cb-row input:checked ~ .cb-box::after {
+        content: "✓";
+        color: #0a0806;
+        font-size: 10px;
+        font-weight: 800;
+      }
+      .cb-row a {
+        color: var(--c-gold);
+      }
     </style>
   </head>
   <body></body>
