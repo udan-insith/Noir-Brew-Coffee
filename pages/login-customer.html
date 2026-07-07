@@ -440,6 +440,120 @@
       .cb-row a {
         color: var(--c-gold);
       }
+
+      /* ── FORGOT PASSWORD INLINE ── */
+      .forgot-link {
+        font-size: 0.78rem;
+        color: var(--c-gold);
+        cursor: pointer;
+        transition: opacity 0.2s;
+        float: right;
+        margin-top: 2px;
+      }
+      .forgot-link:hover {
+        opacity: 0.75;
+      }
+
+      /* ── SUBMIT BUTTON ── */
+      .auth-submit {
+        width: 100%;
+        padding: 14px;
+        background: var(--c-gold);
+        color: #0a0806;
+        border: none;
+        border-radius: var(--r-full);
+        font-family: var(--font-body);
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: all 0.3s var(--ease-out);
+        position: relative;
+        overflow: hidden;
+        margin: 20px 0 16px;
+      }
+      .auth-submit:hover {
+        background: var(--c-gold-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(212, 168, 83, 0.4);
+      }
+      .auth-submit.loading {
+        pointer-events: none;
+        background: var(--c-gold-dark);
+        transform: none;
+        box-shadow: none;
+      }
+      .auth-submit.success {
+        background: #52b77a;
+        pointer-events: none;
+      }
+      .spinner {
+        width: 18px;
+        height: 18px;
+        border: 2px solid rgba(10, 8, 6, 0.2);
+        border-top-color: #0a0806;
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+        flex-shrink: 0;
+      }
+
+      /* ── DIVIDER ── */
+      .auth-divider {
+        text-align: center;
+        color: var(--c-muted);
+        font-size: 0.78rem;
+        position: relative;
+        margin: 20px 0;
+      }
+      .auth-divider::before,
+      .auth-divider::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 44%;
+        height: 1px;
+        background: var(--c-border);
+      }
+      .auth-divider::before {
+        left: 0;
+      }
+      .auth-divider::after {
+        right: 0;
+      }
+
+      /* ── SOCIAL BUTTONS ── */
+      .auth-socials {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .auth-social-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        padding: 11px;
+        background: var(--c-bg-card);
+        border: 1.5px solid var(--c-border);
+        border-radius: var(--r-md);
+        font-family: var(--font-body);
+        font-size: 0.84rem;
+        font-weight: 500;
+        color: var(--c-cream);
+        cursor: pointer;
+        transition: all 0.25s;
+      }
+      .auth-social-btn:hover {
+        border-color: var(--c-gold);
+        background: var(--c-gold-glow);
+        transform: translateY(-2px);
+      }
+      .auth-social-btn__icon {
+        font-size: 17px;
+      }
     </style>
   </head>
   <body></body>
