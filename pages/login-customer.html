@@ -554,6 +554,83 @@
       .auth-social-btn__icon {
         font-size: 17px;
       }
+      /* ── DEMO CREDENTIALS ── */
+      .demo-box {
+        background: var(--c-gold-glow);
+        border: 1px dashed var(--c-border-strong);
+        border-radius: var(--r-md);
+        padding: 14px 16px;
+        font-size: 0.8rem;
+        color: var(--c-muted);
+        margin-top: 18px;
+        line-height: 1.7;
+      }
+      .demo-box strong {
+        color: var(--c-gold);
+      }
+      .demo-box code {
+        background: var(--c-bg-raised);
+        border: 1px solid var(--c-border);
+        border-radius: 4px;
+        padding: 1px 6px;
+        font-size: 0.76rem;
+        color: var(--c-cream);
+      }
+
+      /* ── FORGOT PASSWORD OVERLAY ── */
+      .forgot-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 8, 6, 0.75);
+        backdrop-filter: blur(10px);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+      }
+      .forgot-overlay.open {
+        opacity: 1;
+        visibility: visible;
+      }
+      .forgot-modal {
+        background: var(--c-bg-card);
+        border: 1px solid var(--c-border-strong);
+        border-radius: var(--r-xl);
+        padding: 44px 38px;
+        width: 100%;
+        max-width: 380px;
+        transform: scale(0.93) translateY(16px);
+        transition: transform 0.35s var(--ease-out);
+      }
+      .forgot-overlay.open .forgot-modal {
+        transform: scale(1) translateY(0);
+      }
+      .forgot-modal__close {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1px solid var(--c-border);
+        background: var(--c-bg-raised);
+        color: var(--c-muted);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        transition: all 0.2s;
+      }
+      .forgot-modal__close:hover {
+        background: var(--c-error);
+        color: #fff;
+        border-color: var(--c-error);
+      }
     </style>
   </head>
   <body></body>
