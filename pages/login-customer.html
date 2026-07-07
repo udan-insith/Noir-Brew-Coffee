@@ -292,6 +292,70 @@
       .auth-form__sub a {
         color: var(--c-gold);
       }
+
+      /* ── FLOATING LABEL INPUTS ── */
+      .fl-group {
+        position: relative;
+        margin-bottom: 18px;
+      }
+      .fl-input,
+      .fl-select-auth {
+        width: 100%;
+        padding: 20px 16px 8px;
+        background: var(--c-bg-card);
+        border: 1.5px solid var(--c-border);
+        border-radius: var(--r-md);
+        color: var(--c-cream);
+        font-family: var(--font-body);
+        font-size: 0.93rem;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        appearance: none;
+      }
+      .fl-input:focus {
+        border-color: var(--c-gold);
+        box-shadow: 0 0 0 3px rgba(212, 168, 83, 0.1);
+      }
+      .fl-input::placeholder {
+        color: transparent;
+      }
+      .fl-label {
+        position: absolute;
+        left: 16px;
+        top: 14px;
+        font-size: 0.88rem;
+        color: var(--c-muted);
+        pointer-events: none;
+        transition: all 0.22s var(--ease-out);
+      }
+      .fl-input:focus ~ .fl-label,
+      .fl-input:not(:placeholder-shown) ~ .fl-label {
+        transform: translateY(-8px) scale(0.75);
+        color: var(--c-gold);
+      }
+      /* Validation states */
+      .fl-group.valid .fl-input {
+        border-color: #52b77a;
+      }
+      .fl-group.invalid .fl-input {
+        border-color: var(--c-error);
+        animation: shake 0.4s ease;
+      }
+      .fl-msg {
+        font-size: 0.73rem;
+        padding: 3px 0 0 2px;
+        display: none;
+      }
+      .fl-group.invalid .fl-msg {
+        display: block;
+        color: var(--c-error);
+      }
+      .fl-group.valid .fl-msg {
+        display: block;
+        color: #52b77a;
+      }
     </style>
   </head>
   <body></body>
