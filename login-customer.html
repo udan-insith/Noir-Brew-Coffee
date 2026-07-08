@@ -1388,6 +1388,53 @@
             pass.closest(".fl-group").classList.add("invalid");
           }
         });
+
+      /* ── REGISTER form submit ── */
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const fields = e.target.querySelectorAll("[data-rule]");
+          let allOk = true;
+          fields.forEach((f) => {
+            if (!validateField(f)) allOk = false;
+          });
+          if (!document.getElementById("rg-terms").checked) {
+            addToast("⚠️ You must agree to the Terms of Service.", "err");
+            allOk = false;
+          }
+          if (!allOk) {
+            NB.shake(document.getElementById("rgSubmit"));
+            addToast("⚠️ Please fix all errors.", "err");
+            return;
+          }
+
+          const btn = document.getElementById("rgSubmit");
+          btn.innerHTML = '<div class="spinner"></div> Creating account…';
+          btn.classList.add("loading");
+          await new Promise((r) => setTimeout(r, 1800));
+
+          btn.innerHTML = "✓ Account created!";
+          btn.classList.remove("loading");
+          btn.classList.add("success");
+          NB.confetti(btn);
+          addToast("🎉 Welcome to Noir Brew! Account created.", "ok");
+          const name =
+            document.getElementById("rg-fn").value +
+            " " +
+            document.getElementById("rg-ln").value;
+          localStorage.setItem(
+            "nbUser",
+            JSON.stringify({
+              name,
+              email: document.getElementById("rg-email").value,
+              role: "customer",
+            }),
+          );
+          setTimeout(() => {
+            window.location.href = "index.html";
+          }, 1300);
+        });
     </script>
   </body>
 </html>
