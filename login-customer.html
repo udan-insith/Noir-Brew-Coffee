@@ -1204,6 +1204,50 @@
         }
       }
       window.switchAuthTab = switchAuthTab;
+
+      /* ── Validation rules ── */
+      const rules = {
+        email: {
+          fn: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()),
+          msg: "Please enter a valid email address.",
+        },
+        name: {
+          fn: (v) => v.trim().length >= 2 && /^[a-zA-Z\s\-']+$/.test(v.trim()),
+          msg: "Please enter a valid name (min 2 chars).",
+        },
+        passMin: {
+          fn: (v) => v.length >= 8,
+          msg: "Password must be at least 8 characters.",
+        },
+        passStrong: {
+          fn: (v) => v.length >= 8,
+          msg: "Password must be at least 8 characters.",
+        },
+        confirmPass: {
+          fn: (v) => v === document.getElementById("rg-pass")?.value,
+          msg: "Passwords do not match.",
+        },
+      };
+
+      function validateField(inputEl) {
+        const rule = inputEl.dataset.rule;
+        if (!rule || !rules[rule]) return true;
+        const group = inputEl.closest(".fl-group");
+        const msgEl = group?.querySelector(".fl-msg");
+        const valid = rules[rule].fn(inputEl.value);
+        group?.classList.toggle("valid", valid);
+        group?.classList.toggle("invalid", !valid);
+        if (msgEl) msgEl.textContent = valid ? "" : rules[rule].msg;
+        return valid;
+      }
+
+      document.querySelectorAll("[data-rule]").forEach((f) => {
+        f.addEventListener("blur", () => validateField(f));
+        f.addEventListener("input", () => {
+          if (f.closest(".fl-group")?.classList.contains("invalid"))
+            validateField(f);
+        });
+      });
     </script>
   </body>
 </html>
