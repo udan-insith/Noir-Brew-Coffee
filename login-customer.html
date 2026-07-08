@@ -1285,6 +1285,44 @@
         label.textContent = v.length ? lvl.t : "";
       }
       window.checkStrength = checkStrength;
+
+      /* ── Forgot password ── */
+      function openForgot() {
+        document.getElementById("forgotOverlay").classList.add("open");
+        document.body.style.overflow = "hidden";
+        setTimeout(() => document.getElementById("fg-email").focus(), 380);
+      }
+      function closeForgot() {
+        document.getElementById("forgotOverlay").classList.remove("open");
+        document.body.style.overflow = "";
+        document.getElementById("forgotForm").style.display = "";
+        document.getElementById("forgotSuccess").style.display = "none";
+      }
+      window.openForgot = openForgot;
+      window.closeForgot = closeForgot;
+      document
+        .getElementById("forgotOverlay")
+        .addEventListener("click", (e) => {
+          if (e.target === e.currentTarget) closeForgot();
+        });
+
+      function submitForgot(e) {
+        e.preventDefault();
+        const emailEl = document.getElementById("fg-email");
+        if (!validateField(emailEl)) {
+          NB.shake(emailEl);
+          return;
+        }
+        const btn = document.getElementById("fgSubmit");
+        btn.innerHTML = '<div class="spinner"></div> Sending…';
+        btn.classList.add("loading");
+        setTimeout(() => {
+          document.getElementById("forgotForm").style.display = "none";
+          document.getElementById("forgotSuccess").style.display = "";
+          btn.classList.remove("loading");
+        }, 1600);
+      }
+      window.submitForgot = submitForgot;
     </script>
   </body>
 </html>
