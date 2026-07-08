@@ -1248,6 +1248,16 @@
             validateField(f);
         });
       });
+
+      /* ── Password show/hide ── */
+      function togglePass(id, eyeBtn) {
+        const input = document.getElementById(id);
+        const show = input.type === "password";
+        input.type = show ? "text" : "password";
+        eyeBtn.textContent = show ? "🙈" : "👁";
+        eyeBtn.style.color = show ? "var(--c-gold)" : "";
+      }
+      window.togglePass = togglePass;
     </script>
   </body>
 </html>
