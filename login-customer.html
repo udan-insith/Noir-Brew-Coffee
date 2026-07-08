@@ -1323,6 +1323,15 @@
         }, 1600);
       }
       window.submitForgot = submitForgot;
+
+      /* ── Social auth stub ── */
+      function socialAuth(provider) {
+        addToast(
+          `⚠️ ${provider} sign-in not configured yet. Use demo credentials.`,
+          "info",
+        );
+      }
+      window.socialAuth = socialAuth;
     </script>
   </body>
 </html>
