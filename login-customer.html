@@ -1332,6 +1332,62 @@
         );
       }
       window.socialAuth = socialAuth;
+
+      /* ── LOGIN form submit ── */
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const email = document.getElementById("lg-email");
+          const pass = document.getElementById("lg-pass");
+          let ok = validateField(email) & validateField(pass);
+          if (!ok) {
+            NB.shake(document.getElementById("lgSubmit"));
+            addToast("⚠️ Please fix the errors above.", "err");
+            return;
+          }
+
+          const btn = document.getElementById("lgSubmit");
+          btn.innerHTML = '<div class="spinner"></div> Signing in…';
+          btn.classList.add("loading");
+          await new Promise((r) => setTimeout(r, 1600));
+
+          const DEMO_EMAIL = "demo@noirbrew.com",
+            DEMO_PASS = "Demo1234!";
+          if (email.value.trim() === DEMO_EMAIL && pass.value === DEMO_PASS) {
+            btn.innerHTML = "✓ Welcome back!";
+            btn.classList.remove("loading");
+            btn.classList.add("success");
+            NB.confetti(btn);
+            addToast("✅ Signed in as demo user!", "ok");
+            localStorage.setItem(
+              "nbUser",
+              JSON.stringify({
+                name: "Demo User",
+                email: DEMO_EMAIL,
+                role: "customer",
+              }),
+            );
+            setTimeout(() => {
+              window.location.href = "index.html";
+            }, 1200);
+          } else {
+            btn.innerHTML = "✕ Invalid credentials";
+            btn.classList.remove("loading");
+            btn.style.background = "var(--c-error)";
+            NB.shake(btn);
+            addToast(
+              "❌ Incorrect email or password. Try the demo credentials below.",
+              "err",
+            );
+            setTimeout(() => {
+              btn.style.background = "";
+              btn.innerHTML = "<span>Sign In</span><span>→</span>";
+            }, 2000);
+            email.closest(".fl-group").classList.add("invalid");
+            pass.closest(".fl-group").classList.add("invalid");
+          }
+        });
     </script>
   </body>
 </html>
