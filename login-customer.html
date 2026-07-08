@@ -1177,6 +1177,33 @@
           localStorage.setItem("nbTheme", n);
         }, 420);
       });
+      /* ── Tab switcher ── */
+      function switchAuthTab(tab) {
+        const pill = document.getElementById("tabPill");
+        const loginTab = document.getElementById("tabLogin");
+        const regTab = document.getElementById("tabRegister");
+        const loginForm = document.getElementById("formLogin");
+        const regForm = document.getElementById("formRegister");
+
+        if (tab === "login") {
+          pill.classList.remove("right");
+          loginTab.classList.add("active");
+          regTab.classList.remove("active");
+          loginForm.classList.add("active");
+          regForm.classList.remove("active");
+          loginTab.setAttribute("aria-selected", "true");
+          regTab.setAttribute("aria-selected", "false");
+        } else {
+          pill.classList.add("right");
+          regTab.classList.add("active");
+          loginTab.classList.remove("active");
+          regForm.classList.add("active");
+          loginForm.classList.remove("active");
+          regTab.setAttribute("aria-selected", "true");
+          loginTab.setAttribute("aria-selected", "false");
+        }
+      }
+      window.switchAuthTab = switchAuthTab;
     </script>
   </body>
 </html>
