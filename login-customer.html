@@ -1069,5 +1069,81 @@
         </div>
       </div>
     </div>
+
+    <!-- FORGOT PASSWORD MODAL -->
+    <div class="forgot-overlay" id="forgotOverlay">
+      <div class="forgot-modal" style="position: relative">
+        <button class="forgot-modal__close" onclick="closeForgot()">✕</button>
+        <div style="text-align: center; margin-bottom: 24px">
+          <span
+            style="
+              font-size: 2.8rem;
+              display: block;
+              margin-bottom: 12px;
+              animation: float 3s ease-in-out infinite;
+            "
+            >🔑</span
+          >
+          <h2
+            style="
+              font-size: 1.3rem;
+              font-weight: 600;
+              color: var(--c-cream);
+              margin-bottom: 6px;
+            "
+          >
+            Reset Password
+          </h2>
+          <p style="font-size: 0.84rem; color: var(--c-muted)">
+            Enter your email and we'll send a secure reset link within 2
+            minutes.
+          </p>
+        </div>
+        <form id="forgotForm" novalidate onsubmit="submitForgot(event)">
+          <div class="fl-group" id="fg-email-g" style="margin-bottom: 20px">
+            <input
+              class="fl-input"
+              type="email"
+              id="fg-email"
+              name="email"
+              placeholder=" "
+              autocomplete="email"
+              data-rule="email"
+              required
+            />
+            <label class="fl-label" for="fg-email">Your Email Address</label>
+            <span class="fl-msg" id="fg-email-m"></span>
+          </div>
+          <button
+            type="submit"
+            class="auth-submit"
+            id="fgSubmit"
+            style="margin-top: 0"
+          >
+            <span>Send Reset Link</span><span>→</span>
+          </button>
+        </form>
+        <div
+          id="forgotSuccess"
+          style="display: none; text-align: center; padding: 10px 0"
+        >
+          <span
+            style="
+              font-size: 2.5rem;
+              display: block;
+              margin-bottom: 12px;
+              animation: bounceIn 0.6s var(--ease-spring);
+            "
+            >✅</span
+          >
+          <p style="color: #52b77a; font-weight: 600; font-size: 0.95rem">
+            Reset link sent!
+          </p>
+          <p style="color: var(--c-muted); font-size: 0.82rem; margin-top: 6px">
+            Check your inbox — it may take up to 2 minutes to arrive.
+          </p>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
