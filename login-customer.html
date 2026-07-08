@@ -1450,6 +1450,11 @@
         }, 3400);
       }
       window.addToast = addToast;
+
+      /* Escape to close forgot modal */
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeForgot();
+      });
     </script>
   </body>
 </html>
