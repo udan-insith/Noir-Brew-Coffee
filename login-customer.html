@@ -689,62 +689,385 @@
     </button>
 
     <!-- LAYOUT -->
-     <div class="auth-page">
+    <div class="auth-page">
+      <!-- ══════════════════ LEFT PANEL ══════════════════ -->
+      <div class="auth-left">
+        <div class="auth-left__bg"></div>
+        <div class="auth-left__over"></div>
 
-  <!-- ══════════════════ LEFT PANEL ══════════════════ -->
-  <div class="auth-left">
-    <div class="auth-left__bg"></div>
-    <div class="auth-left__over"></div>
+        <!-- Decorative rings -->
+        <div
+          class="auth-ring"
+          style="
+            width: 340px;
+            height: 340px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: rotateSlow 22s linear infinite;
+          "
+        ></div>
+        <div
+          class="auth-ring"
+          style="
+            width: 220px;
+            height: 220px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: rotateSlow 14s linear infinite reverse;
+          "
+        ></div>
 
-    <!-- Decorative rings -->
-    <div class="auth-ring" style="width:340px;height:340px;top:50%;left:50%;transform:translate(-50%,-50%);animation:rotateSlow 22s linear infinite;"></div>
-    <div class="auth-ring" style="width:220px;height:220px;top:50%;left:50%;transform:translate(-50%,-50%);animation:rotateSlow 14s linear infinite reverse;"></div>
+        <!-- Logo -->
+        <div class="auth-brand">
+          <div class="auth-brand__cup">☕</div>
+          <div class="auth-brand__name">Noir <em>Brew</em></div>
+        </div>
 
-    <!-- Logo -->
-    <div class="auth-brand">
-      <div class="auth-brand__cup">☕</div>
-      <div class="auth-brand__name">Noir <em>Brew</em></div>
+        <!-- Central quote -->
+        <div class="auth-left__mid">
+          <div class="auth-quote">
+            "Your ritual.<br />Your <em>perfect cup</em>.<br />Your Noir Brew."
+          </div>
+          <div
+            style="
+              font-size: 0.8rem;
+              letter-spacing: 0.12em;
+              text-transform: uppercase;
+              color: var(--c-muted);
+            "
+          >
+            Est. 2018 · Singapore
+          </div>
+        </div>
+
+        <!-- Perks -->
+        <div class="auth-perks">
+          <div class="auth-perk">
+            <div class="auth-perk__icon">🫘</div>
+            <div>
+              <div class="auth-perk__title">Bean Subscription</div>
+              <div class="auth-perk__sub">
+                Manage your fortnightly roast delivery
+              </div>
+            </div>
+          </div>
+          <div class="auth-perk">
+            <div class="auth-perk__icon">🛒</div>
+            <div>
+              <div class="auth-perk__title">Order History</div>
+              <div class="auth-perk__sub">
+                Track and reorder your favourite items
+              </div>
+            </div>
+          </div>
+          <div class="auth-perk">
+            <div class="auth-perk__icon">❤️</div>
+            <div>
+              <div class="auth-perk__title">Saved Favourites</div>
+              <div class="auth-perk__sub">
+                Your most-loved drinks, always within reach
+              </div>
+            </div>
+          </div>
+          <div class="auth-perk">
+            <div class="auth-perk__icon">🎁</div>
+            <div>
+              <div class="auth-perk__title">Loyalty Rewards</div>
+              <div class="auth-perk__sub">
+                Earn points on every purchase — redeem anytime
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ══════════════════ RIGHT PANEL ══════════════════ -->
+      <div class="auth-right">
+        <div class="auth-box">
+          <!-- Back -->
+          <a href="index.html" class="auth-back" data-no-transition>
+            ← Back to site
+          </a>
+
+          <!-- Tab switcher -->
+          <div class="auth-tabs" role="tablist">
+            <div class="auth-tab-pill" id="tabPill"></div>
+            <div
+              class="auth-tab active"
+              id="tabLogin"
+              role="tab"
+              aria-selected="true"
+              onclick="switchAuthTab('login')"
+            >
+              Sign In
+            </div>
+            <div
+              class="auth-tab"
+              id="tabRegister"
+              role="tab"
+              aria-selected="false"
+              onclick="switchAuthTab('register')"
+            >
+              Create Account
+            </div>
+          </div>
+
+          <!-- ───── LOGIN FORM ───── -->
+          <div class="auth-form active" id="formLogin">
+            <h1 class="auth-form__title">Welcome back ☕</h1>
+            <p class="auth-form__sub">
+              Don't have an account?
+              <a
+                href="#"
+                onclick="
+                  switchAuthTab('register');
+                  return false;
+                "
+                >Create one for free →</a
+              >
+            </p>
+
+            <form id="loginForm" novalidate>
+              <!-- Email -->
+              <div class="fl-group" id="lg-email-g">
+                <input
+                  class="fl-input"
+                  type="email"
+                  id="lg-email"
+                  name="email"
+                  placeholder=" "
+                  autocomplete="email"
+                  data-rule="email"
+                  required
+                />
+                <label class="fl-label" for="lg-email">Email Address</label>
+                <span class="fl-msg" id="lg-email-m"></span>
+              </div>
+
+              <!-- Password -->
+              <div class="fl-group" id="lg-pass-g">
+                <div class="pass-wrap">
+                  <input
+                    class="fl-input"
+                    type="password"
+                    id="lg-pass"
+                    name="password"
+                    placeholder=" "
+                    autocomplete="current-password"
+                    data-rule="passMin"
+                    required
+                  />
+                  <label class="fl-label" for="lg-pass">Password</label>
+                  <span
+                    class="pass-eye"
+                    onclick="togglePass('lg-pass', this)"
+                    title="Show/hide password"
+                    >👁</span
+                  >
+                </div>
+                <span class="fl-msg" id="lg-pass-m"></span>
+              </div>
+
+              <!-- Remember + forgot -->
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  margin-bottom: 6px;
+                "
+              >
+                <label class="cb-row" style="margin: 0">
+                  <input type="checkbox" id="rememberMe" name="remember" />
+                  <span class="cb-box"></span>
+                  <span>Remember me</span>
+                </label>
+                <span class="forgot-link" onclick="openForgot()"
+                  >Forgot password?</span
+                >
+              </div>
+
+              <!-- Submit -->
+              <button
+                type="submit"
+                class="auth-submit ripple-host"
+                id="lgSubmit"
+              >
+                <span>Sign In</span><span>→</span>
+              </button>
+            </form>
+
+            <!-- Social -->
+            <div class="auth-divider">or continue with</div>
+            <div class="auth-socials">
+              <button class="auth-social-btn" onclick="socialAuth('Google')">
+                <span class="auth-social-btn__icon">🌐</span> Google
+              </button>
+              <button class="auth-social-btn" onclick="socialAuth('Facebook')">
+                <span class="auth-social-btn__icon">📘</span> Facebook
+              </button>
+            </div>
+
+            <!-- Demo credentials -->
+            <div class="demo-box">
+              <strong>🔑 Demo credentials</strong><br />
+              Email: <code>demo@noirbrew.com</code><br />
+              Password: <code>Demo1234!</code>
+            </div>
+          </div>
+
+          <!-- ───── REGISTER FORM ───── -->
+          <div class="auth-form" id="formRegister">
+            <h1 class="auth-form__title">Join Noir Brew ☕</h1>
+            <p class="auth-form__sub">
+              Already have an account?
+              <a
+                href="#"
+                onclick="
+                  switchAuthTab('login');
+                  return false;
+                "
+                >Sign in →</a
+              >
+            </p>
+
+            <form id="registerForm" novalidate>
+              <!-- Name row -->
+              <div
+                style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px"
+              >
+                <div class="fl-group" id="rg-fn-g">
+                  <input
+                    class="fl-input"
+                    type="text"
+                    id="rg-fn"
+                    name="firstName"
+                    placeholder=" "
+                    autocomplete="given-name"
+                    data-rule="name"
+                    required
+                  />
+                  <label class="fl-label" for="rg-fn">First Name</label>
+                  <span class="fl-msg" id="rg-fn-m"></span>
+                </div>
+                <div class="fl-group" id="rg-ln-g">
+                  <input
+                    class="fl-input"
+                    type="text"
+                    id="rg-ln"
+                    name="lastName"
+                    placeholder=" "
+                    autocomplete="family-name"
+                    data-rule="name"
+                    required
+                  />
+                  <label class="fl-label" for="rg-ln">Last Name</label>
+                  <span class="fl-msg" id="rg-ln-m"></span>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="fl-group" id="rg-email-g">
+                <input
+                  class="fl-input"
+                  type="email"
+                  id="rg-email"
+                  name="email"
+                  placeholder=" "
+                  autocomplete="email"
+                  data-rule="email"
+                  required
+                />
+                <label class="fl-label" for="rg-email">Email Address</label>
+                <span class="fl-msg" id="rg-email-m"></span>
+              </div>
+
+              <!-- Password with strength -->
+              <div class="fl-group" id="rg-pass-g">
+                <div class="pass-wrap">
+                  <input
+                    class="fl-input"
+                    type="password"
+                    id="rg-pass"
+                    name="password"
+                    placeholder=" "
+                    autocomplete="new-password"
+                    data-rule="passStrong"
+                    required
+                    oninput="checkStrength(this)"
+                  />
+                  <label class="fl-label" for="rg-pass">Password</label>
+                  <span class="pass-eye" onclick="togglePass('rg-pass', this)"
+                    >👁</span
+                  >
+                </div>
+                <div class="strength-bar">
+                  <div class="strength-fill" id="strengthFill"></div>
+                </div>
+                <div class="strength-label" id="strengthLabel"></div>
+                <span class="fl-msg" id="rg-pass-m"></span>
+              </div>
+
+              <!-- Confirm password -->
+              <div class="fl-group" id="rg-conf-g">
+                <div class="pass-wrap">
+                  <input
+                    class="fl-input"
+                    type="password"
+                    id="rg-conf"
+                    name="confirm"
+                    placeholder=" "
+                    autocomplete="new-password"
+                    data-rule="confirmPass"
+                    required
+                  />
+                  <label class="fl-label" for="rg-conf">Confirm Password</label>
+                  <span class="pass-eye" onclick="togglePass('rg-conf', this)"
+                    >👁</span
+                  >
+                </div>
+                <span class="fl-msg" id="rg-conf-m"></span>
+              </div>
+
+              <!-- Checkboxes -->
+              <label class="cb-row">
+                <input type="checkbox" id="rg-terms" name="terms" required />
+                <span class="cb-box"></span>
+                <span
+                  >I agree to the <a href="#">Terms of Service</a> and
+                  <a href="#">Privacy Policy</a></span
+                >
+              </label>
+              <label class="cb-row" style="margin-top: 8px">
+                <input type="checkbox" id="rg-news" name="newsletter" />
+                <span class="cb-box"></span>
+                <span>Send me brew guides and new origin announcements</span>
+              </label>
+
+              <!-- Submit -->
+              <button
+                type="submit"
+                class="auth-submit ripple-host"
+                id="rgSubmit"
+              >
+                <span>Create Account</span><span>✨</span>
+              </button>
+            </form>
+
+            <!-- Social -->
+            <div class="auth-divider">or sign up with</div>
+            <div class="auth-socials">
+              <button class="auth-social-btn" onclick="socialAuth('Google')">
+                <span class="auth-social-btn__icon">🌐</span> Google
+              </button>
+              <button class="auth-social-btn" onclick="socialAuth('Facebook')">
+                <span class="auth-social-btn__icon">📘</span> Facebook
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <!-- Central quote -->
-    <div class="auth-left__mid">
-      <div class="auth-quote">
-        "Your ritual.<br>Your <em>perfect cup</em>.<br>Your Noir Brew."
-      </div>
-      <div style="font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--c-muted);">Est. 2018 · Singapore</div>
-    </div>
-
-    <!-- Perks -->
-    <div class="auth-perks">
-      <div class="auth-perk">
-        <div class="auth-perk__icon">🫘</div>
-        <div>
-          <div class="auth-perk__title">Bean Subscription</div>
-          <div class="auth-perk__sub">Manage your fortnightly roast delivery</div>
-        </div>
-      </div>
-      <div class="auth-perk">
-        <div class="auth-perk__icon">🛒</div>
-        <div>
-          <div class="auth-perk__title">Order History</div>
-          <div class="auth-perk__sub">Track and reorder your favourite items</div>
-        </div>
-      </div>
-      <div class="auth-perk">
-        <div class="auth-perk__icon">❤️</div>
-        <div>
-          <div class="auth-perk__title">Saved Favourites</div>
-          <div class="auth-perk__sub">Your most-loved drinks, always within reach</div>
-        </div>
-      </div>
-      <div class="auth-perk">
-        <div class="auth-perk__icon">🎁</div>
-        <div>
-          <div class="auth-perk__title">Loyalty Rewards</div>
-          <div class="auth-perk__sub">Earn points on every purchase — redeem anytime</div>
-        </div>
-      </div>
-    </div>
-  </div>
   </body>
 </html>
