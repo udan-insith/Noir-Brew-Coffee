@@ -1024,8 +1024,9 @@ p {
 }
 
 .menu-strip {
-  display: flex;
-  gap: 22px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 20px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
@@ -1033,7 +1034,7 @@ p {
   cursor: grab;
   padding-bottom: 8px;
   /* extend past container */
-  margin: 0 calc(0px - var(--gutter));
+  margin: /* 0 calc(0px - var(--gutter)) */ 0 120px;
   padding-left: var(--gutter);
   padding-right: var(--gutter);
 }
