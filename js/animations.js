@@ -308,4 +308,41 @@
       addTicker(draw);
     }
   })();
+
+  //   COUNTER ROLL
+  (function CounterRoll() {
+    const els = document.querySelectorAll("[data-count]:not(.counted)");
+    if (!els.length) return;
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const target = +el.dataset.count;
+          const suffix = el.dataset.suffix || "";
+          const prefix = el.dataset.prefix || "";
+          const dur = +(el.dataset.dur || 2200);
+          const start = performance.now();
+
+          el.classList.add("counted");
+          obs.unobserve(el);
+
+          function update(now) {
+            const progress = Math.min((now - start) / dur, 1);
+            // Ease out cubic
+            const ease = 1 - Math.pow(1 - progress, 3);
+            const value = Math.floor(ease * target);
+            el.textContent = prefix + value.toLocaleString() + suffix;
+            if (progress < 1) requestAnimationFrame(update);
+            else el.textContent = prefix + target.toLocaleString() + suffix;
+          }
+          requestAnimationFrame(update);
+        });
+      },
+      { threshold: 0.4 },
+    );
+
+    els.forEach((el) => obs.observe(el));
+  })();
 })();
