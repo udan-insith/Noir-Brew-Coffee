@@ -213,4 +213,36 @@
       });
     });
   })();
+
+  //   RIPPLE EFFECT
+  (function RippleEffect() {
+    function addRipple(e) {
+      const host = e.currentTarget;
+      const rect = host.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height) * 2;
+      const wave = document.createElement("div");
+      wave.className = "ripple-wave";
+      wave.style.cssText = `
+        width:${size}px; height:${size}px;
+        left:${e.clientX - rect.left - size / 2}px;
+        top:${e.clientY - rect.top - size / 2}px;
+      `;
+      host.appendChild(wave);
+      wave.addEventListener("animationend", () => wave.remove());
+    }
+
+    document.querySelectorAll(".ripple-host").forEach((el) => {
+      el.addEventListener("pointerdown", addRipple);
+    });
+
+    // Auto-add to primary buttons
+    document.querySelectorAll(".btn-primary, .btn-outline").forEach((btn) => {
+      if (!btn.classList.contains("ripple-host")) {
+        btn.classList.add("ripple-host");
+        btn.style.position = btn.style.position || "relative";
+        btn.style.overflow = "hidden";
+        btn.addEventListener("pointerdown", addRipple);
+      }
+    });
+  })();
 })();
