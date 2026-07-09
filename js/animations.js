@@ -385,4 +385,25 @@
       }, 650);
     });
   })();
+
+  //   PARALLAX LAYER
+  (function ParallaxLayer() {
+    if (window.innerWidth < 768) return;
+
+    const layers = Array.from(document.querySelectorAll("[data-parallax]")).map(
+      (el) => ({ el, speed: +(el.dataset.parallax || 0.25) }),
+    );
+    if (!layers.length) return;
+
+    let last = -1;
+    addTicker(() => {
+      const sy = window.scrollY;
+      if (sy === last) return;
+      last = sy;
+      layers.forEach(({ el, speed }) => {
+        el.style.transform = `translateY(${sy * speed}px)`;
+        el.style.willChange = "transform";
+      });
+    });
+  })();
 })();
