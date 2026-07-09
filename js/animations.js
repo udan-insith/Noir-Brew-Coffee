@@ -245,4 +245,67 @@
       }
     });
   })();
+
+  //   STEAM PARTICAL CANVAS
+  (function SteamCanvas() {
+    document.querySelectorAll("[data-particles]").forEach((host) => {
+      const canvas = document.createElement("canvas");
+      canvas.className = "particle-canvas";
+      host.style.position = host.style.position || "relative";
+      host.prepend(canvas);
+      initParticles(canvas, host.dataset.particles || "gold");
+    });
+
+    function initParticles(canvas, theme) {
+      const ctx = canvas.getContext("2d");
+      const gold = [212, 168, 83];
+      const white = [255, 255, 255];
+      const color = theme === "white" ? white : gold;
+
+      function resize() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+      }
+      resize();
+      const ro = new ResizeObserver(resize);
+      ro.observe(canvas.parentElement);
+
+      const count = Math.floor(canvas.width / 18);
+      const particles = Array.from({ length: count }, () => createP());
+
+      function createP() {
+        return {
+          x: Math.random() * 2000,
+          y: Math.random() * 2000,
+          r: Math.random() * 2.5 + 0.5,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: -(Math.random() * 0.6 + 0.2),
+          a: Math.random() * 0.35 + 0.05,
+          life: Math.random(),
+          maxLife: Math.random() * 0.6 + 0.4,
+        };
+      }
+
+      function draw() {
+        canvas.width = canvas.offsetWidth; // clear
+        canvas.height = canvas.offsetHeight;
+        particles.forEach((p) => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.life += 0.004;
+          const alpha = Math.sin((p.life / p.maxLife) * Math.PI) * p.a;
+          if (alpha <= 0 || p.y < -10) {
+            Object.assign(p, createP());
+            p.y = canvas.height + 10;
+          }
+          ctx.beginPath();
+          ctx.arc(p.x % canvas.width, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${color.join(",")},${alpha.toFixed(2)})`;
+          ctx.fill();
+        });
+      }
+
+      addTicker(draw);
+    }
+  })();
 })();
