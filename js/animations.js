@@ -512,4 +512,82 @@
 
     imgs.forEach((img) => obs.observe(img));
   })();
+
+  // EXPORTED HELPERS
+  window.NB = window.NB || {};
+
+  /** Trigger a confetti burst at a DOM element */
+  window.NB.confetti = function (target, count = 36) {
+    const rect = target.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2 + window.scrollX;
+    const cy = rect.top + rect.height / 2 + window.scrollY;
+    const colors = ["#d4a853", "#f5d186", "#ffffff", "#e8bf6e", "#9e7c3a"];
+
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement("div");
+      const angle = Math.random() * 360 * (Math.PI / 180);
+      const dist = 60 + Math.random() * 80;
+      const endX = Math.cos(angle) * dist;
+      const endY = Math.sin(angle) * dist;
+      const size = 6 + Math.random() * 6;
+      p.style.cssText = `
+        position:fixed;left:${cx}px;top:${cy}px;
+        width:${size}px;height:${size}px;
+        background:${colors[Math.floor(Math.random() * colors.length)]};
+        border-radius:${Math.random() > 0.5 ? "50%" : "2px"};
+        pointer-events:none;z-index:99999;
+        transform-origin:center;
+        animation:confettiParticle .8s ease-out forwards;
+        --ex:${endX}px;--ey:${endY}px;
+      `;
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 900);
+    }
+    // Inject keyframe once
+    if (!document.getElementById("nbConfettiStyle")) {
+      const s = document.createElement("style");
+      s.id = "nbConfettiStyle";
+      s.textContent = `
+        @keyframes confettiParticle {
+          0%   { transform:translate(0,0) rotate(0deg) scale(1); opacity:1; }
+          100% { transform:translate(var(--ex),var(--ey)) rotate(720deg) scale(0); opacity:0; }
+        }
+      `;
+      document.head.appendChild(s);
+    }
+  };
+
+  /** Shake element */
+  window.NB.shake = function (el) {
+    el.style.animation = "none";
+    el.offsetHeight;
+    el.style.animation = "shake .5s ease";
+    el.addEventListener(
+      "animationend",
+      () => {
+        el.style.animation = "";
+      },
+      { once: true },
+    );
+  };
+
+  /** Spotlight — radial highlight follows mouse inside element */
+  window.NB.spotlight = function (el) {
+    el.style.position = "relative";
+    el.style.overflow = "hidden";
+    el.addEventListener("mousemove", (e) => {
+      const r = el.getBoundingClientRect();
+      const x = (((e.clientX - r.left) / r.width) * 100).toFixed(1);
+      const y = (((e.clientY - r.top) / r.height) * 100).toFixed(1);
+      el.style.background = `radial-gradient(circle at ${x}% ${y}%, var(--c-bg-raised) 0%, var(--c-bg-card) 60%)`;
+    });
+    el.addEventListener("mouseleave", () => {
+      el.style.background = "";
+    });
+  };
+
+  /** Auto-attach spotlight to all .feature-card elements */
+  document
+    .querySelectorAll(".feature-card, .val-card")
+    .forEach((el) => window.NB.spotlight(el));
 })();
