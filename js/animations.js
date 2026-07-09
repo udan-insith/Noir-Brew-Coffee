@@ -345,4 +345,44 @@
 
     els.forEach((el) => obs.observe(el));
   })();
+  //   PAGE TRANSITION
+  (function PageTransition() {
+    const STRIP_COUNT = 5;
+    const overlay = document.createElement("div");
+    overlay.id = "pageTransition";
+    for (let i = 0; i < STRIP_COUNT; i++) {
+      const s = document.createElement("div");
+      s.className = "pt-strip";
+      overlay.appendChild(s);
+    }
+    document.body.appendChild(overlay);
+
+    // Entering animation on page load
+    overlay.classList.add("page-entering");
+    setTimeout(() => overlay.classList.remove("page-entering"), 700);
+
+    // Intercept internal links
+    document.addEventListener("click", (e) => {
+      const link = e.target.closest("a[href]");
+      if (!link) return;
+      const href = link.getAttribute("href");
+      if (
+        !href ||
+        href.startsWith("#") ||
+        href.startsWith("mailto:") ||
+        href.startsWith("tel:") ||
+        link.target === "_blank" ||
+        link.dataset.noTransition !== undefined
+      )
+        return;
+      // Only same-origin
+      if (link.hostname && link.hostname !== location.hostname) return;
+
+      e.preventDefault();
+      overlay.classList.add("page-leaving");
+      setTimeout(() => {
+        window.location.href = href;
+      }, 650);
+    });
+  })();
 })();
