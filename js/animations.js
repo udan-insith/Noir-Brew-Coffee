@@ -485,4 +485,31 @@
         .join("");
     });
   })();
+
+  // LAZY IMAGES
+  (function LazyImages() {
+    const imgs = document.querySelectorAll("img[data-src]");
+    if (!imgs.length) return;
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const img = entry.target;
+          img.style.cssText = "filter:blur(12px);transition:filter .6s;";
+          const tmp = new Image();
+          tmp.src = img.dataset.src;
+          tmp.onload = () => {
+            img.src = img.dataset.src;
+            img.style.filter = "blur(0)";
+            img.removeAttribute("data-src");
+          };
+          obs.unobserve(img);
+        });
+      },
+      { threshold: 0.05 },
+    );
+
+    imgs.forEach((img) => obs.observe(img));
+  })();
 })();
