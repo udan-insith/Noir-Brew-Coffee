@@ -80,4 +80,19 @@
       ring.style.top = ry + "px";
     });
   })();
+
+  //   SCROLL PROGRESS BAR
+  (function ScrollProgress() {
+    const bar = document.createElement("div");
+    bar.id = "scrollProgress";
+    document.body.prepend(bar);
+
+    function update() {
+      const scrolled = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = total > 0 ? (scrolled / total) * 100 + "%" : "0%";
+    }
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+  })();
 })();
