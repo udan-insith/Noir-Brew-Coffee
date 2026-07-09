@@ -431,4 +431,43 @@
       el.addEventListener("mouseleave", () => el.classList.remove("glitching"));
     });
   })();
+
+  // TYPING ENGINE
+  (function TypingEngine() {
+    document.querySelectorAll("[data-typer]").forEach((el) => {
+      let words;
+      try {
+        words = JSON.parse(el.dataset.typer);
+      } catch {
+        return;
+      }
+      if (!words.length) return;
+
+      const speed = +(el.dataset.typerSpeed || 90);
+      const pause = +(el.dataset.typerPause || 1600);
+      const delSpeed = +(el.dataset.typerDelSpeed || 55);
+      el.classList.add("typer");
+
+      let wi = 0,
+        ci = 0,
+        deleting = false;
+
+      function type() {
+        const word = words[wi];
+        el.textContent = deleting ? word.slice(0, ci--) : word.slice(0, ci++);
+        let delay = deleting ? delSpeed : speed;
+        if (!deleting && ci > word.length) {
+          deleting = true;
+          delay = pause;
+        } else if (deleting && ci < 0) {
+          deleting = false;
+          wi = (wi + 1) % words.length;
+          ci = 0;
+          delay = speed * 3;
+        }
+        setTimeout(type, delay);
+      }
+      setTimeout(type, 800);
+    });
+  })();
 })();
