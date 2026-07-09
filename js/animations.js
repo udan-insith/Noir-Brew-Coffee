@@ -154,4 +154,30 @@
       obs.observe(el);
     });
   })();
+
+  //   MAGNETIC BUTTONS
+  (function MagneticButtons() {
+    if (window.innerWidth < 1024) return;
+
+    document.querySelectorAll(".btn-magnetic, .magnetic").forEach((btn) => {
+      const strength = +(btn.dataset.magnetic || 0.35);
+
+      btn.addEventListener("mousemove", (e) => {
+        const rect = btn.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = (e.clientX - cx) * strength;
+        const dy = (e.clientY - cy) * strength;
+        btn.style.transform = `translate(${dx}px, ${dy}px)`;
+      });
+
+      btn.addEventListener("mouseleave", () => {
+        btn.style.transition = "transform .5s var(--ease-spring)";
+        btn.style.transform = "translate(0,0)";
+        setTimeout(() => {
+          btn.style.transition = "";
+        }, 500);
+      });
+    });
+  })();
 })();
