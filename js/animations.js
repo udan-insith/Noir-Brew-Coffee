@@ -180,4 +180,37 @@
       });
     });
   })();
+
+  //   TILT CARDS
+  (function TiltCards() {
+    if (window.innerWidth < 768) return;
+
+    document.querySelectorAll(".tilt-card").forEach((card) => {
+      const depth = +(card.dataset.tiltDepth || 12);
+      const shine = card.querySelector(".tilt-card__shine");
+
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        const rx = (y - 0.5) * -depth;
+        const ry = (x - 0.5) * depth;
+
+        card.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.02)`;
+        if (shine) {
+          shine.style.setProperty("--mx", x * 100 + "%");
+          shine.style.setProperty("--my", y * 100 + "%");
+        }
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transition = "transform .5s var(--ease-out)";
+        card.style.transform =
+          "perspective(800px) rotateX(0) rotateY(0) scale(1)";
+        setTimeout(() => {
+          card.style.transition = "";
+        }, 500);
+      });
+    });
+  })();
 })();
