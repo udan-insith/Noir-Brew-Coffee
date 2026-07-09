@@ -95,4 +95,26 @@
     window.addEventListener("scroll", update, { passive: true });
     update();
   })();
+
+  //   SCROLL REVEAL - an enhanced version
+  (function ScrollReveal() {
+    const classes = [".reveal", ".reveal-l", ".reveal-r", ".reveal-s"];
+    const els = document.querySelectorAll(classes.join(","));
+    if (!els.length) return;
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const delay = el.dataset.delay || 0;
+          setTimeout(() => el.classList.add("in"), +delay);
+          obs.unobserve(el);
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+    );
+
+    els.forEach((el) => obs.observe(el));
+  })();
 })();
