@@ -406,4 +406,29 @@
       });
     });
   })();
+
+  //   GLITCH TRIGGER
+  (function GlitchTrigger() {
+    document.querySelectorAll(".text-glitch").forEach((el) => {
+      // Set data-text for pseudo elements
+      if (!el.dataset.text) el.dataset.text = el.textContent;
+
+      // Random glitch burst every 4–9 seconds
+      function scheduleGlitch() {
+        const delay = 4000 + Math.random() * 5000;
+        setTimeout(() => {
+          el.classList.add("glitching");
+          setTimeout(() => {
+            el.classList.remove("glitching");
+            scheduleGlitch();
+          }, 600);
+        }, delay);
+      }
+      scheduleGlitch();
+
+      // Also on hover
+      el.addEventListener("mouseenter", () => el.classList.add("glitching"));
+      el.addEventListener("mouseleave", () => el.classList.remove("glitching"));
+    });
+  })();
 })();
