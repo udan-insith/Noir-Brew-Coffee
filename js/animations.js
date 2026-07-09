@@ -117,4 +117,41 @@
 
     els.forEach((el) => obs.observe(el));
   })();
+
+  //   TEXT SPLITTER
+  (function TextSplitter() {
+    document.querySelectorAll("[data-split]").forEach((el) => {
+      const mode = el.dataset.split || "words";
+      const baseDelay = +(el.dataset.splitDelay || 0);
+      const gap = +(el.dataset.splitGap || 55);
+      const text = el.textContent;
+      const units = mode === "chars" ? text.split("") : text.split(" ");
+
+      el.innerHTML = units
+        .map((unit, i) => {
+          const sp = mode === "words" ? " " : "";
+          const u = unit === " " ? "&nbsp;" : unit;
+          return (
+            `<span class="split-word" style="animation-delay:${baseDelay + i * gap}ms">` +
+            `<span class="split-word__inner">${u}</span></span>${sp}`
+          );
+        })
+        .join("");
+
+      // Trigger when in view
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            el.querySelectorAll(".split-word").forEach((s) =>
+              s.classList.add("in"),
+            );
+            obs.unobserve(el);
+          });
+        },
+        { threshold: 0.2 },
+      );
+      obs.observe(el);
+    });
+  })();
 })();
