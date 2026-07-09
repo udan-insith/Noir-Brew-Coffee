@@ -470,4 +470,19 @@
       setTimeout(type, 800);
     });
   })();
+
+  // SPLIT REVEAL
+  (function SplitReveal() {
+    // Already handled by TextSplitter; this adds char-stagger for .anim-chars
+    document.querySelectorAll(".anim-chars").forEach((el) => {
+      const text = el.textContent;
+      el.innerHTML = text
+        .split("")
+        .map(
+          (ch, i) =>
+            `<span class="char-stagger" style="--i:${i}">${ch === " " ? "&nbsp;" : ch}</span>`,
+        )
+        .join("");
+    });
+  })();
 })();
