@@ -703,3 +703,24 @@
   transition: width 0.08s linear;
   border-radius: 999px;
 }
+/* BREADCOMB */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-size: 0.82rem;
+  color: var(--c-muted);
+}
+.breadcrumb a {
+  color: var(--c-gold);
+  transition: color 0.2s;
+  text-decoration: none;
+}
+.breadcrumb a:hover {
+  color: var(--c-gold-hover);
+}
+.breadcrumb__sep {
+  opacity: 0.4;
+  font-size: 0.7rem;
+}
