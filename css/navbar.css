@@ -1,0 +1,17 @@
+/* ROOT */
+:root {
+  --nb-nav-h: 70px; /* collapsed height         */
+  --nb-nav-h-scroll: 56px; /* shrunk height on scroll  */
+  --nb-nav-bg: transparent;
+  --nb-nav-bg-scroll: rgba(10, 8, 6, 0.92);
+  --nb-nav-border: rgba(212, 168, 83, 0.1);
+  --nb-nav-blur: 22px;
+  --nb-drop-bg: rgba(18, 15, 11, 0.96);
+  --nb-drop-radius: 18px;
+  --nb-drop-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(212, 168, 83, 0.08);
+  --nb-pill-bg: rgba(212, 168, 83, 0.12);
+  --nb-pill-radius: 999px;
+  --nb-link-gap: 2px;
+  --nb-mob-w: 300px;
+}
