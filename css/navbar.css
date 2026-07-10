@@ -691,3 +691,15 @@
   transform: translateY(-2px);
   box-shadow: 0 8px 22px rgba(212, 168, 83, 0.4);
 }
+
+/* SCROLL INDICATOR LINE */
+.nav-scroll-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--c-gold), transparent);
+  width: 0%;
+  transition: width 0.08s linear;
+  border-radius: 999px;
+}
