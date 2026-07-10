@@ -724,3 +724,26 @@
   opacity: 0.4;
   font-size: 0.7rem;
 }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .navbar__links {
+    display: none;
+  }
+  .navbar__actions .btn-primary {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --nb-mob-w: 100vw;
+  }
+  .mob-menu {
+    border-left: none;
+    border-radius: 0;
+  }
+}
