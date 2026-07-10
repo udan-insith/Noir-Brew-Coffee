@@ -443,3 +443,22 @@
   transform: translateY(-7.3px) rotate(-45deg);
   width: 20px;
 }
+
+/* MOBILE OVERLAY */
+.mob-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 8, 6, 0.68);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.38s,
+    visibility 0.38s;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+.mob-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
