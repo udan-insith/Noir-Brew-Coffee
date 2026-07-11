@@ -1,0 +1,42 @@
+/* DARK THEME */
+:root,
+[data-theme="dark"] {
+  --c-bg: #0a0806;
+  --c-bg-alt: #120f0b;
+  --c-bg-card: #1a1511;
+  --c-bg-raised: #231a10;
+  --c-bg-elevated: #2a2015;
+
+  --c-gold: #d4a853;
+  --c-gold-glow: rgba(212, 168, 83, 0.15);
+  --c-gold-hover: #e8bf6e;
+  --c-gold-bright: #f5d186;
+  --c-gold-dark: #9e7c3a;
+
+  --c-cream: #f6f0e4;
+  --c-cream-dim: rgba(246, 240, 228, 0.72);
+  --c-cream-mute: rgba(246, 240, 228, 0.42);
+  --c-muted: #6b5e4e;
+  --c-muted-light: #8a7560;
+
+  --c-border: rgba(212, 168, 83, 0.09);
+  --c-border-strong: rgba(212, 168, 83, 0.22);
+  --c-border-bright: rgba(212, 168, 83, 0.42);
+
+  --c-shadow: rgba(0, 0, 0, 0.55);
+  --c-shadow-gold: rgba(212, 168, 83, 0.28);
+
+  --c-glass: rgba(26, 21, 17, 0.88);
+  --c-navbar: rgba(10, 8, 6, 0.94);
+  --c-overlay: rgba(10, 8, 6, 0.78);
+
+  --c-success: #52b77a;
+  --c-error: #e05252;
+  --c-info: #5aaee8;
+  --c-warn: #e8a030;
+
+  /* Gradient backgrounds */
+  --g-gold: linear-gradient(135deg, #d4a853 0%, #e8bf6e 50%, #f5d186 100%);
+  --g-dark: linear-gradient(160deg, #0a0806 0%, #1a1511 100%);
+  --g-card: linear-gradient(145deg, rgba(26, 21, 17, 1), rgba(18, 15, 11, 1));
+}
