@@ -261,3 +261,38 @@ body {
   animation: toastBar var(--toast-dur, 3.2s) linear forwards;
   opacity: 0.6;
 }
+@keyframes toastBar {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+@keyframes toastSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes toastFadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.92);
+  }
+}
+.toast.leaving {
+  animation: toastFadeOut 0.38s ease forwards;
+}
+
+[data-theme="light"] .toast {
+  background: rgba(255, 252, 248, 0.97);
+  color: var(--c-cream);
+  border-color: rgba(122, 80, 32, 0.14);
+  box-shadow: 0 12px 44px rgba(0, 0, 0, 0.1);
+}
