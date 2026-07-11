@@ -40,3 +40,39 @@
   --g-dark: linear-gradient(160deg, #0a0806 0%, #1a1511 100%);
   --g-card: linear-gradient(145deg, rgba(26, 21, 17, 1), rgba(18, 15, 11, 1));
 }
+
+/* LIGHT THEME */
+[data-theme="light"] {
+  --c-bg: #f8f4ed;
+  --c-bg-alt: #efe8da;
+  --c-bg-card: #ffffff;
+  --c-bg-raised: #fdf9f4;
+  --c-bg-elevated: #fff;
+
+  --c-gold: #8b5a1a;
+  --c-gold-glow: rgba(139, 90, 26, 0.1);
+  --c-gold-hover: #a36c22;
+  --c-gold-bright: #c4892a;
+  --c-gold-dark: #6b4414;
+
+  --c-cream: #1c1510;
+  --c-cream-dim: rgba(28, 21, 16, 0.72);
+  --c-cream-mute: rgba(28, 21, 16, 0.45);
+  --c-muted: #8a7560;
+  --c-muted-light: #6b5e4e;
+
+  --c-border: rgba(139, 90, 26, 0.12);
+  --c-border-strong: rgba(139, 90, 26, 0.26);
+  --c-border-bright: rgba(139, 90, 26, 0.48);
+
+  --c-shadow: rgba(0, 0, 0, 0.1);
+  --c-shadow-gold: rgba(139, 90, 26, 0.2);
+
+  --c-glass: rgba(255, 252, 248, 0.92);
+  --c-navbar: rgba(248, 244, 237, 0.96);
+  --c-overlay: rgba(248, 244, 237, 0.82);
+
+  --g-gold: linear-gradient(135deg, #8b5a1a 0%, #a36c22 50%, #c4892a 100%);
+  --g-dark: linear-gradient(160deg, #f8f4ed 0%, #efe8da 100%);
+  --g-card: linear-gradient(145deg, #ffffff, #fdf9f4);
+}
