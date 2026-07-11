@@ -454,3 +454,21 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--c-gold-bright);
 }
+/* REDUCE MOTION */
+@media (prefers-reduced-motion: reduce) {
+  #themeCurtain,
+  #scrollProgress {
+    animation: none !important;
+  }
+  .toast,
+  .toast__bar {
+    animation: none !important;
+  }
+  .loader__logo,
+  .loader__bar {
+    animation: none !important;
+  }
+  #themeCurtain.dropping {
+    transition: none !important;
+  }
+}
