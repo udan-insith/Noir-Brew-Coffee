@@ -438,3 +438,19 @@ body {
   outline-offset: 3px;
   border-radius: 4px;
 }
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--c-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #d4a853, #9e7c3a);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--c-gold-bright);
+}
