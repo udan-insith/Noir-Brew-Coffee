@@ -431,3 +431,10 @@ body {
   background: rgba(212, 168, 83, 0.32);
   color: var(--c-cream);
 }
+
+/* FOCUS RING */
+:focus-visible {
+  outline: 2px solid var(--c-gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
