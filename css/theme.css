@@ -145,3 +145,34 @@ body {
     background-position: 200% 0;
   }
 }
+/* SCROLL PROGRESS BAR */
+#scrollProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  z-index: 99999;
+  width: 0%;
+  transition: width 0.08s linear;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    var(--c-gold),
+    var(--c-gold-bright),
+    var(--c-gold)
+  );
+  background-size: 200% 100%;
+  animation: progressShimmer 2s linear infinite;
+  border-radius: 0 999px 999px 0;
+  box-shadow:
+    0 0 12px rgba(212, 168, 83, 0.5),
+    0 0 4px rgba(212, 168, 83, 0.8);
+}
+@keyframes progressShimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
