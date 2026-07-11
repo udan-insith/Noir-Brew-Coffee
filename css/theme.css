@@ -421,3 +421,13 @@ body {
 [data-theme="light"] .nb-theme-toggle::after {
   transform: translateX(26px);
 }
+
+/* CUTOM SELECTION COLORS */
+::selection {
+  background: rgba(212, 168, 83, 0.32);
+  color: var(--c-cream);
+}
+::-moz-selection {
+  background: rgba(212, 168, 83, 0.32);
+  color: var(--c-cream);
+}
