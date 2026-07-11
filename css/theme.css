@@ -76,3 +76,12 @@
   --g-dark: linear-gradient(160deg, #f8f4ed 0%, #efe8da 100%);
   --g-card: linear-gradient(145deg, #ffffff, #fdf9f4);
 }
+
+/* BODY TRANSITION */
+body {
+  background-color: var(--c-bg);
+  color: var(--c-cream);
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
