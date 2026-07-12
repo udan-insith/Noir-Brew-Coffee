@@ -107,3 +107,16 @@ function bindThemeButtons() {
 bindThemeButtons();
 document.addEventListener("DOMContentLoaded", bindThemeButtons);
 window.addEventListener("load", bindThemeButtons);
+
+/* ──────────────────────────────────────────────────────────────
+     KEYBOARD SHORTCUT — Shift+D toggles theme
+  ────────────────────────────────────────────────────────────── */
+document.addEventListener("keydown", (e) => {
+  if (
+    e.shiftKey &&
+    (e.key === "D" || e.key === "d") &&
+    !["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement?.tagName)
+  ) {
+    toggleTheme();
+  }
+});
