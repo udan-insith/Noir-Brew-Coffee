@@ -144,3 +144,32 @@ function updateScrollProgress() {
 window.addEventListener("scroll", updateScrollProgress, { passive: true });
 window.addEventListener("resize", updateScrollProgress);
 updateScrollProgress();
+
+/* ================================================================
+     PAGE LOADER
+  ================================================================ */
+function initPageLoader() {
+  const loader = document.getElementById("pageLoader");
+  const bar = document.getElementById("loaderBar");
+  if (!loader) return;
+
+  requestAnimationFrame(() => {
+    if (bar) bar.style.width = "78%";
+  });
+
+  window.addEventListener("load", () => {
+    if (bar) bar.style.width = "100%";
+    setTimeout(() => loader.classList.add("done"), 480);
+    setTimeout(() => {
+      if (loader.parentNode) loader.remove();
+    }, 1400);
+  });
+
+  setTimeout(() => {
+    if (!loader.classList.contains("done")) {
+      if (bar) bar.style.width = "100%";
+      loader.classList.add("done");
+    }
+  }, 4000);
+}
+initPageLoader();
