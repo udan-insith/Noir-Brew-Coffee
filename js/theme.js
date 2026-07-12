@@ -173,3 +173,66 @@ function initPageLoader() {
   }, 4000);
 }
 initPageLoader();
+
+/* ================================================================
+     TOAST NOTIFICATION SYSTEM
+     Usage: addToast('Message here', 'ok' | 'err' | 'info' | 'warn')
+  ================================================================ */
+const TOAST_ICONS = { ok: "✅", err: "❌", info: "ℹ️", warn: "⚠️" };
+const TOAST_DURATION = 3400;
+
+function ensureToastWrap() {
+  let wrap = document.getElementById("toastWrap");
+  if (!wrap) {
+    wrap = document.createElement("div");
+    wrap.id = "toastWrap";
+    document.body.appendChild(wrap);
+  }
+  return wrap;
+}
+const toastWrap = ensureToastWrap();
+
+function addToast(message, type = "info", duration = TOAST_DURATION) {
+  const toast = document.createElement("div");
+  toast.className = `toast ${type}`;
+  toast.style.setProperty("--toast-dur", duration / 1000 + "s");
+
+  const icon = document.createElement("span");
+  icon.className = "toast__icon";
+  icon.textContent = TOAST_ICONS[type] || TOAST_ICONS.info;
+
+  const text = document.createElement("span");
+  text.textContent = message;
+
+  const bar = document.createElement("div");
+  bar.className = "toast__bar";
+
+  toast.appendChild(icon);
+  toast.appendChild(text);
+  toast.appendChild(bar);
+  toastWrap.appendChild(toast);
+
+  toast.addEventListener("click", () => dismissToast(toast));
+
+  const timer = setTimeout(() => dismissToast(toast), duration);
+  toast._timer = timer;
+
+  const allToasts = toastWrap.querySelectorAll(".toast");
+  if (allToasts.length > 4) {
+    dismissToast(allToasts[0]);
+  }
+
+  return toast;
+}
+
+function dismissToast(toast) {
+  if (!toast || toast.classList.contains("leaving")) return;
+  clearTimeout(toast._timer);
+  toast.classList.add("leaving");
+  setTimeout(() => toast.remove(), 400);
+}
+
+window.addToast = addToast;
+window.NB = window.NB || {};
+window.NB.toast = addToast;
+window.NB.dismissToast = dismissToast;
