@@ -63,3 +63,31 @@ function syncThemeButtons() {
   });
 }
 syncThemeButtons();
+
+// CORE TOGGLE FUNCTION
+let animating = false;
+
+function toggleTheme() {
+  if (animating) return;
+  animating = true;
+
+  curtain.classList.remove("dropping");
+  void curtain.offsetHeight; // force reflow
+  curtain.classList.add("dropping");
+
+  setTimeout(() => {
+    isDark = !isDark;
+    const next = isDark ? "dark" : "light";
+    root.setAttribute("data-theme", next);
+    localStorage.setItem(STORAGE_KEY, next);
+    syncThemeButtons();
+    window.dispatchEvent(
+      new CustomEvent("nb:themechange", { detail: { theme: next } }),
+    );
+  }, 330);
+
+  setTimeout(() => {
+    animating = false;
+  }, 800);
+}
+window.NB_toggleTheme = toggleTheme;
