@@ -24,3 +24,17 @@
     }
   })();
 });
+
+/* ──────────────────────────────────────────────────────────────
+     ENSURE CURTAIN ELEMENT EXISTS
+  ────────────────────────────────────────────────────────────── */
+function ensureCurtain() {
+  let curtain = document.getElementById("themeCurtain");
+  if (!curtain) {
+    curtain = document.createElement("div");
+    curtain.id = "themeCurtain";
+    document.body.prepend(curtain);
+  }
+  return curtain;
+}
+const curtain = ensureCurtain();
