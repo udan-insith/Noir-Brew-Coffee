@@ -236,3 +236,17 @@ window.addToast = addToast;
 window.NB = window.NB || {};
 window.NB.toast = addToast;
 window.NB.dismissToast = dismissToast;
+
+/* ================================================================
+     SYSTEM PREFERENCE LIVE SYNC
+  ================================================================ */
+if (window.matchMedia) {
+  const mq = window.matchMedia("(prefers-color-scheme: light)");
+  mq.addEventListener?.("change", (e) => {
+    if (!localStorage.getItem(STORAGE_KEY)) {
+      isDark = !e.matches;
+      root.setAttribute("data-theme", isDark ? "dark" : "light");
+      syncThemeButtons();
+    }
+  });
+}
