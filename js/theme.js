@@ -91,3 +91,19 @@ function toggleTheme() {
   }, 800);
 }
 window.NB_toggleTheme = toggleTheme;
+
+/* ──────────────────────────────────────────────────────────────
+     BIND CLICK HANDLERS
+  ────────────────────────────────────────────────────────────── */
+function bindThemeButtons() {
+  document
+    .querySelectorAll(".theme-btn, [data-theme-toggle], .nb-theme-toggle")
+    .forEach((btn) => {
+      if (btn.dataset.themeBound) return;
+      btn.dataset.themeBound = "true";
+      btn.addEventListener("click", toggleTheme);
+    });
+}
+bindThemeButtons();
+document.addEventListener("DOMContentLoaded", bindThemeButtons);
+window.addEventListener("load", bindThemeButtons);
