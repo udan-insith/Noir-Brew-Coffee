@@ -120,3 +120,27 @@ document.addEventListener("keydown", (e) => {
     toggleTheme();
   }
 });
+
+/* ================================================================
+     SCROLL PROGRESS BAR
+  ================================================================ */
+function ensureScrollProgress() {
+  let bar = document.getElementById("scrollProgress");
+  if (!bar) {
+    bar = document.createElement("div");
+    bar.id = "scrollProgress";
+    document.body.prepend(bar);
+  }
+  return bar;
+}
+const progressBar = ensureScrollProgress();
+
+function updateScrollProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  progressBar.style.width = pct + "%";
+}
+window.addEventListener("scroll", updateScrollProgress, { passive: true });
+window.addEventListener("resize", updateScrollProgress);
+updateScrollProgress();
