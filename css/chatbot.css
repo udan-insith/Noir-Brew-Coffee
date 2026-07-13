@@ -641,3 +641,34 @@
 .chat-panel.minimized .chat-input-row {
   display: none;
 }
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width: 480px) {
+  .chatbot-fab {
+    bottom: 20px;
+    right: 18px;
+    width: 54px;
+    height: 54px;
+  }
+  .fab-icon {
+    font-size: 22px;
+  }
+  .chat-panel {
+    width: calc(100vw - 24px);
+    right: 12px;
+    left: 12px;
+    bottom: 84px;
+    height: min(520px, calc(100dvh - 120px));
+    border-radius: 20px;
+  }
+  .fab-tooltip {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .chat-panel {
+    border-radius: 16px;
+  }
+}
