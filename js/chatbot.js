@@ -112,4 +112,14 @@
       "Great question! I can help with our menu, prices, hours, locations, or bean subscriptions. What would you like to know? ☕",
     qr: ["Menu", "Prices", "Locations", "Opening hours"],
   };
+
+  /* ================================================================
+     MATCH USER INPUT AGAINST KB
+  ================================================================ */
+  function matchIntent(text) {
+    for (const key in KB) {
+      if (KB[key].match.test(text)) return KB[key];
+    }
+    return DEFAULT_REPLY;
+  }
 });
