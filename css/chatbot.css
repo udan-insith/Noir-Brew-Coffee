@@ -576,3 +576,38 @@
     box-shadow 0.25s;
   flex-shrink: 0;
 }
+
+.chat-send:hover {
+  transform: scale(1.12) rotate(8deg);
+  box-shadow: 0 6px 18px rgba(212, 168, 83, 0.4);
+}
+.chat-send:active {
+  transform: scale(0.94);
+}
+.chat-send:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Voice / attach mini-buttons (optional extras) */
+.chat-extra-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--c-border);
+  color: var(--c-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.22s;
+  flex-shrink: 0;
+}
+.chat-extra-btn:hover {
+  border-color: var(--c-gold);
+  color: var(--c-gold);
+  background: var(--c-gold-glow);
+}
