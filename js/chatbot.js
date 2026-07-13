@@ -122,4 +122,17 @@
     }
     return DEFAULT_REPLY;
   }
+
+  /* ================================================================
+     DOM REFERENCES (with graceful fallback if page has none)
+  ================================================================ */
+  const fab = document.getElementById("chatbotFab");
+  const panel = document.getElementById("chatPanel");
+  const msgsEl = document.getElementById("chatMsgs");
+  const inputEl = document.getElementById("chatInput");
+  const sendBtn = document.getElementById("chatSend");
+  const closeBtn = document.getElementById("chatClose"); // optional
+  const badge = document.getElementById("fabBadge");
+
+  if (!fab || !panel || !msgsEl) return; // chatbot not present on this page
 });
