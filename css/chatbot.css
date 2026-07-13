@@ -672,3 +672,18 @@
     border-radius: 16px;
   }
 }
+
+/* ================================================================
+   REDUCED MOTION
+   ================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .fab-pulse,
+  .fab-badge,
+  .chat-avatar,
+  .chat-header::after,
+  .chat-info__status::before,
+  .dot,
+  .chat-welcome__icon {
+    animation: none !important;
+  }
+}
