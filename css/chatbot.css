@@ -377,3 +377,33 @@
   color: var(--c-muted);
   border: 1px solid var(--c-border);
 }
+
+.msg-content {
+  max-width: 78%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.msg-row.user .msg-content {
+  align-items: flex-end;
+}
+
+.msg-bubble {
+  padding: 10px 15px;
+  font-size: 0.855rem;
+  line-height: 1.6;
+  word-wrap: break-word;
+  position: relative;
+}
+.bot .msg-bubble {
+  background: var(--c-bg-raised);
+  border: 1px solid var(--c-border);
+  color: var(--c-cream);
+  border-radius: 4px 16px 16px 16px;
+}
+.user .msg-bubble {
+  background: var(--g-gold, linear-gradient(135deg, #d4a853, #e8bf6e));
+  color: #0a0806;
+  border-radius: 16px 16px 4px 16px;
+  font-weight: 500;
+}
