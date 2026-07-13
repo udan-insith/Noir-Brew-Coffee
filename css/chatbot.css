@@ -630,3 +630,14 @@
   margin-bottom: 12px;
   opacity: 0.5;
 }
+
+/* ================================================================
+   MINIMIZED STATE (optional collapsed bar)
+   ================================================================ */
+.chat-panel.minimized {
+  height: 64px;
+}
+.chat-panel.minimized .chat-msgs,
+.chat-panel.minimized .chat-input-row {
+  display: none;
+}
