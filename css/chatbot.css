@@ -498,3 +498,28 @@
 .qr-btn:active {
   transform: translateY(0) scale(0.96);
 }
+
+/* ================================================================
+   WELCOME SUGGESTIONS (shown on first open)
+   ================================================================ */
+.chat-welcome {
+  text-align: center;
+  padding: 20px 10px 6px;
+}
+.chat-welcome__icon {
+  font-size: 2.4rem;
+  display: block;
+  margin-bottom: 10px;
+  animation: float 3.5s ease-in-out infinite;
+}
+.chat-welcome__title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--c-cream);
+  margin-bottom: 4px;
+}
+.chat-welcome__sub {
+  font-size: 0.78rem;
+  color: var(--c-muted);
+  line-height: 1.6;
+}
