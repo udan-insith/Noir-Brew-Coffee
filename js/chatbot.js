@@ -106,4 +106,10 @@
       qr: ["Customer login", "Supplier portal"],
     },
   };
+
+  const DEFAULT_REPLY = {
+    reply:
+      "Great question! I can help with our menu, prices, hours, locations, or bean subscriptions. What would you like to know? ☕",
+    qr: ["Menu", "Prices", "Locations", "Opening hours"],
+  };
 });
