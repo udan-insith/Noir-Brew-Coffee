@@ -135,4 +135,29 @@
   const badge = document.getElementById("fabBadge");
 
   if (!fab || !panel || !msgsEl) return; // chatbot not present on this page
+
+  /* ================================================================
+     SESSION STORAGE — remember conversation across page nav
+  ================================================================ */
+  const SESSION_KEY = "nbChatHistory";
+  const MAX_HISTORY = 30;
+
+  function loadHistory() {
+    try {
+      return JSON.parse(sessionStorage.getItem(SESSION_KEY)) || [];
+    } catch {
+      return [];
+    }
+  }
+  function saveHistory(history) {
+    try {
+      sessionStorage.setItem(
+        SESSION_KEY,
+        JSON.stringify(history.slice(-MAX_HISTORY)),
+      );
+    } catch {
+      /* storage unavailable — fail silently */
+    }
+  }
+  let history = loadHistory();
 });
