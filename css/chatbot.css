@@ -407,3 +407,19 @@
   border-radius: 16px 16px 4px 16px;
   font-weight: 500;
 }
+.msg-bubble a {
+  color: var(--c-gold);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.user .msg-bubble a {
+  color: #0a0806;
+  font-weight: 700;
+}
+
+/* Timestamp (optional) */
+.msg-time {
+  font-size: 0.65rem;
+  color: var(--c-muted);
+  padding: 0 4px;
+}
