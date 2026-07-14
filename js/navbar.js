@@ -124,4 +124,88 @@
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeAllDropdowns();
   });
+
+  /* ================================================================
+     HAMBURGER + MOBILE MENU
+  ================================================================ */
+  const hamburger = document.getElementById("hamburger");
+  const mobMenu = document.getElementById("mobMenu");
+  const mobOverlay = document.getElementById("mobOverlay");
+
+  let mobOpen = false;
+  let scrollLockY = 0;
+
+  function openMobileMenu() {
+    if (!hamburger || !mobMenu) return;
+    mobOpen = true;
+    scrollLockY = window.scrollY;
+
+    hamburger.classList.add("open");
+    mobMenu.classList.add("open");
+    mobOverlay?.classList.add("show");
+
+    // Lock body scroll without jump
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollLockY}px`;
+    document.body.style.width = "100%";
+
+    hamburger.setAttribute("aria-expanded", "true");
+    mobMenu.setAttribute("aria-hidden", "false");
+
+    // Focus first link for accessibility
+    setTimeout(() => {
+      mobMenu.querySelector(".mob-link")?.focus();
+    }, 300);
+  }
+
+  function closeMobileMenu() {
+    if (!hamburger || !mobMenu) return;
+    mobOpen = false;
+
+    hamburger.classList.remove("open");
+    mobMenu.classList.remove("open");
+    mobOverlay?.classList.remove("show");
+
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.width = "";
+    window.scrollTo(0, scrollLockY);
+
+    hamburger.setAttribute("aria-expanded", "false");
+    mobMenu.setAttribute("aria-hidden", "true");
+  }
+
+  function toggleMobileMenu() {
+    mobOpen ? closeMobileMenu() : openMobileMenu();
+  }
+
+  hamburger?.addEventListener("click", toggleMobileMenu);
+  mobOverlay?.addEventListener("click", closeMobileMenu);
+
+  // Close mobile menu on Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && mobOpen) closeMobileMenu();
+  });
+
+  // Close mobile menu when a nav link is clicked (but let navigation happen)
+  mobMenu?.querySelectorAll("a.mob-link, .mob-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      // Small delay so page-transition (if any) can start first
+      setTimeout(closeMobileMenu, 80);
+    });
+  });
+
+  // Close mobile menu explicit close button (if present)
+  document
+    .getElementById("mobMenuClose")
+    ?.addEventListener("click", closeMobileMenu);
+
+  // Auto-close if window resized to desktop width
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (window.innerWidth > 1024 && mobOpen) closeMobileMenu();
+    }, 150);
+  });
 })();
