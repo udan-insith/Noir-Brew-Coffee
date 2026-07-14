@@ -105,4 +105,23 @@
       });
     });
   });
+  function closeAllDropdowns() {
+    dropdowns.forEach((dd) => {
+      dd.classList.remove("open");
+      dd.querySelector(".dropdown-toggle")?.setAttribute(
+        "aria-expanded",
+        "false",
+      );
+    });
+  }
+
+  // Close on outside click
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".has-dropdown")) closeAllDropdowns();
+  });
+
+  // Close on Escape anywhere
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeAllDropdowns();
+  });
 })();
