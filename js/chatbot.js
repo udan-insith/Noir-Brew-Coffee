@@ -218,4 +218,32 @@
   function scrollToBottom() {
     msgsEl.scrollTop = msgsEl.scrollHeight;
   }
+
+  /* ================================================================
+     TYPING INDICATOR
+  ================================================================ */
+  function showTyping() {
+    const row = document.createElement("div");
+    row.className = "typing-row";
+    row.id = "nbTypingRow";
+
+    const avt = document.createElement("div");
+    avt.className = "msg-avt bot";
+    avt.textContent = "🤖";
+
+    const dots = document.createElement("div");
+    dots.className = "typing-dots";
+    for (let i = 0; i < 3; i++) {
+      const d = document.createElement("div");
+      d.className = "dot";
+      dots.appendChild(d);
+    }
+    row.appendChild(avt);
+    row.appendChild(dots);
+    msgsEl.appendChild(row);
+    scrollToBottom();
+  }
+  function hideTyping() {
+    document.getElementById("nbTypingRow")?.remove();
+  }
 });
