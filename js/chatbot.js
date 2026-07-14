@@ -307,4 +307,65 @@
   });
   sendBtn?.addEventListener("click", () => sendMessage());
   updateSendButtonState();
+
+  /* ================================================================
+     OPEN / CLOSE PANEL
+  ================================================================ */
+  let panelOpen = false;
+
+  function openPanel() {
+    panelOpen = true;
+    panel.classList.add("open");
+    fab.classList.add("open");
+    panel.setAttribute("aria-hidden", "false");
+    fab.setAttribute("aria-expanded", "true");
+    const icon = fab.querySelector(".fab-icon");
+    if (icon) icon.textContent = "✕";
+    badge?.remove();
+
+    // Render welcome message + restore history on first open
+    if (msgsEl.children.length === 0) {
+      if (history.length > 0) {
+        // Restore prior session
+        history.forEach((h) =>
+          renderMsg(h.text, h.role === "user" ? "user" : "bot"),
+        );
+      } else {
+        setTimeout(() => {
+          renderMsg(
+            "Hello! ☕ I'm your Noir Brew AI Barista. Ask me about our <b>menu</b>, <b>locations</b>, <b>opening hours</b>, or bean subscriptions!",
+            "bot",
+            [
+              "Menu & drinks",
+              "Our locations",
+              "Opening hours",
+              "Bean subscriptions",
+            ],
+          );
+        }, 320);
+      }
+    }
+    setTimeout(() => inputEl?.focus(), 400);
+  }
+
+  function closePanel() {
+    panelOpen = false;
+    panel.classList.remove("open");
+    fab.classList.remove("open");
+    panel.setAttribute("aria-hidden", "true");
+    fab.setAttribute("aria-expanded", "false");
+    const icon = fab.querySelector(".fab-icon");
+    if (icon) icon.textContent = "☕";
+  }
+
+  function togglePanel() {
+    panelOpen ? closePanel() : openPanel();
+  }
+
+  fab.addEventListener("click", togglePanel);
+  closeBtn?.addEventListener("click", closePanel);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && panelOpen) closePanel();
+  });
 });
