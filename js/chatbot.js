@@ -182,6 +182,26 @@
 
     if (qr && qr.length) {
       const qrWrap = focume.createElement("div");
+      qrWrap.className = "qr-wrap";
+      qr.forEach((q) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "qr-btn";
+        btn.textContent = q;
+        btn.addEventListener("click", () => sendMessage(q));
+        qrWrap.appendChild(btn);
+      });
+      content.appendChild(qrWrap);
     }
+    if (type === "bot") {
+      row.appendChild(avt);
+      row.appendChild(content);
+    } else {
+      row.appendChild(content);
+      row.appendChild(avt);
+    }
+
+    msgsEl.appendChild(row);
+    scrollToBottom();
   }
 });
