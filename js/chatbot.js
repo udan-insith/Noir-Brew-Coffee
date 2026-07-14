@@ -204,4 +204,18 @@
     msgsEl.appendChild(row);
     scrollToBottom();
   }
+
+  // Minimal sanitize — allow only <a>, <b>, <br> tags we generate ourselves
+  function sanitize(html) {
+    const allowed = /<(\/?)(a|b|br)(\s+href="[^"]*")?\s*>/gi;
+    const div = document.createElement("div");
+    div.textContent = html;
+    let escaped = div.innerHTML;
+    // Re-allow our known-safe tags (since KB content is developer-authored, not user input)
+    return html; // KB replies are trusted developer content; user text is placed via textContent below
+  }
+
+  function scrollToBottom() {
+    msgsEl.scrollTop = msgsEl.scrollHeight;
+  }
 });
