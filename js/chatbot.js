@@ -368,4 +368,12 @@
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && panelOpen) closePanel();
   });
+
+  // Close when clicking outside (but not when clicking the FAB itself)
+  document.addEventListener("click", (e) => {
+    if (panelOpen && !panel.contains(e.target) && !fab.contains(e.target)) {
+      // Optional — comment out if you prefer explicit close only
+      // closePanel();
+    }
+  });
 });
