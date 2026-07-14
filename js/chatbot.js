@@ -164,4 +164,20 @@
   /* ================================================================
      RENDER A MESSAGE BUBBLE
   ================================================================ */
+  function renderMsg(text, type, qr) {
+    const row = document.createElement("div");
+    row.className = `msg-row ${type}`;
+
+    const avt = document.createElement("div");
+    avt.className = `msg-avt ${type}`;
+    avt.textContent = type === "bot" ? "🤖" : "👤";
+
+    const content = document.createElement("div");
+    content.className = "msg-content";
+
+    const bubble = document.createElement("div");
+    bubble.className = "msg-bubble";
+    bubble.innerHTML = sanitize(text);
+    content.appendChild(bubble);
+  }
 });
