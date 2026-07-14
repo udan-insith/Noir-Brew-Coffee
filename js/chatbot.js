@@ -376,4 +376,21 @@
       // closePanel();
     }
   });
+
+  /* ================================================================
+     CLEAR CHAT (optional utility, bind to any [data-chat-clear])
+  ================================================================ */
+  function clearChat() {
+    msgsEl.innerHTML = "";
+    history = [];
+    saveHistory(history);
+    renderMsg("Chat cleared! How can I help you today? ☕", "bot", [
+      "Menu",
+      "Locations",
+      "Opening hours",
+    ]);
+  }
+  document.querySelectorAll("[data-chat-clear]").forEach((btn) => {
+    btn.addEventListener("click", clearChat);
+  });
 });
