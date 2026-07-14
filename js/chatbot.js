@@ -179,5 +179,9 @@
     bubble.className = "msg-bubble";
     bubble.innerHTML = sanitize(text);
     content.appendChild(bubble);
+
+    if (qr && qr.length) {
+      const qrWrap = focume.createElement("div");
+    }
   }
 });
