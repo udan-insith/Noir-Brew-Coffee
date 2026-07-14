@@ -393,4 +393,19 @@
   document.querySelectorAll("[data-chat-clear]").forEach((btn) => {
     btn.addEventListener("click", clearChat);
   });
-});
+
+  /* ================================================================
+     EXPOSE PUBLIC API
+  ================================================================ */
+  window.NB = window.NB || {};
+  window.NB.chatbot = {
+    open: openPanel,
+    close: closePanel,
+    toggle: togglePanel,
+    send: sendMessage,
+    clear: clearChat,
+    addIntent: (key, config) => {
+      KB[key] = config;
+    }, // let other scripts extend KB
+  };
+})();
