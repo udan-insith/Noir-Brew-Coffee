@@ -246,4 +246,47 @@
   function hideTyping() {
     document.getElementById("nbTypingRow")?.remove();
   }
+
+  /* ================================================================
+     SEND MESSAGE (user-initiated or quick-reply)
+  ================================================================ */
+  function sendMessage(rawText) {
+    const text = (rawText ?? inputEl.value).trim();
+    if (!text) return;
+
+    // Render user message (escaped — never innerHTML for user content)
+    const row = document.createElement("div");
+    row.className = "msg-row user";
+    const avt = document.createElement("div");
+    avt.className = "msg-avt user";
+    avt.textContent = "👤";
+    const content = document.createElement("div");
+    content.className = "msg-content";
+    const bubble = document.createElement("div");
+    bubble.className = "msg-bubble";
+    bubble.textContent = text; // safe — textContent, not innerHTML
+    content.appendChild(bubble);
+    row.appendChild(content);
+    row.appendChild(avt);
+    msgsEl.appendChild(row);
+    scrollToBottom();
+
+    history.push({ role: "user", text });
+    saveHistory(history);
+
+    if (inputEl) inputEl.value = "";
+    updateSendButtonState();
+
+    showTyping();
+    const thinkDelay = 650 + Math.random() * 550;
+
+    setTimeout(() => {
+      hideTyping();
+      const match = matchIntent(text);
+      renderMsg(match.reply, "bot", match.qr);
+      history.push({ role: "bot", text: match.reply });
+      saveHistory(history);
+    }, thinkDelay);
+  }
+  window.NB_sendChatMessage = sendMessage; // exposed for external triggers
 });
