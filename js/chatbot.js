@@ -289,4 +289,22 @@
     }, thinkDelay);
   }
   window.NB_sendChatMessage = sendMessage; // exposed for external triggers
+
+  /* ================================================================
+     INPUT HANDLERS
+  ================================================================ */
+  function updateSendButtonState() {
+    if (!sendBtn || !inputEl) return;
+    sendBtn.disabled = inputEl.value.trim().length === 0;
+  }
+
+  inputEl?.addEventListener("input", updateSendButtonState);
+  inputEl?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+  sendBtn?.addEventListener("click", () => sendMessage());
+  updateSendButtonState();
 });
