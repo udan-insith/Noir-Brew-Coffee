@@ -119,6 +119,16 @@
         transition:all .3s;font-family:inherit;}
       .nb-checkout-btn:hover{filter:brightness(1.08);transform:translateY(-1px);
         box-shadow:0 10px 28px rgba(212,168,83,.35);}
+
+        /* ---- Store status badge ---- */
+      .nb-store-status{display:inline-flex;align-items:center;gap:7px;padding:5px 13px;
+        border-radius:999px;font-size:.72rem;font-weight:700;letter-spacing:.04em;
+        border:1px solid rgba(82,183,122,.3);background:rgba(82,183,122,.1);color:#52b77a;}
+      .nb-store-status.closed{border-color:rgba(224,82,82,.3);background:rgba(224,82,82,.1);color:#e05252;}
+      .nb-store-status__dot{width:7px;height:7px;border-radius:50%;background:currentColor;
+        animation:nbDotPulse 2s ease-in-out infinite;}
+      @keyframes nbDotPulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+
     `;
   });
 });
