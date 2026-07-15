@@ -129,6 +129,32 @@
         animation:nbDotPulse 2s ease-in-out infinite;}
       @keyframes nbDotPulse{0%,100%{opacity:1;}50%{opacity:.4;}}
 
+      /* ---- Find Your Brew quiz ---- */
+      .nb-quiz-fab{
+        display:flex;align-items:center;gap:8px;padding:10px 16px 10px 12px;border-radius:999px;
+        background:var(--c-bg-card,#1a1511);border:1.5px solid var(--c-border-strong,rgba(212,168,83,.22));
+        cursor:pointer;box-shadow:0 8px 26px rgba(0,0,0,.3);transition:transform .3s cubic-bezier(.34,1.56,.64,1),border-color .25s;
+        font-size:.8rem;font-weight:700;color:var(--c-gold,#d4a853);font-family:inherit;
+      }
+      .nb-quiz-fab:hover{transform:scale(1.05);border-color:var(--c-gold,#d4a853);}
+      .nb-quiz-fab__icon{font-size:18px;}
+
+      .nb-quiz-modal{background:var(--c-bg-card,#1a1511);border:1px solid var(--c-border-strong,rgba(212,168,83,.22));
+        border-radius:26px;width:100%;max-width:480px;max-height:88vh;overflow-y:auto;
+        padding:36px 32px;transform:scale(.9) translateY(20px);transition:transform .4s cubic-bezier(.16,1,.3,1);
+        position:relative;}
+      .nb-overlay.show .nb-quiz-modal{transform:scale(1) translateY(0);}
+      .nb-quiz-close{position:absolute;top:16px;right:16px;width:30px;height:30px;border-radius:50%;
+        border:1px solid var(--c-border,rgba(212,168,83,.1));background:var(--c-bg-raised,#231a10);
+        color:var(--c-muted,#8a7560);cursor:pointer;display:flex;align-items:center;justify-content:center;
+        font-size:14px;transition:all .22s;}
+      .nb-quiz-close:hover{background:#e05252;color:#fff;border-color:#e05252;}
+
+      .nb-quiz-progress{display:flex;gap:5px;margin-bottom:26px;}
+      .nb-quiz-progress__seg{flex:1;height:3px;border-radius:999px;background:var(--c-border,rgba(212,168,83,.1));
+        overflow:hidden;}
+      .nb-quiz-progress__seg-fill{height:100%;width:0%;background:var(--c-gold,#d4a853);
+        transition:width .4s cubic-bezier(.16,1,.3,1);}
     `;
   });
 });
