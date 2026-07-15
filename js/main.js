@@ -182,6 +182,33 @@
       .nb-quiz-actions .nb-btn-ghost{background:transparent;color:var(--c-muted,#8a7560);
         border:1.5px solid var(--c-border,rgba(212,168,83,.1));}
       .nb-quiz-actions a:hover,.nb-quiz-actions button:hover{transform:translateY(-2px);}
+
+      /* ---- Command palette ---- */
+      .nb-cmdk{background:var(--c-bg-card,#1a1511);border:1px solid var(--c-border-strong,rgba(212,168,83,.22));
+        border-radius:18px;width:100%;max-width:560px;overflow:hidden;
+        transform:scale(.94) translateY(-14px);transition:transform .3s cubic-bezier(.16,1,.3,1);
+        box-shadow:0 40px 100px rgba(0,0,0,.6);}
+      .nb-overlay.show .nb-cmdk{transform:scale(1) translateY(0);}
+      .nb-cmdk__input-row{display:flex;align-items:center;gap:12px;padding:16px 20px;
+        border-bottom:1px solid var(--c-border,rgba(212,168,83,.1));}
+      .nb-cmdk__icon{font-size:16px;color:var(--c-muted,#8a7560);flex-shrink:0;}
+      .nb-cmdk__input{flex:1;background:none;border:none;outline:none;color:var(--c-cream,#f6f0e4);
+        font-size:.95rem;font-family:inherit;}
+      .nb-cmdk__input::placeholder{color:var(--c-muted,#8a7560);}
+      .nb-cmdk__esc{font-size:.68rem;color:var(--c-muted,#8a7560);border:1px solid var(--c-border,rgba(212,168,83,.1));
+        border-radius:5px;padding:2px 7px;flex-shrink:0;}
+      .nb-cmdk__list{max-height:340px;overflow-y:auto;padding:8px;}
+      .nb-cmdk__group{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+        color:var(--c-muted,#8a7560);padding:10px 12px 4px;}
+      .nb-cmdk__item{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;
+        cursor:pointer;transition:background .18s;}
+      .nb-cmdk__item:hover,.nb-cmdk__item.active{background:var(--c-gold-glow,rgba(212,168,83,.15));}
+      .nb-cmdk__item-icon{width:30px;height:30px;border-radius:8px;background:var(--c-bg-raised,#231a10);
+        display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+      .nb-cmdk__item-text{flex:1;min-width:0;}
+      .nb-cmdk__item-title{font-size:.85rem;font-weight:600;color:var(--c-cream,#f6f0e4);}
+      .nb-cmdk__item-sub{font-size:.72rem;color:var(--c-muted,#8a7560);}
+      .nb-cmdk__empty{text-align:center;padding:30px;color:var(--c-muted,#8a7560);font-size:.85rem;}
     `;
   });
 });
