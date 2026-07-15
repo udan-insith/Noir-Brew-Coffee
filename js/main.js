@@ -5,4 +5,9 @@
   window.NB = window.NB || {};
   const toast = (...args) =>
     window.addToast ? window.addToast(...args) : console.log(...args);
+
+  //   ADDING STYLES MANUALLY
+  (function InjectStyles() {
+    if (document.getElementById("nbMainStyles")) return;
+  });
 });
