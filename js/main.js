@@ -257,4 +257,37 @@
     return stack;
   }
   const fabStack = ensureFabStack();
+
+  /* ================================================================
+     02. BACK TO TOP
+  ================================================================ */
+  (function BackToTop() {
+    const btn = document.createElement("button");
+    btn.className = "nb-back-top";
+    btn.setAttribute("aria-label", "Back to top");
+    btn.innerHTML = `
+      <svg viewBox="0 0 46 46" width="46" height="46">
+        <circle cx="23" cy="23" r="20"></circle>
+        <circle class="nb-ring-fill" cx="23" cy="23" r="20"></circle>
+      </svg>
+      <span>↑</span>`;
+    fabStack.appendChild(btn);
+
+    const ring = btn.querySelector(".nb-ring-fill");
+    const CIRC = 2 * Math.PI * 20;
+
+    function update() {
+      const sy = window.scrollY;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? sy / max : 0;
+      ring.style.strokeDashoffset = CIRC - pct * CIRC;
+      btn.classList.toggle("show", sy > 420);
+    }
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+
+    btn.addEventListener("click", () =>
+      window.scrollTo({ top: 0, behavior: "smooth" }),
+    );
+  })();
 });
