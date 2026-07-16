@@ -424,5 +424,66 @@
       <div class="nb-drawer__body" id="nbCartBody"></div>
       <div class="nb-drawer__foot" id="nbCartFoot"></div>`;
     document.body.appendChild(drawer);
+
+    function renderDrawer() {
+      const cart = getCart();
+      const body = drawer.querySelector("#nbCartBody");
+      const foot = drawer.querySelector("#nbCartFoot");
+
+      if (cart.length === 0) {
+        body.innerHTML = `
+          <div class="nb-cart-empty">
+            <span class="nb-cart-empty__icon">☕</span>
+            <div>Your cart is empty.<br>Add something delicious!</div>
+          </div>`;
+        foot.innerHTML = "";
+        return;
+      }
+
+      body.innerHTML = cart
+        .map(
+          (item) => `
+        <div class="nb-cart-item" data-id="${item.id}">
+          <div class="nb-cart-item__icon">☕</div>
+          <div class="nb-cart-item__body">
+            <div class="nb-cart-item__name">${escapeHtml(item.name)}</div>
+            <div class="nb-cart-item__price">$${item.price.toFixed(2)}</div>
+            <div class="nb-cart-item__ctrls">
+              <button class="nb-qty-btn" data-action="dec">−</button>
+              <span class="nb-qty-val">${item.qty}</span>
+              <button class="nb-qty-btn" data-action="inc">+</button>
+              <button class="nb-cart-remove" data-action="remove">Remove</button>
+            </div>
+          </div>
+        </div>
+      `,
+        )
+        .join("");
+
+      const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      foot.innerHTML = `
+        <div class="nb-cart-subtotal">
+          <span class="nb-cart-subtotal__label">Subtotal</span>
+          <span class="nb-cart-subtotal__value">$${subtotal.toFixed(2)}</span>
+        </div>
+        <button class="nb-checkout-btn" id="nbCheckoutBtn">Proceed to Checkout →</button>`;
+
+      body.querySelectorAll("[data-action]").forEach((btn) => {
+        const id = btn.closest(".nb-cart-item").dataset.id;
+        btn.addEventListener("click", () => {
+          const action = btn.dataset.action;
+          if (action === "inc") updateQty(id, 1);
+          if (action === "dec") updateQty(id, -1);
+          if (action === "remove") removeItem(id);
+        });
+      });
+
+      foot.querySelector("#nbCheckoutBtn")?.addEventListener("click", () => {
+        toast(
+          "✨ Checkout is a demo in this build — no real payment is processed.",
+          "info",
+        );
+      });
+    }
   })();
 })();
