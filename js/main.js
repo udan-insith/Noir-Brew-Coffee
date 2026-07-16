@@ -244,5 +244,17 @@
     style.id = "nbMainStyles";
     style.textContent = css;
     document.head.appendChild(style);
-  });
+  })();
+
+  //   floating stack container
+  function ensureFabStack() {
+    let stack = document.querySelector(".nb-fab-stack");
+    if (!stack) {
+      stack = document.createElement("div");
+      stack.className = "nb-fab-stack";
+      document.body.appendChild(stack);
+    }
+    return stack;
+  }
+  const fabStack = ensureFabStack();
 });
