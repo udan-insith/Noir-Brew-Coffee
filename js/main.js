@@ -332,4 +332,7 @@
   /* ================================================================
      04. CART SYSTEM — global drawer synced to localStorage
   ================================================================ */
+  const CartSystem = (function CartSystem() {
+    const CART_KEY = "nbCart";
+  })();
 })();
