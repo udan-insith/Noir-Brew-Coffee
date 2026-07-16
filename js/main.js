@@ -586,4 +586,81 @@
 
     window.NB.isStoreOpen = isOpenNow;
   })();
+
+  /* ================================================================
+     06. FIND YOUR BREW QUIZ
+  ================================================================ */
+  const BrewQuiz = (function FindYourBrewQuiz() {
+    const questions = [
+      {
+        q: "What time do you usually reach for coffee?",
+        opts: [
+          {
+            label: "Early morning, before anyone else is up",
+            emoji: "🌅",
+            tag: "bold",
+          },
+          { label: "Mid-morning, with breakfast", emoji: "🥐", tag: "classic" },
+          { label: "Afternoon slump rescue", emoji: "☀️", tag: "sweet" },
+          {
+            label: "Evening — I love coffee any time",
+            emoji: "🌙",
+            tag: "cold",
+          },
+        ],
+      },
+      {
+        q: "Pick a flavour word that speaks to you:",
+        opts: [
+          { label: "Bold & intense", emoji: "🔥", tag: "bold" },
+          { label: "Smooth & balanced", emoji: "🎯", tag: "classic" },
+          { label: "Sweet & indulgent", emoji: "🍯", tag: "sweet" },
+          { label: "Bright & refreshing", emoji: "✨", tag: "cold" },
+        ],
+      },
+      {
+        q: "Milk or no milk?",
+        opts: [
+          { label: "Black, always black", emoji: "⚫", tag: "bold" },
+          {
+            label: "A little milk, well balanced",
+            emoji: "🥛",
+            tag: "classic",
+          },
+          { label: "Lots of creamy milk please", emoji: "🍦", tag: "sweet" },
+          { label: "Depends on the weather", emoji: "🌤️", tag: "cold" },
+        ],
+      },
+      {
+        q: "Your ideal coffee moment looks like:",
+        opts: [
+          {
+            label: "Quick shot before a big meeting",
+            emoji: "⚡",
+            tag: "bold",
+          },
+          {
+            label: "Slow morning ritual, no rush",
+            emoji: "📖",
+            tag: "classic",
+          },
+          { label: "Treating myself, no guilt", emoji: "🎉", tag: "sweet" },
+          { label: "Something to sip while working", emoji: "💻", tag: "cold" },
+        ],
+      },
+      {
+        q: "Last one — hot or iced?",
+        opts: [
+          { label: "Hot, no question", emoji: "☕", tag: "bold" },
+          {
+            label: "Hot, but I'll take iced sometimes",
+            emoji: "🌡️",
+            tag: "classic",
+          },
+          { label: "Iced, always iced", emoji: "🧊", tag: "cold" },
+          { label: "Surprise me either way", emoji: "🎲", tag: "sweet" },
+        ],
+      },
+    ];
+  })();
 })();
