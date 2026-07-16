@@ -485,5 +485,33 @@
         );
       });
     }
+
+    function escapeHtml(str) {
+      const d = document.createElement("div");
+      d.textContent = str;
+      return d.innerHTML;
+    }
+
+    function openDrawer() {
+      overlay.classList.add("show");
+      drawer.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+    function closeDrawer() {
+      overlay.classList.remove("show");
+      drawer.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    fab.addEventListener("click", openDrawer);
+    drawer
+      .querySelector(".nb-drawer__close")
+      .addEventListener("click", closeDrawer);
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeDrawer();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeDrawer();
+    });
   })();
 })();
