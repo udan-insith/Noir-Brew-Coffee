@@ -373,5 +373,40 @@
     function clearCart() {
       setCart([]);
     }
+
+    /* — FAB: reuse existing #cartFloat if page already has one (menu.html), else inject — */
+    let fab = document.getElementById("cartFloat");
+    let badgeEl = document.getElementById("cartCount");
+    let usingExisting = !!fab;
+
+    if (!fab) {
+      fab = document.createElement("button");
+      fab.className = "nb-cart-fab";
+      fab.setAttribute("aria-label", "View cart");
+      fab.innerHTML = `🛒<span class="nb-cart-fab__badge hidden" id="nbCartBadge">0</span>`;
+      fabStack.appendChild(fab);
+      badgeEl = fab.querySelector("#nbCartBadge");
+    } else {
+      // Prevent the existing <a href="#"> from navigating
+      fab.addEventListener("click", (e) => e.preventDefault());
+    }
+
+    function pulseBadge() {
+      if (!badgeEl) return;
+      badgeEl.style.animation = "none";
+      void badgeEl.offsetHeight;
+      badgeEl.style.animation = "nbBadgePop .4s cubic-bezier(.34,1.56,.64,1)";
+    }
+
+    function renderBadge() {
+      const count = getCart().reduce((s, i) => s + i.qty, 0);
+      if (badgeEl) {
+        badgeEl.textContent = count;
+        badgeEl.classList.toggle("hidden", count === 0 && !usingExisting);
+      }
+      if (usingExisting) {
+        fab.classList.toggle("visible", count > 0); // matches menu.css .cart-float.visible pattern
+      }
+    }
   })();
 })();
