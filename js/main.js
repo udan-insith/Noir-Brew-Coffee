@@ -224,6 +224,21 @@
         display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;
         transition:all .25s;}
       .nb-lightbox__close:hover{background:#e05252;transform:rotate(90deg);}
+
+      /* ---- Testimonial carousel dots ---- */
+      .nb-carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:24px;}
+      .nb-carousel-dot{width:8px;height:8px;border-radius:50%;background:var(--c-border-strong,rgba(212,168,83,.22));
+        cursor:pointer;transition:all .3s;border:none;padding:0;}
+      .nb-carousel-dot.active{background:var(--c-gold,#d4a853);width:24px;border-radius:999px;}
+
+      @media(max-width:640px){
+        .nb-fab-stack{left:14px;bottom:14px;}
+        .nb-quiz-fab span:not(.nb-quiz-fab__icon){display:none;}
+        .nb-drawer{width:100vw;}
+      }
+      @media(prefers-reduced-motion:reduce){
+        .nb-back-top,.nb-cookie,.nb-drawer,.nb-quiz-modal,.nb-cmdk,.nb-lightbox img{transition:none!important;}
+      }
     `;
   });
 });
