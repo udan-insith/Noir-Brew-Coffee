@@ -513,5 +513,25 @@
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") closeDrawer();
     });
+    // Cross-tab sync
+    window.addEventListener("storage", (e) => {
+      if (e.key === CART_KEY) {
+        renderBadge();
+        renderDrawer();
+      }
+    });
+
+    renderBadge();
+    renderDrawer();
+
+    return {
+      addItem,
+      updateQty,
+      removeItem,
+      clearCart,
+      getCart,
+      open: openDrawer,
+      close: closeDrawer,
+    };
   })();
 })();
