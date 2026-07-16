@@ -408,5 +408,21 @@
         fab.classList.toggle("visible", count > 0); // matches menu.css .cart-float.visible pattern
       }
     }
+
+    /* — Overlay + Drawer — */
+    const overlay = document.createElement("div");
+    overlay.className = "nb-overlay";
+    document.body.appendChild(overlay);
+
+    const drawer = document.createElement("div");
+    drawer.className = "nb-drawer";
+    drawer.innerHTML = `
+      <div class="nb-drawer__head">
+        <div class="nb-drawer__title">Your Order</div>
+        <button class="nb-drawer__close" aria-label="Close cart">✕</button>
+      </div>
+      <div class="nb-drawer__body" id="nbCartBody"></div>
+      <div class="nb-drawer__foot" id="nbCartFoot"></div>`;
+    document.body.appendChild(drawer);
   })();
 })();
