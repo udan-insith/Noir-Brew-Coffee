@@ -290,4 +290,42 @@
       window.scrollTo({ top: 0, behavior: "smooth" }),
     );
   })();
+
+  /* ================================================================
+     03. COOKIE CONSENT — honest, no dark patterns
+  ================================================================ */
+  (function CookieConsent() {
+    const KEY = "nbCookieConsent";
+    if (localStorage.getItem(KEY)) return; // already decided
+
+    const banner = document.createElement("div");
+    banner.className = "nb-cookie";
+    banner.innerHTML = `
+      <span class="nb-cookie__icon">🍪</span>
+      <p class="nb-cookie__text">
+        We use cookies to remember your cart, theme preference, and login session.
+        No third-party tracking. <a href="#">Learn more</a>
+      </p>
+      <div class="nb-cookie__actions">
+        <button class="nb-cookie__btn" data-choice="decline">Decline</button>
+        <button class="nb-cookie__btn primary" data-choice="accept">Accept</button>
+      </div>`;
+    document.body.appendChild(banner);
+
+    setTimeout(() => banner.classList.add("show"), 1200);
+
+    banner.querySelectorAll("[data-choice]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        localStorage.setItem(KEY, btn.dataset.choice);
+        banner.classList.remove("show");
+        setTimeout(() => banner.remove(), 500);
+        toast(
+          btn.dataset.choice === "accept"
+            ? "🍪 Preferences saved — thank you!"
+            : "Got it — only essential cookies will be used.",
+          "info",
+        );
+      });
+    });
+  })();
 });
