@@ -543,4 +543,47 @@
     const [id, name, price] = el.dataset.addToCart.split("|");
     CartSystem.addItem({ id, name, price: parseFloat(price) });
   });
+
+  /* ================================================================
+     05. STORE STATUS BADGE — computed live from real hours
+  ================================================================ */
+  (function StoreStatusBadge() {
+    // Hours: Mon–Fri 7–20, Sat–Sun 8–21 (matches footer copy site-wide)
+    function isOpenNow() {
+      const now = new Date();
+      const day = now.getDay(); // 0=Sun..6=Sat
+      const hour = now.getHours() + now.getMinutes() / 60;
+      const isWeekend = day === 0 || day === 6;
+      const open = isWeekend ? 8 : 7;
+      const close = isWeekend ? 21 : 20;
+      return hour >= open && hour < close;
+    }
+
+    function nextOpenLabel() {
+      const now = new Date();
+      const day = now.getDay();
+      const isWeekend = day === 0 || day === 6;
+      const openHour = isWeekend ? 8 : 7;
+      return `opens ${openHour}:00`;
+    }
+
+    const open = isOpenNow();
+    const badge = document.createElement("span");
+    badge.className = `nb-store-status${open ? "" : " closed"}`;
+    badge.innerHTML = `<span class="nb-store-status__dot"></span> ${open ? "Open now" : `Closed — ${nextOpenLabel()}`}`;
+
+    // Try to slot into footer bottom row if present
+    const footerBottom = document.querySelector(".footer__bottom");
+    if (footerBottom) {
+      const wrap = document.createElement("span");
+      wrap.appendChild(badge);
+      footerBottom.insertBefore(wrap, footerBottom.firstChild.nextSibling);
+    }
+    // Also expose for any element with [data-store-status]
+    document.querySelectorAll("[data-store-status]").forEach((slot) => {
+      slot.appendChild(badge.cloneNode(true));
+    });
+
+    window.NB.isStoreOpen = isOpenNow;
+  })();
 })();
