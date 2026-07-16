@@ -334,5 +334,30 @@
   ================================================================ */
   const CartSystem = (function CartSystem() {
     const CART_KEY = "nbCart";
+    function getCart() {
+      try {
+        return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+      } catch {
+        return [];
+      }
+    }
+    function setCart(cart) {
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+      renderBadge();
+      renderDrawer();
+      window.dispatchEvent(
+        new CustomEvent("nb:cartchange", { detail: { cart } }),
+      );
+    }
+
+    function addItem(item) {
+      const cart = getCart();
+      const existing = cart.find((c) => c.id === item.id);
+      if (existing) existing.qty++;
+      else cart.push({ ...item, qty: 1 });
+      setCart(cart);
+      toast(`🛒 ${item.name} added to your order!`, "ok");
+      pulseBadge();
+    }
   })();
 })();
