@@ -359,5 +359,19 @@
       toast(`🛒 ${item.name} added to your order!`, "ok");
       pulseBadge();
     }
+    function updateQty(id, delta) {
+      const cart = getCart();
+      const it = cart.find((c) => c.id === id);
+      if (!it) return;
+      it.qty += delta;
+      const filtered = it.qty <= 0 ? cart.filter((c) => c.id !== id) : cart;
+      setCart(filtered);
+    }
+    function removeItem(id) {
+      setCart(getCart().filter((c) => c.id !== id));
+    }
+    function clearCart() {
+      setCart([]);
+    }
   })();
 })();
