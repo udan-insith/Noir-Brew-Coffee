@@ -240,5 +240,9 @@
         .nb-back-top,.nb-cookie,.nb-drawer,.nb-quiz-modal,.nb-cmdk,.nb-lightbox img{transition:none!important;}
       }
     `;
+    const style = document.createElement("style");
+    style.id = "nbMainStyles";
+    style.textContent = css;
+    document.head.appendChild(style);
   });
 });
