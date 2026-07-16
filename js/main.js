@@ -662,5 +662,36 @@
         ],
       },
     ];
+
+    const results = {
+      bold: {
+        icon: "⚫",
+        label: "Your Match",
+        title: "Noir Espresso",
+        desc: "You don't mess around. Double ristretto, thick crema, notes of dark chocolate and cedar — this is coffee stripped to its essence, exactly how you like it.",
+        price: "$5.50",
+      },
+      classic: {
+        icon: "🎯",
+        label: "Your Match",
+        title: "Signature Flat White",
+        desc: "Balanced, disciplined, dependable — like you. Colombian espresso and perfectly steamed milk in a precise 1:3 ratio. A daily ritual done right.",
+        price: "$6.00",
+      },
+      sweet: {
+        icon: "🍯",
+        label: "Your Match",
+        title: "Honey Oat Latte",
+        desc: "Life's too short for boring coffee. Ethiopian espresso, silky oat milk, house honey syrup — warm, golden, and exactly the treat you deserve.",
+        price: "$7.80",
+      },
+      cold: {
+        icon: "🧊",
+        label: "Your Match",
+        title: "Nitro Cold Brew",
+        desc: "Smooth, cool, and always ready to go. 18-hour cold brew on nitrogen tap — cascades like velvet, no milk required. Built for your pace.",
+        price: "$8.50",
+      },
+    };
   })();
 })();
