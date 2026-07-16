@@ -534,4 +534,13 @@
       close: closeDrawer,
     };
   })();
+  window.NB.cart = CartSystem;
+
+  // Auto-wire any element with data-add-to-cart="id|name|price"
+  document.addEventListener("click", (e) => {
+    const el = e.target.closest("[data-add-to-cart]");
+    if (!el) return;
+    const [id, name, price] = el.dataset.addToCart.split("|");
+    CartSystem.addItem({ id, name, price: parseFloat(price) });
+  });
 })();
