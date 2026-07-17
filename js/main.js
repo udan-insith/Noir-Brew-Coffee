@@ -806,4 +806,70 @@
   /* ================================================================
      07. COMMAND PALETTE — ⌘K / Ctrl+K instant search
   ================================================================ */
+  const CommandPalette = (function CommandPalette() {
+    const pages = [
+      {
+        title: "Home",
+        sub: "Back to the homepage",
+        icon: "🏠",
+        url: "index.html",
+      },
+      {
+        title: "Menu",
+        sub: "Browse drinks, food & beans",
+        icon: "☕",
+        url: "menu.html",
+      },
+      {
+        title: "About Us",
+        sub: "Our story, team & farms",
+        icon: "🫘",
+        url: "about.html",
+      },
+      {
+        title: "Contact",
+        sub: "Locations, hours & form",
+        icon: "📍",
+        url: "contact.html",
+      },
+      {
+        title: "Customer Login",
+        sub: "Sign in or register",
+        icon: "👤",
+        url: "login-customer.html",
+      },
+      {
+        title: "Supplier Portal",
+        sub: "Wholesale & partners",
+        icon: "📦",
+        url: "login-supplier.html",
+      },
+    ];
+    const actions = [
+      {
+        title: "Toggle theme",
+        sub: "Switch dark / light mode",
+        icon: "🌗",
+        action: () => window.NB_toggleTheme?.(),
+      },
+      {
+        title: "Open cart",
+        sub: "View your order",
+        icon: "🛒",
+        action: () => CartSystem.open(),
+      },
+      {
+        title: "Find Your Brew",
+        sub: "Take the coffee quiz",
+        icon: "🎯",
+        action: () => BrewQuiz.open(),
+      },
+      {
+        title: "Open chat",
+        sub: "Talk to the AI barista",
+        icon: "🤖",
+        action: () => window.NB?.chatbot?.open(),
+      },
+    ];
+  })();
 })();
