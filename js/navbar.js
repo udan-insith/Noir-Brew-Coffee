@@ -234,3 +234,33 @@ function setActiveLinks() {
   });
 }
 setActiveLinks();
+
+// SCROLL DETECTION
+if (document.body.hasAttribute("data-navbar-autohide")) {
+  let lastY = window.scrollY;
+  let hideTicking = false;
+
+  function handleAutoHide() {
+    const sy = window.scrollY;
+    const goingDown = sy > lastY && sy > 200;
+
+    navbar.style.transform = goingDown ? "translateY(-100%)" : "translateY(0)";
+    navbar.style.transition =
+      "transform .35s cubic-bezier(.16,1,.3,1), " +
+      "height .4s cubic-bezier(.16,1,.3,1), background .45s, box-shadow .45s";
+
+    lastY = sy;
+    hideTicking = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!hideTicking) {
+        requestAnimationFrame(handleAutoHide);
+        hideTicking = true;
+      }
+    },
+    { passive: true },
+  );
+}
