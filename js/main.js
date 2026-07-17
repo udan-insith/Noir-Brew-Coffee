@@ -801,4 +801,9 @@
 
     return { open: openQuiz, close: closeQuiz };
   })();
+  window.NB.quiz = BrewQuiz;
+
+  /* ================================================================
+     07. COMMAND PALETTE — ⌘K / Ctrl+K instant search
+  ================================================================ */
 })();
