@@ -282,3 +282,15 @@ document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach((link) => {
     if (mobOpen) closeMobileMenu();
   });
 });
+
+/* ================================================================
+     EXPOSE PUBLIC API
+  ================================================================ */
+window.NB = window.NB || {};
+window.NB.navbar = {
+  openMobileMenu,
+  closeMobileMenu,
+  toggleMobileMenu,
+  closeAllDropdowns,
+  refreshActiveLinks: setActiveLinks,
+};
