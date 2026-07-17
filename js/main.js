@@ -891,5 +891,52 @@
     const list = overlay.querySelector(".nb-cmdk__list");
     let activeIdx = 0;
     let flatItems = [];
+
+    function render(query = "") {
+      const q = query.toLowerCase().trim();
+      const matchedPages = pages.filter(
+        (p) =>
+          !q ||
+          p.title.toLowerCase().includes(q) ||
+          p.sub.toLowerCase().includes(q),
+      );
+      const matchedActions = actions.filter(
+        (a) =>
+          !q ||
+          a.title.toLowerCase().includes(q) ||
+          a.sub.toLowerCase().includes(q),
+      );
+
+      flatItems = [
+        ...matchedPages.map((p) => ({ ...p, type: "page" })),
+        ...matchedActions.map((a) => ({ ...a, type: "action" })),
+      ];
+      activeIdx = 0;
+
+      if (flatItems.length === 0) {
+        list.innerHTML = `<div class="nb-cmdk__empty">No results for "${escapeHtml(query)}"</div>`;
+        return;
+      }
+
+      let html = "";
+      if (matchedPages.length) {
+        html += `<div class="nb-cmdk__group">Pages</div>`;
+        matchedPages.forEach((p) => (html += cmdItemHtml(p, "page")));
+      }
+      if (matchedActions.length) {
+        html += `<div class="nb-cmdk__group">Actions</div>`;
+        matchedActions.forEach((a) => (html += cmdItemHtml(a, "action")));
+      }
+      list.innerHTML = html;
+      highlightActive();
+
+      list.querySelectorAll(".nb-cmdk__item").forEach((el, i) => {
+        el.addEventListener("click", () => selectItem(flatItems[i]));
+        el.addEventListener("mouseenter", () => {
+          activeIdx = i;
+          highlightActive();
+        });
+      });
+    }
   })();
 })();
