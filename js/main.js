@@ -871,5 +871,25 @@
         action: () => window.NB?.chatbot?.open(),
       },
     ];
+
+    const overlay = document.createElement("div");
+    overlay.className = "nb-overlay";
+    overlay.style.alignItems = "flex-start";
+    overlay.style.paddingTop = "12vh";
+    overlay.innerHTML = `
+      <div class="nb-cmdk">
+        <div class="nb-cmdk__input-row">
+          <span class="nb-cmdk__icon">🔍</span>
+          <input class="nb-cmdk__input" placeholder="Search pages, or type a command…" autocomplete="off"/>
+          <span class="nb-cmdk__esc">ESC</span>
+        </div>
+        <div class="nb-cmdk__list"></div>
+      </div>`;
+    document.body.appendChild(overlay);
+
+    const input = overlay.querySelector(".nb-cmdk__input");
+    const list = overlay.querySelector(".nb-cmdk__list");
+    let activeIdx = 0;
+    let flatItems = [];
   })();
 })();
