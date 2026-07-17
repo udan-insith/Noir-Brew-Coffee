@@ -938,5 +938,32 @@
         });
       });
     }
+
+    function cmdItemHtml(item) {
+      return `
+        <div class="nb-cmdk__item">
+          <div class="nb-cmdk__item-icon">${item.icon}</div>
+          <div class="nb-cmdk__item-text">
+            <div class="nb-cmdk__item-title">${escapeHtml(item.title)}</div>
+            <div class="nb-cmdk__item-sub">${escapeHtml(item.sub)}</div>
+          </div>
+        </div>`;
+    }
+
+    function highlightActive() {
+      list.querySelectorAll(".nb-cmdk__item").forEach((el, i) => {
+        el.classList.toggle("active", i === activeIdx);
+        if (i === activeIdx) el.scrollIntoView({ block: "nearest" });
+      });
+    }
+
+    function selectItem(item) {
+      if (!item) return;
+      if (item.type === "page") window.location.href = item.url;
+      else if (item.type === "action") {
+        item.action();
+        close();
+      }
+    }
   })();
 })();
