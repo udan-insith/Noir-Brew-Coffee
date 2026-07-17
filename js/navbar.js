@@ -264,3 +264,21 @@ if (document.body.hasAttribute("data-navbar-autohide")) {
     { passive: true },
   );
 }
+
+/* ================================================================
+     SMOOTH SCROLL FOR IN-PAGE ANCHOR LINKS
+  ================================================================ */
+document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach((link) => {
+  link.addEventListener("click", (e) => {
+    const targetId = link.getAttribute("href").slice(1);
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    e.preventDefault();
+    const navH = navbar.offsetHeight || 70;
+    const targetY =
+      target.getBoundingClientRect().top + window.scrollY - navH - 12;
+    window.scrollTo({ top: targetY, behavior: "smooth" });
+    // Close mobile menu if open
+    if (mobOpen) closeMobileMenu();
+  });
+});
