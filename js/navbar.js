@@ -209,3 +209,28 @@
     }, 150);
   });
 })();
+
+/* ================================================================
+     ACTIVE LINK DETECTION (auto-highlight current page)
+  ================================================================ */
+function setActiveLinks() {
+  const currentPath = (
+    window.location.pathname.split("/").pop() || "index.html"
+  ).toLowerCase();
+
+  document.querySelectorAll(".nav-link, .mob-link").forEach((link) => {
+    const href = (link.getAttribute("href") || "").toLowerCase();
+    if (!href || href.startsWith("#")) return;
+    const hrefFile = href.split("/").pop().split("#")[0];
+
+    if (
+      hrefFile === currentPath ||
+      (currentPath === "" && hrefFile === "index.html")
+    ) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
+    }
+  });
+}
+setActiveLinks();
