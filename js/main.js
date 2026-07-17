@@ -965,5 +965,47 @@
         close();
       }
     }
+
+    function escapeHtml(str) {
+      const d = document.createElement("div");
+      d.textContent = str;
+      return d.innerHTML;
+    }
+
+    function open() {
+      render("");
+      overlay.classList.add("show");
+      document.body.style.overflow = "hidden";
+      setTimeout(() => input.focus(), 60);
+    }
+    function close() {
+      overlay.classList.remove("show");
+      document.body.style.overflow = "";
+      input.value = "";
+    }
+
+    input.addEventListener("input", () => render(input.value));
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        activeIdx = Math.min(activeIdx + 1, flatItems.length - 1);
+        highlightActive();
+      }
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        activeIdx = Math.max(activeIdx - 1, 0);
+        highlightActive();
+      }
+      if (e.key === "Enter") {
+        e.preventDefault();
+        selectItem(flatItems[activeIdx]);
+      }
+      if (e.key === "Escape") {
+        close();
+      }
+    });
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) close();
+    });
   })();
 })();
