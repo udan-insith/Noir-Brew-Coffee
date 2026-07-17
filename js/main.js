@@ -693,5 +693,51 @@
         price: "$8.50",
       },
     };
+
+    let currentQ = 0;
+    let answers = [];
+
+    // FAB trigger
+    const fab = document.createElement("button");
+    fab.className = "nb-quiz-fab";
+    fab.innerHTML = `<span class="nb-quiz-fab__icon">🎯</span><span>Find Your Brew</span>`;
+    fabStack.appendChild(fab);
+
+    // Overlay + modal
+    const overlay = document.createElement("div");
+    overlay.className = "nb-overlay";
+    const modal = document.createElement("div");
+    modal.className = "nb-quiz-modal";
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    function renderQuestion() {
+      const item = questions[currentQ];
+      modal.innerHTML = `
+        <button class="nb-quiz-close" aria-label="Close quiz">✕</button>
+        <div class="nb-quiz-progress">
+          ${questions.map((_, i) => `<div class="nb-quiz-progress__seg"><div class="nb-quiz-progress__seg-fill" style="width:${i < currentQ ? "100" : i === currentQ ? "50" : "0"}%"></div></div>`).join("")}
+        </div>
+        <div class="nb-quiz-q">${item.q}</div>
+        <div class="nb-quiz-opts">
+          ${item.opts
+            .map(
+              (o, i) => `
+            <button class="nb-quiz-opt" data-tag="${o.tag}">
+              <span class="nb-quiz-opt__emoji">${o.emoji}</span> ${o.label}
+            </button>`,
+            )
+            .join("")}
+        </div>`;
+      bindClose();
+      modal.querySelectorAll(".nb-quiz-opt").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          answers.push(btn.dataset.tag);
+          currentQ++;
+          if (currentQ < questions.length) renderQuestion();
+          else renderResult();
+        });
+      });
+    }
   })();
 })();
