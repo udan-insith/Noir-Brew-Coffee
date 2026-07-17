@@ -774,5 +774,31 @@
         .querySelector(".nb-quiz-close")
         ?.addEventListener("click", closeQuiz);
     }
+
+    function resetQuiz() {
+      currentQ = 0;
+      answers = [];
+      renderQuestion();
+    }
+
+    function openQuiz() {
+      resetQuiz();
+      overlay.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+    function closeQuiz() {
+      overlay.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    fab.addEventListener("click", openQuiz);
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeQuiz();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && overlay.classList.contains("show")) closeQuiz();
+    });
+
+    return { open: openQuiz, close: closeQuiz };
   })();
 })();
