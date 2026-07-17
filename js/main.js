@@ -739,5 +739,40 @@
         });
       });
     }
+
+    function renderResult() {
+      const counts = {};
+      answers.forEach((tag) => (counts[tag] = (counts[tag] || 0) + 1));
+      const winner = Object.keys(counts).reduce((a, b) =>
+        counts[a] >= counts[b] ? a : b,
+      );
+      const r = results[winner];
+
+      modal.innerHTML = `
+        <button class="nb-quiz-close" aria-label="Close quiz">✕</button>
+        <div class="nb-quiz-result">
+          <span class="nb-quiz-result__icon">${r.icon}</span>
+          <div class="nb-quiz-result__label">${r.label}</div>
+          <div class="nb-quiz-result__title">${r.title}</div>
+          <p class="nb-quiz-result__desc">${r.desc}</p>
+          <div class="nb-quiz-actions">
+            <button class="nb-btn-ghost" id="nbQuizRetry">Try Again</button>
+            <a href="menu.html" class="nb-btn-primary">Order ${r.title} — ${r.price}</a>
+          </div>
+        </div>`;
+      bindClose();
+      modal.querySelector("#nbQuizRetry").addEventListener("click", resetQuiz);
+
+      // Celebrate if confetti util is available (from animations.js)
+      if (window.NB && window.NB.confetti) {
+        window.NB.confetti(modal.querySelector(".nb-quiz-result__icon"), 28);
+      }
+    }
+
+    function bindClose() {
+      modal
+        .querySelector(".nb-quiz-close")
+        ?.addEventListener("click", closeQuiz);
+    }
   })();
 })();
