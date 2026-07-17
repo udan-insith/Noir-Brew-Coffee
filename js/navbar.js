@@ -208,89 +208,91 @@
       if (window.innerWidth > 1024 && mobOpen) closeMobileMenu();
     }, 150);
   });
-})();
 
-/* ================================================================
+  /* ================================================================
      ACTIVE LINK DETECTION (auto-highlight current page)
   ================================================================ */
-function setActiveLinks() {
-  const currentPath = (
-    window.location.pathname.split("/").pop() || "index.html"
-  ).toLowerCase();
+  function setActiveLinks() {
+    const currentPath = (
+      window.location.pathname.split("/").pop() || "index.html"
+    ).toLowerCase();
 
-  document.querySelectorAll(".nav-link, .mob-link").forEach((link) => {
-    const href = (link.getAttribute("href") || "").toLowerCase();
-    if (!href || href.startsWith("#")) return;
-    const hrefFile = href.split("/").pop().split("#")[0];
+    document.querySelectorAll(".nav-link, .mob-link").forEach((link) => {
+      const href = (link.getAttribute("href") || "").toLowerCase();
+      if (!href || href.startsWith("#")) return;
+      const hrefFile = href.split("/").pop().split("#")[0];
 
-    if (
-      hrefFile === currentPath ||
-      (currentPath === "" && hrefFile === "index.html")
-    ) {
-      link.classList.add("active");
-    } else {
-      link.classList.remove("active");
+      if (
+        hrefFile === currentPath ||
+        (currentPath === "" && hrefFile === "index.html")
+      ) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
+  }
+  setActiveLinks();
+
+  // SCROLL DETECTION
+  if (document.body.hasAttribute("data-navbar-autohide")) {
+    let lastY = window.scrollY;
+    let hideTicking = false;
+
+    function handleAutoHide() {
+      const sy = window.scrollY;
+      const goingDown = sy > lastY && sy > 200;
+
+      navbar.style.transform = goingDown
+        ? "translateY(-100%)"
+        : "translateY(0)";
+      navbar.style.transition =
+        "transform .35s cubic-bezier(.16,1,.3,1), " +
+        "height .4s cubic-bezier(.16,1,.3,1), background .45s, box-shadow .45s";
+
+      lastY = sy;
+      hideTicking = false;
     }
-  });
-}
-setActiveLinks();
 
-// SCROLL DETECTION
-if (document.body.hasAttribute("data-navbar-autohide")) {
-  let lastY = window.scrollY;
-  let hideTicking = false;
-
-  function handleAutoHide() {
-    const sy = window.scrollY;
-    const goingDown = sy > lastY && sy > 200;
-
-    navbar.style.transform = goingDown ? "translateY(-100%)" : "translateY(0)";
-    navbar.style.transition =
-      "transform .35s cubic-bezier(.16,1,.3,1), " +
-      "height .4s cubic-bezier(.16,1,.3,1), background .45s, box-shadow .45s";
-
-    lastY = sy;
-    hideTicking = false;
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!hideTicking) {
+          requestAnimationFrame(handleAutoHide);
+          hideTicking = true;
+        }
+      },
+      { passive: true },
+    );
   }
 
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (!hideTicking) {
-        requestAnimationFrame(handleAutoHide);
-        hideTicking = true;
-      }
-    },
-    { passive: true },
-  );
-}
-
-/* ================================================================
+  /* ================================================================
      SMOOTH SCROLL FOR IN-PAGE ANCHOR LINKS
   ================================================================ */
-document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach((link) => {
-  link.addEventListener("click", (e) => {
-    const targetId = link.getAttribute("href").slice(1);
-    const target = document.getElementById(targetId);
-    if (!target) return;
-    e.preventDefault();
-    const navH = navbar.offsetHeight || 70;
-    const targetY =
-      target.getBoundingClientRect().top + window.scrollY - navH - 12;
-    window.scrollTo({ top: targetY, behavior: "smooth" });
-    // Close mobile menu if open
-    if (mobOpen) closeMobileMenu();
+  document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const targetId = link.getAttribute("href").slice(1);
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      e.preventDefault();
+      const navH = navbar.offsetHeight || 70;
+      const targetY =
+        target.getBoundingClientRect().top + window.scrollY - navH - 12;
+      window.scrollTo({ top: targetY, behavior: "smooth" });
+      // Close mobile menu if open
+      if (mobOpen) closeMobileMenu();
+    });
   });
-});
 
-/* ================================================================
+  /* ================================================================
      EXPOSE PUBLIC API
   ================================================================ */
-window.NB = window.NB || {};
-window.NB.navbar = {
-  openMobileMenu,
-  closeMobileMenu,
-  toggleMobileMenu,
-  closeAllDropdowns,
-  refreshActiveLinks: setActiveLinks,
-};
+  window.NB = window.NB || {};
+  window.NB.navbar = {
+    openMobileMenu,
+    closeMobileMenu,
+    toggleMobileMenu,
+    closeAllDropdowns,
+    refreshActiveLinks: setActiveLinks,
+  };
+})();
