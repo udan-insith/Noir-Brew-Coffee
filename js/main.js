@@ -1036,4 +1036,5 @@
 
     return { open, close };
   })();
+  window.NB.commandPalette = CommandPalette;
 })();
