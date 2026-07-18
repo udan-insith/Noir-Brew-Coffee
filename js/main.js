@@ -1037,4 +1037,24 @@
     return { open, close };
   })();
   window.NB.commandPalette = CommandPalette;
+
+  /* ================================================================
+     08. NEWSLETTER HANDLER — opt-in via [data-nb-newsletter]
+  ================================================================ */
+  document.querySelectorAll("form[data-nb-newsletter]").forEach((form) => {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const emailInput = form.querySelector('input[type="email"]');
+      const email = emailInput?.value.trim();
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email || "");
+      if (!valid) {
+        emailInput?.classList.add("shake");
+        setTimeout(() => emailInput?.classList.remove("shake"), 500);
+        toast("⚠️ Please enter a valid email address.", "err");
+        return;
+      }
+      toast(`✅ ${email} subscribed — welcome to the list!`, "ok");
+      form.reset();
+    });
+  });
 })();
