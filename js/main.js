@@ -1196,4 +1196,14 @@
       setTimeout(() => localStorage.removeItem(DRAFT_KEY), 2000);
     });
   })();
+
+  /* ================================================================
+     12. CONNECTION WATCHER — online/offline toasts
+  ================================================================ */
+  (function ConnectionWatcher() {
+    window.addEventListener("offline", () =>
+      toast("📡 You're offline — some features may not work.", "warn", 5000),
+    );
+    window.addEventListener("online", () => toast("✅ Back online!", "ok"));
+  })();
 })();
