@@ -1007,5 +1007,33 @@
     overlay.addEventListener("click", (e) => {
       if (e.target === overlay) close();
     });
+
+    document.addEventListener("keydown", (e) => {
+      const isTyping = ["INPUT", "TEXTAREA", "SELECT"].includes(
+        document.activeElement?.tagName,
+      );
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        overlay.classList.contains("show") ? close() : open();
+      }
+      if (!isTyping && e.key === "/") {
+        e.preventDefault();
+        open();
+      }
+    });
+
+    // One-time discoverability tip
+    setTimeout(() => {
+      if (!sessionStorage.getItem("nbCmdkTipShown")) {
+        sessionStorage.setItem("nbCmdkTipShown", "1");
+        toast(
+          "💡 Tip: press Ctrl+K (or ⌘K) to quick-search the site",
+          "info",
+          4200,
+        );
+      }
+    }, 3500);
+
+    return { open, close };
   })();
 })();
