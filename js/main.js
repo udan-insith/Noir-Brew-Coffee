@@ -1145,4 +1145,55 @@
       if (e.key === "Escape") close();
     });
   })();
+
+  /* ================================================================
+     11. CONTACT FORM AUTOSAVE — drafts persist across reloads
+  ================================================================ */
+  (function ContactFormAutosave() {
+    const form = document.getElementById("contactForm");
+    if (!form) return;
+    const DRAFT_KEY = "nbContactDraft";
+    const fields = form.querySelectorAll("input[name], textarea[name]");
+
+    // Restore
+    try {
+      const saved = JSON.parse(localStorage.getItem(DRAFT_KEY) || "{}");
+      fields.forEach((f) => {
+        if (saved[f.name] && f.type !== "checkbox") {
+          f.value = saved[f.name];
+          f.dispatchEvent(new Event("input")); // trigger floating-label reflow
+        }
+      });
+      if (Object.keys(saved).length) {
+        toast("📝 We restored your draft message.", "info");
+      }
+    } catch {
+      /* ignore */
+    }
+
+    // Save on input (debounced)
+    let saveTimer;
+    fields.forEach((f) => {
+      f.addEventListener("input", () => {
+        clearTimeout(saveTimer);
+        saveTimer = setTimeout(() => {
+          const data = {};
+          fields.forEach((field) => {
+            if (
+              (field.type !== "checkbox" && field.name !== "message") ||
+              field.name === "message"
+            ) {
+              if (field.type !== "checkbox") data[field.name] = field.value;
+            }
+          });
+          localStorage.setItem(DRAFT_KEY, JSON.stringify(data));
+        }, 600);
+      });
+    });
+
+    // Clear draft on successful submit
+    form.addEventListener("submit", () => {
+      setTimeout(() => localStorage.removeItem(DRAFT_KEY), 2000);
+    });
+  })();
 })();
