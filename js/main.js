@@ -1102,4 +1102,47 @@
     );
     cards.forEach((c) => obs.observe(c));
   });
+
+  /* ================================================================
+     10. GALLERY LIGHTBOX
+  ================================================================ */
+  (function GalleryLightbox() {
+    const targets = document.querySelectorAll(".gallery-item img, .gal-img");
+    if (!targets.length) return;
+
+    const lightbox = document.createElement("div");
+    lightbox.className = "nb-lightbox";
+    lightbox.innerHTML = `<button class="nb-lightbox__close" aria-label="Close">✕</button><img alt=""/>`;
+    document.body.appendChild(lightbox);
+    const imgEl = lightbox.querySelector("img");
+
+    function open(src, alt) {
+      imgEl.src = src;
+      imgEl.alt = alt || "";
+      lightbox.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+    function close() {
+      lightbox.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    targets.forEach((img) => {
+      img.style.cursor = "zoom-in";
+      img.parentElement.addEventListener("click", (e) => {
+        e.preventDefault();
+        open(img.src, img.alt);
+      });
+    });
+
+    lightbox
+      .querySelector(".nb-lightbox__close")
+      .addEventListener("click", close);
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) close();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
+    });
+  })();
 })();
