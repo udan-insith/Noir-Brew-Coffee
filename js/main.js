@@ -1057,4 +1057,49 @@
       form.reset();
     });
   });
+
+  /* ================================================================
+     09. TESTIMONIAL CAROUSEL — progressive enhancement
+  ================================================================ */
+  document.querySelectorAll(".testimonials__grid").forEach((grid) => {
+    if (window.innerWidth > 900) return; // desktop shows full grid, no carousel needed
+    const cards = Array.from(grid.children);
+    if (cards.length < 2) return;
+
+    grid.style.display = "flex";
+    grid.style.overflowX = "auto";
+    grid.style.scrollSnapType = "x mandatory";
+    grid.style.scrollBehavior = "smooth";
+    cards.forEach((c) => {
+      c.style.flex = "0 0 100%";
+      c.style.scrollSnapAlign = "center";
+    });
+
+    const dots = document.createElement("div");
+    dots.className = "nb-carousel-dots";
+    cards.forEach((_, i) => {
+      const dot = document.createElement("button");
+      dot.className = `nb-carousel-dot${i === 0 ? " active" : ""}`;
+      dot.addEventListener("click", () => {
+        cards[i].scrollIntoView({ behavior: "smooth", inline: "center" });
+      });
+      dots.appendChild(dot);
+    });
+    grid.after(dots);
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = cards.indexOf(entry.target);
+            dots
+              .querySelectorAll(".nb-carousel-dot")
+              .forEach((d, i) => d.classList.toggle("active", i === idx));
+          }
+        });
+      },
+      { root: grid, threshold: 0.6 },
+    );
+    cards.forEach((c) => obs.observe(c));
+  });
 })();
