@@ -1206,4 +1206,45 @@
     );
     window.addEventListener("online", () => toast("✅ Back online!", "ok"));
   })();
+
+  /* ================================================================
+     13. KONAMI CODE EASTER EGG
+  ================================================================ */
+  (function KonamiEasterEgg() {
+    const code = [
+      "ArrowUp",
+      "ArrowUp",
+      "ArrowDown",
+      "ArrowDown",
+      "ArrowLeft",
+      "ArrowRight",
+      "ArrowLeft",
+      "ArrowRight",
+      "b",
+      "a",
+    ];
+    let pos = 0;
+    document.addEventListener("keydown", (e) => {
+      const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+      if (key === code[pos]) {
+        pos++;
+        if (pos === code.length) {
+          pos = 0;
+          toast(
+            "☕ You found the secret blend! Enjoy 15% off with code NOIRSECRET",
+            "ok",
+            6000,
+          );
+          if (window.NB?.confetti) {
+            window.NB.confetti(
+              document.body.querySelector(".chatbot-fab") || document.body,
+              60,
+            );
+          }
+        }
+      } else {
+        pos = key === code[0] ? 1 : 0;
+      }
+    });
+  })();
 })();
