@@ -10,6 +10,8 @@
 
 ---
 
+## Watch A Demo - https://noir-brew-coffee.netlify.app/
+
 ## ✨ Overview
 
 Noir Brew Co. is a fictional Singapore-based specialty coffee roaster. This repo is the full front-end for its brand website — designed to feel premium, animated, and modern, while staying dependency-free (no GSAP, no frameworks, no build step required).
