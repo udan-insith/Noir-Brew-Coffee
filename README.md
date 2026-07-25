@@ -1,6 +1,6 @@
 # ☕ Noir Brew Co.
 
-**An award-style, multi-page specialty coffee website** — built from scratch with pure HTML, CSS, and vanilla JavaScript. Dark-gold aesthetic, full animation system, dual login portals, and a built-in AI barista chatbot.
+**An specialty coffee website** — built from scratch with pure HTML, CSS, and vanilla JavaScript. Dark-gold aesthetic, full animation system, dual login portals, and a built-in AI barista chatbot.
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
